@@ -1,0 +1,215 @@
+{
+    "torch": {
+        "nn": {
+            "modules": {
+                "pooling": {
+                    "AdaptiveAvgPool1d": "torch.nn.modules.pooling.AdaptiveAvgPool1d",
+                    "AdaptiveAvgPool2d": "torch.nn.modules.pooling.AdaptiveAvgPool2d",
+                    "AdaptiveAvgPool3d": "torch.nn.modules.pooling.AdaptiveAvgPool3d",
+                    "AdaptiveMaxPool1d": "torch.nn.modules.pooling.AdaptiveMaxPool1d",
+                    "AdaptiveMaxPool2d": "torch.nn.modules.pooling.AdaptiveMaxPool2d",
+                    "AdaptiveMaxPool3d": "torch.nn.modules.pooling.AdaptiveMaxPool3d",
+                    "AvgPool1d": "torch.nn.modules.pooling.AvgPool1d",
+                    "AvgPool2d": "torch.nn.modules.pooling.AvgPool2d",
+                    "AvgPool3d": "torch.nn.modules.pooling.AvgPool3d",
+                    "FractionalMaxPool2d": "torch.nn.modules.pooling.FractionalMaxPool2d",
+                    "FractionalMaxPool3d": "torch.nn.modules.pooling.FractionalMaxPool3d",
+                    "LPPool1d": "torch.nn.modules.pooling.LPPool1d",
+                    "LPPool2d": "torch.nn.modules.pooling.LPPool2d",
+                    "MaxPool1d": "torch.nn.modules.pooling.MaxPool1d",
+                    "MaxPool2d": "torch.nn.modules.pooling.MaxPool2d",
+                    "MaxPool3d": "torch.nn.modules.pooling.MaxPool3d",
+                    "MaxUnpool1d": "torch.nn.modules.pooling.MaxUnpool1d",
+                    "MaxUnpool2d": "torch.nn.modules.pooling.MaxUnpool2d",
+                    "MaxUnpool3d": "torch.nn.modules.pooling.MaxUnpool3d"
+                },
+                "adaptive": {
+                    "AdaptiveLogSoftmaxWithLoss": "torch.nn.modules.adaptive.AdaptiveLogSoftmaxWithLoss"
+                },
+                "dropout": {
+                    "AlphaDropout": "torch.nn.modules.dropout.AlphaDropout",
+                    "Dropout": "torch.nn.modules.dropout.Dropout",
+                    "Dropout2d": "torch.nn.modules.dropout.Dropout2d",
+                    "Dropout3d": "torch.nn.modules.dropout.Dropout3d",
+                    "FeatureAlphaDropout": "torch.nn.modules.dropout.FeatureAlphaDropout"
+                },
+                "loss": {
+                    "BCELoss": "torch.nn.modules.loss.BCELoss",
+                    "BCEWithLogitsLoss": "torch.nn.modules.loss.BCEWithLogitsLoss",
+                    "CTCLoss": "torch.nn.modules.loss.CTCLoss",
+                    "CosineEmbeddingLoss": "torch.nn.modules.loss.CosineEmbeddingLoss",
+                    "CrossEntropyLoss": "torch.nn.modules.loss.CrossEntropyLoss",
+                    "GaussianNLLLoss": "torch.nn.modules.loss.GaussianNLLLoss",
+                    "HingeEmbeddingLoss": "torch.nn.modules.loss.HingeEmbeddingLoss",
+                    "HuberLoss": "torch.nn.modules.loss.HuberLoss",
+                    "KLDivLoss": "torch.nn.modules.loss.KLDivLoss",
+                    "L1Loss": "torch.nn.modules.loss.L1Loss",
+                    "MSELoss": "torch.nn.modules.loss.MSELoss",
+                    "MarginRankingLoss": "torch.nn.modules.loss.MarginRankingLoss",
+                    "MultiLabelMarginLoss": "torch.nn.modules.loss.MultiLabelMarginLoss",
+                    "MultiLabelSoftMarginLoss": "torch.nn.modules.loss.MultiLabelSoftMarginLoss",
+                    "MultiMarginLoss": "torch.nn.modules.loss.MultiMarginLoss",
+                    "NLLLoss": "torch.nn.modules.loss.NLLLoss",
+                    "NLLLoss2d": "torch.nn.modules.loss.NLLLoss2d",
+                    "PoissonNLLLoss": "torch.nn.modules.loss.PoissonNLLLoss",
+                    "SmoothL1Loss": "torch.nn.modules.loss.SmoothL1Loss",
+                    "SoftMarginLoss": "torch.nn.modules.loss.SoftMarginLoss",
+                    "TripletMarginLoss": "torch.nn.modules.loss.TripletMarginLoss",
+                    "TripletMarginWithDistanceLoss": "torch.nn.modules.loss.TripletMarginWithDistanceLoss"
+                },
+                "batchnorm": {
+                    "BatchNorm1d": "torch.nn.modules.batchnorm.BatchNorm1d",
+                    "BatchNorm2d": "torch.nn.modules.batchnorm.BatchNorm2d",
+                    "BatchNorm3d": "torch.nn.modules.batchnorm.BatchNorm3d",
+                    "LazyBatchNorm1d": "torch.nn.modules.batchnorm.LazyBatchNorm1d",
+                    "LazyBatchNorm2d": "torch.nn.modules.batchnorm.LazyBatchNorm2d",
+                    "LazyBatchNorm3d": "torch.nn.modules.batchnorm.LazyBatchNorm3d",
+                    "SyncBatchNorm": "torch.nn.modules.batchnorm.SyncBatchNorm"
+                },
+                "linear": {
+                    "Bilinear": "torch.nn.modules.linear.Bilinear",
+                    "Identity": "torch.nn.modules.linear.Identity",
+                    "LazyLinear": "torch.nn.modules.linear.LazyLinear",
+                    "Linear": "torch.nn.modules.linear.Linear"
+                },
+                "activation": {
+                    "CELU": "torch.nn.modules.activation.CELU",
+                    "ELU": "torch.nn.modules.activation.ELU",
+                    "GELU": "torch.nn.modules.activation.GELU",
+                    "GLU": "torch.nn.modules.activation.GLU",
+                    "Hardshrink": "torch.nn.modules.activation.Hardshrink",
+                    "Hardsigmoid": "torch.nn.modules.activation.Hardsigmoid",
+                    "Hardswish": "torch.nn.modules.activation.Hardswish",
+                    "Hardtanh": "torch.nn.modules.activation.Hardtanh",
+                    "LeakyReLU": "torch.nn.modules.activation.LeakyReLU",
+                    "LogSigmoid": "torch.nn.modules.activation.LogSigmoid",
+                    "LogSoftmax": "torch.nn.modules.activation.LogSoftmax",
+                    "Mish": "torch.nn.modules.activation.Mish",
+                    "MultiheadAttention": "torch.nn.modules.activation.MultiheadAttention",
+                    "PReLU": "torch.nn.modules.activation.PReLU",
+                    "RReLU": "torch.nn.modules.activation.RReLU",
+                    "ReLU": "torch.nn.modules.activation.ReLU",
+                    "ReLU6": "torch.nn.modules.activation.ReLU6",
+                    "SELU": "torch.nn.modules.activation.SELU",
+                    "SiLU": "torch.nn.modules.activation.SiLU",
+                    "Sigmoid": "torch.nn.modules.activation.Sigmoid",
+                    "Softmax": "torch.nn.modules.activation.Softmax",
+                    "Softmax2d": "torch.nn.modules.activation.Softmax2d",
+                    "Softmin": "torch.nn.modules.activation.Softmin",
+                    "Softplus": "torch.nn.modules.activation.Softplus",
+                    "Softshrink": "torch.nn.modules.activation.Softshrink",
+                    "Softsign": "torch.nn.modules.activation.Softsign",
+                    "Tanh": "torch.nn.modules.activation.Tanh",
+                    "Tanhshrink": "torch.nn.modules.activation.Tanhshrink",
+                    "Threshold": "torch.nn.modules.activation.Threshold"
+                },
+                "channelshuffle": {
+                    "ChannelShuffle": "torch.nn.modules.channelshuffle.ChannelShuffle"
+                },
+                "padding": {
+                    "ConstantPad1d": "torch.nn.modules.padding.ConstantPad1d",
+                    "ConstantPad2d": "torch.nn.modules.padding.ConstantPad2d",
+                    "ConstantPad3d": "torch.nn.modules.padding.ConstantPad3d",
+                    "ReflectionPad1d": "torch.nn.modules.padding.ReflectionPad1d",
+                    "ReflectionPad2d": "torch.nn.modules.padding.ReflectionPad2d",
+                    "ReflectionPad3d": "torch.nn.modules.padding.ReflectionPad3d",
+                    "ReplicationPad1d": "torch.nn.modules.padding.ReplicationPad1d",
+                    "ReplicationPad2d": "torch.nn.modules.padding.ReplicationPad2d",
+                    "ReplicationPad3d": "torch.nn.modules.padding.ReplicationPad3d",
+                    "ZeroPad2d": "torch.nn.modules.padding.ZeroPad2d"
+                },
+                "container": {
+                    "Container": "torch.nn.modules.container.Container",
+                    "ModuleDict": "torch.nn.modules.container.ModuleDict",
+                    "ModuleList": "torch.nn.modules.container.ModuleList",
+                    "ParameterDict": "torch.nn.modules.container.ParameterDict",
+                    "ParameterList": "torch.nn.modules.container.ParameterList",
+                    "Sequential": "torch.nn.modules.container.Sequential"
+                },
+                "conv": {
+                    "Conv1d": "torch.nn.modules.conv.Conv1d",
+                    "Conv2d": "torch.nn.modules.conv.Conv2d",
+                    "Conv3d": "torch.nn.modules.conv.Conv3d",
+                    "ConvTranspose1d": "torch.nn.modules.conv.ConvTranspose1d",
+                    "ConvTranspose2d": "torch.nn.modules.conv.ConvTranspose2d",
+                    "ConvTranspose3d": "torch.nn.modules.conv.ConvTranspose3d",
+                    "LazyConv1d": "torch.nn.modules.conv.LazyConv1d",
+                    "LazyConv2d": "torch.nn.modules.conv.LazyConv2d",
+                    "LazyConv3d": "torch.nn.modules.conv.LazyConv3d",
+                    "LazyConvTranspose1d": "torch.nn.modules.conv.LazyConvTranspose1d",
+                    "LazyConvTranspose2d": "torch.nn.modules.conv.LazyConvTranspose2d",
+                    "LazyConvTranspose3d": "torch.nn.modules.conv.LazyConvTranspose3d"
+                },
+                "distance": {
+                    "CosineSimilarity": "torch.nn.modules.distance.CosineSimilarity",
+                    "PairwiseDistance": "torch.nn.modules.distance.PairwiseDistance"
+                },
+                "normalization": {
+                    "CrossMapLRN2d": "torch.nn.modules.normalization.CrossMapLRN2d",
+                    "GroupNorm": "torch.nn.modules.normalization.GroupNorm",
+                    "LayerNorm": "torch.nn.modules.normalization.LayerNorm",
+                    "LocalResponseNorm": "torch.nn.modules.normalization.LocalResponseNorm"
+                },
+                "sparse": {
+                    "Embedding": "torch.nn.modules.sparse.Embedding",
+                    "EmbeddingBag": "torch.nn.modules.sparse.EmbeddingBag"
+                },
+                "flatten": {
+                    "Flatten": "torch.nn.modules.flatten.Flatten",
+                    "Unflatten": "torch.nn.modules.flatten.Unflatten"
+                },
+                "fold": {
+                    "Fold": "torch.nn.modules.fold.Fold",
+                    "Unfold": "torch.nn.modules.fold.Unfold"
+                },
+                "rnn": {
+                    "GRU": "torch.nn.modules.rnn.GRU",
+                    "GRUCell": "torch.nn.modules.rnn.GRUCell",
+                    "LSTM": "torch.nn.modules.rnn.LSTM",
+                    "LSTMCell": "torch.nn.modules.rnn.LSTMCell",
+                    "RNN": "torch.nn.modules.rnn.RNN",
+                    "RNNBase": "torch.nn.modules.rnn.RNNBase",
+                    "RNNCell": "torch.nn.modules.rnn.RNNCell",
+                    "RNNCellBase": "torch.nn.modules.rnn.RNNCellBase"
+                },
+                "instancenorm": {
+                    "InstanceNorm1d": "torch.nn.modules.instancenorm.InstanceNorm1d",
+                    "InstanceNorm2d": "torch.nn.modules.instancenorm.InstanceNorm2d",
+                    "InstanceNorm3d": "torch.nn.modules.instancenorm.InstanceNorm3d",
+                    "LazyInstanceNorm1d": "torch.nn.modules.instancenorm.LazyInstanceNorm1d",
+                    "LazyInstanceNorm2d": "torch.nn.modules.instancenorm.LazyInstanceNorm2d",
+                    "LazyInstanceNorm3d": "torch.nn.modules.instancenorm.LazyInstanceNorm3d"
+                },
+                "module": {
+                    "Module": "torch.nn.modules.module.Module"
+                },
+                "pixelshuffle": {
+                    "PixelShuffle": "torch.nn.modules.pixelshuffle.PixelShuffle",
+                    "PixelUnshuffle": "torch.nn.modules.pixelshuffle.PixelUnshuffle"
+                },
+                "transformer": {
+                    "Transformer": "torch.nn.modules.transformer.Transformer",
+                    "TransformerDecoder": "torch.nn.modules.transformer.TransformerDecoder",
+                    "TransformerDecoderLayer": "torch.nn.modules.transformer.TransformerDecoderLayer",
+                    "TransformerEncoder": "torch.nn.modules.transformer.TransformerEncoder",
+                    "TransformerEncoderLayer": "torch.nn.modules.transformer.TransformerEncoderLayer"
+                },
+                "upsampling": {
+                    "Upsample": "torch.nn.modules.upsampling.Upsample",
+                    "UpsamplingBilinear2d": "torch.nn.modules.upsampling.UpsamplingBilinear2d",
+                    "UpsamplingNearest2d": "torch.nn.modules.upsampling.UpsamplingNearest2d"
+                }
+            },
+            "parallel": {
+                "data_parallel": {
+                    "DataParallel": "torch.nn.parallel.data_parallel.DataParallel"
+                }
+            },
+            "parameter": {
+                "Parameter": "torch.nn.parameter.Parameter",
+                "UninitializedBuffer": "torch.nn.parameter.UninitializedBuffer",
+                "UninitializedParameter": "torch.nn.parameter.UninitializedParameter"
+            }
+        }
+    }
+}

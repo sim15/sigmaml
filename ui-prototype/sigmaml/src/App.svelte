@@ -19,8 +19,9 @@
 	// 	console.log(data);
 	// }
 
-	import { draggable } from 'svelte-drag'
-	import ModuleSelection from './ModuleSelection.svelte'
+	import { draggable } from 'svelte-drag';
+	import ModuleSelection from './ModuleSelection.svelte';
+	import Drawflow from './Drawflow.svelte';
 	import * as pytorchData from './nnTree.json';
 
 	// should change
@@ -144,7 +145,7 @@
 		<div class="right-panel panel">
 			<div class="main-panel panel">
 				<div class="main-view">
-					main-view
+					<Drawflow />
 				</div>
 				<div class="selection-menu sub-panel">
 					<!-- selection-menu -->

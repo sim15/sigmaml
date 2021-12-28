@@ -1,10 +1,18 @@
 <script>
 	export let name;
+	// export let reference;
 	// $: type = name.slice(name.lastIndexOf('.') + 1);
+
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.textContent);
+	};
+
 	$: type = "pytorch-icon";
 </script>
 
-<span style="background-image: url(./icons/{type}.svg)">{name}</span>
+<span style="background-image: url(./icons/{type}.svg)"
+draggable="true" on:dragstart={drag}
+>{name}</span>
 
 <style>
 	span {

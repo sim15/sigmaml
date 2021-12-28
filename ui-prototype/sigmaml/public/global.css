@@ -72,3 +72,11 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+.disable-select {
+	-webkit-user-select: none;  
+	-moz-user-select: none;    
+	-ms-user-select: none;      
+	user-select: none;
+  }
+  

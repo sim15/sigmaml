@@ -12,12 +12,12 @@
 
 </script>
 
-<span class:expanded on:click={toggle}>{name}</span>
+<span class="disable-select" class:expanded on:click={toggle}>{name}</span>
 
 {#if expanded}
-	<ul>
+	<ul class="disable-select">
 		{#each submodules as pytorchModule}
-			<li>
+			<li class="disable-select">
 				{#if pytorchModule.submodules}
                     <svelte:self {...pytorchModule}/>
 				{:else}

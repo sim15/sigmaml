@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "npm run build && electron .",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear",
+    "rebuild": "electron-rebuild"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -23,7 +24,7 @@
   "dependencies": {
     "drawflow": "^0.0.54",
     "electron": "^16.0.4",
-    "sirv-cli": "^1.0.0",
-    "svelte-drag": "^2.4.0"
+    "electron-rebuild": "^3.2.5",
+    "sirv-cli": "^1.0.0"
   }
 }

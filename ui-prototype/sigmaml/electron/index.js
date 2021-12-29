@@ -1,5 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const { join } = require("path");
+// const path = require("path");
+// const fs = require("fs");
+// const os = require("os");
+// const pty = require("node-pty");
+
+// var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
 const isDev = !app.isPackaged;
 
@@ -11,7 +17,8 @@ function main () {
         width: 1200, height: 900,
         show: false,
         webPreferences: {
-            preload: join(__dirname, "./preload.js")
+            preload: join(__dirname, "./preload.js"),
+            nodeIntegration: false
         }
     })
 
@@ -20,11 +27,21 @@ function main () {
 
     window.on('ready-to-show', window.show)
 
-    let count = 0;
-    setInterval(() => {
-        window.webContents.send("count", count++)
-    }, 1000)
-    
+    // var ptyProcess = pty.spawn(shell, [], {
+    //     name: "xterm-color",
+    //     cols: 80,
+    //     rows: 24,
+    //     cwd: process.env.HOME,
+    //     env: process.env
+    // });
+
+    // ptyProcess.on("data", (data) => {
+    //     window.webContents.send("terminal.incData", data);
+    // });
+
+    // ipcMain.on("terminal.toTerm", (event, data) => {
+    //     ptyProcess.write(data);
+    // });
 
 }
 
@@ -33,13 +50,3 @@ if (isDev) {
         electron: join(__dirname, '../node_modules/.bin/electron')
     })
 }
-
-// from render to main
-ipcMain.on("message", (event, args) => {
-    console.log(args);
-});
-
-ipcMain.handle("promise-msg", async (event, args) => {
-    console.log(args)
-    return process.getCPUUsage()
-})

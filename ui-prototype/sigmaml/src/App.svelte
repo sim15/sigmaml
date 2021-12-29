@@ -22,6 +22,7 @@
 	import { draggable } from 'svelte-drag';
 	import ModuleSelection from './ModuleSelection.svelte';
 	import Drawflow from './Drawflow.svelte';
+	import TerminalPanel from './TerminalPanel.svelte';
 	import * as pytorchData from './nnTree.json';
 
 	// should change
@@ -154,9 +155,9 @@
 			</div>
 			<!-- <div class="handler"></div> -->
 			<div class="lower-panel panel">
-				<div class="terminal sub-panel">
-					terminal
-				</div>
+
+				<!-- <TerminalPanel /> -->
+				
 			</div>
 		</div>
 		

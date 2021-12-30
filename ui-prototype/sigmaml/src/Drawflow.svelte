@@ -1,6 +1,6 @@
 <script defer>
     import Drawflow from 'drawflow'
-    import styleDrawflow from 'drawflow/dist/drawflow.min.css'
+    import styleDrawflow from 'drawflow/dist/drawflow.min.css';
 
     // recursively check if a cycle was created in the graph
     function cycleCreated(curNode, visited, recursionPath) {

@@ -1,11 +1,17 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
-const { join } = require("path");
-// const path = require("path");
+const Path = require("path");
 // const fs = require("fs");
 // const os = require("os");
 // const pty = require("node-pty");
 
-// var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
+// const shell = os.platform() === "win32" ? "powershell.exe" : "bash";
+
+
+const os = require('os');
+const pty = require('node-pty');
+
+var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
+
 
 const isDev = !app.isPackaged;
 
@@ -14,39 +20,76 @@ app.whenReady().then(main)
 function main () {
 
     const window = new BrowserWindow({
-        width: 1200, height: 900,
+        width: 1920, height: 1080,
         show: false,
         webPreferences: {
-            preload: join(__dirname, "./preload.js"),
-            nodeIntegration: false
+            preload: Path.resolve("./electron/preload.js"),
+            nodeIntegration: false,
+            enableRemoteModule: false,
+            contextIsolation: true,
         }
     })
 
     
-    window.loadFile(join(__dirname, "../public/index.html"))
+    window.loadFile(Path.resolve("./public/index.html"))
 
     window.on('ready-to-show', window.show)
 
-    // var ptyProcess = pty.spawn(shell, [], {
+
+    // var term = pty.spawn(shell, [], {
     //     name: "xterm-color",
-    //     cols: 80,
-    //     rows: 24,
+    //     // cols: 80,
+    //     // rows: 24,
     //     cwd: process.env.HOME,
     //     env: process.env
     // });
 
-    // ptyProcess.on("data", (data) => {
-    //     window.webContents.send("terminal.incData", data);
+    // let termpid = term.pid;
+    // console.log(`Create Terminal : ${termpid}`);
+
+    // term.onData((data) => {
+    //     window.webContents.send("terminal.sendData", data);
     // });
 
-    // ipcMain.on("terminal.toTerm", (event, data) => {
-    //     ptyProcess.write(data);
+    // ipcMain.on("term.data", (ev, data) => {
+    //     term.write(data);
     // });
 
-}
+    // ipcMain.on("term.resize", (ev, data) => term.resize(data.cols, data.rows));
 
-if (isDev) {
-    require('electron-reload')(__dirname, {
-        electron: join(__dirname, '../node_modules/.bin/electron')
+
+
+
+
+    var ptyProcess = pty.spawn(shell, [], {
+        name: 'xterm-color',
+        // cols: 80,
+        // rows: 24,
+        cwd: process.env.HOME,
+        env: process.env
+    });
+    
+    ptyProcess.on("data", (data) => {
+      window.webContents.send("terminal-incData", data);
+    });
+
+    ipcMain.on("terminal-into", (event, data)=> {
+      ptyProcess.write(data);
     })
+
+    // ipcMain.on("term.resize", (ev, data) => ptyProcess.resize(data.cols, data.rows));
+
 }
+
+// app.whenReady().then(() => {
+//     createWindow();
+
+//     app.on("before-quit", () => {
+//         term.kill();
+//         console.log(`Close Terminal : ${termpid}`);
+//     });
+
+//     app.on("window-all-closed", () => {
+//         app.quit();
+//     });
+// });

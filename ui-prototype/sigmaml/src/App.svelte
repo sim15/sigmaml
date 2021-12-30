@@ -19,11 +19,13 @@
 	// 	console.log(data);
 	// }
 
-	import { draggable } from 'svelte-drag';
+	// import { draggable } from 'svelte-drag';
 	import ModuleSelection from './ModuleSelection.svelte';
 	import Drawflow from './Drawflow.svelte';
 	import TerminalPanel from './TerminalPanel.svelte';
 	import * as pytorchData from './nnTree.json';
+
+    import 'xterm/css/xterm.css';
 
 	// should change
 	let heightWin = window.innerHeight;
@@ -96,6 +98,8 @@
 	.lower-panel {
 		background-color: #303030;
 		height: 25%;
+		display: flex;
+		flex-flow: column;
 	}
 
 	.panel {
@@ -110,8 +114,12 @@
 		/* border: .5px solid white; */
 	}
 
-	.terminal {
+	#terminal-container {
+		width: 100%;
 		height: 100%;
+		padding: 0;
+		margin: 0 1em 1em 1em;
+		overflow: hidden;
 	}
 
 	.handler {
@@ -155,9 +163,12 @@
 			</div>
 			<!-- <div class="handler"></div> -->
 			<div class="lower-panel panel">
-
+				<div class="terminal-menu sub-panel">
+					<span>Terminal</span> <!-- add styling -->
+				</div>
 				<!-- <TerminalPanel /> -->
-				
+				<!-- <div id="terminal"></div> -->
+				<div class="sub-panel" id="terminal-container"></div>
 			</div>
 		</div>
 		

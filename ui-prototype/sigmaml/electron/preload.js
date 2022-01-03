@@ -157,11 +157,30 @@ window.addEventListener("load", function () {
 
         term.onData(e => {
             ipcRenderer.send("terminal-into", e);
+            // console.log("YES")
+            // console.log(e);
         } );
+        
         ipcRenderer.on('terminal-incData', (event, data) => {
             term.write(data);
+            // console.log(event);
         })
+
+        term.onResize((size) => {
+            const newsize = {
+                cols: size.cols,
+                rows: size.rows,
+            };
+
+            ipcRenderer.send("term.resize", newsize);
+        });
+
+        window.addEventListener("resize", function () {
+            fitAddon.fit();
+        });
 
         // Make the terminal's size and geometry fit the size of #terminal-container
         fitAddon.fit();
+        // ipcRenderer.send("terminal-into", " ");
+        // console.log("binted");
 })

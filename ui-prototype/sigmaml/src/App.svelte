@@ -115,6 +115,7 @@
 	}
 
 	#terminal-container {
+		min-width: 300px;
 		width: 100%;
 		height: 100%;
 		padding: 0;
@@ -168,7 +169,9 @@
 				</div>
 				<!-- <TerminalPanel /> -->
 				<!-- <div id="terminal"></div> -->
-				<div class="sub-panel" id="terminal-container"></div>
+				<!-- <div id="subcontainer"> -->
+					<div class="sub-panel" id="terminal-container"></div>
+				<!-- </div> -->
 			</div>
 		</div>
 		

@@ -34,7 +34,7 @@
 		padding: 0 0 0 1.5em;
 		/* background: url(/tutorial/icons/folder.svg) 0 0.1em no-repeat; */
 		background-size: 1em 1em;
-		font-weight: bold;
+		/* font-weight: bold; */
 		cursor: pointer;
 	}
 

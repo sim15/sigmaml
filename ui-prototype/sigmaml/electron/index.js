@@ -1,14 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const Path = require("path");
-// const fs = require("fs");
-// const os = require("os");
-// const pty = require("node-pty");
-
-// const shell = os.platform() === "win32" ? "powershell.exe" : "bash";
-
 
 const os = require('os');
 const pty = require('node-pty');
+const { cwd } = require("process");
 
 var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
@@ -63,21 +58,22 @@ function main () {
 
     var ptyProcess = pty.spawn(shell, [], {
         name: 'xterm-color',
-        // cols: 80,
-        // rows: 24,
         cwd: process.env.HOME,
-        env: process.env
+        // env: process.env
     });
-    
+
     ptyProcess.on("data", (data) => {
       window.webContents.send("terminal-incData", data);
     });
 
     ipcMain.on("terminal-into", (event, data)=> {
       ptyProcess.write(data);
-    })
+    });
+    // TODO: temporary fix
+    ptyProcess.write(' ');
+    ptyProcess.write('\b');
 
-    // ipcMain.on("term.resize", (ev, data) => ptyProcess.resize(data.cols, data.rows));
+    ipcMain.on("term.resize", (ev, data) => ptyProcess.resize(data.cols, data.rows));
 
 }
 

@@ -56,20 +56,23 @@ import { element } from 'svelte/internal';
 	// };
 
 	let currentlyExpanding = null, expansionType = null;
-	let start = null, initial =	null;
+	let start = null, initial =	null, currentHandler = null;
 
 	const startExpand = (elementSelected, type, event) => {
+		currentHandler = event.target
+		currentHandler.style.opacity = 1;
+
 		currentlyExpanding = document.getElementById(elementSelected);
 		expansionType = type;
 		
 		if (expansionType == 'height') {
 			start = event.pageY;
-			initial = currentlyExpanding.clientHeight;
+			initial = currentlyExpanding.offsetHeight;
 		}
 		if (expansionType == 'width') {
 			start = event.pageX;
 			console.log(start);
-			initial = currentlyExpanding.clientWidth;
+			initial = currentlyExpanding.offsetWidth;
 		};
 		// TODO: error handling
 	};
@@ -80,6 +83,11 @@ import { element } from 'svelte/internal';
 		start = null
 		initial = null
 		expansionType = null
+
+		if (currentHandler) {
+			currentHandler.style.opacity = 0;
+		}
+		currentHandler = null;
 	}
 
 	const expand = (event) => {
@@ -99,7 +107,7 @@ import { element } from 'svelte/internal';
 			return
 		}		
 	}
-	
+
 </script>
 
 
@@ -113,50 +121,50 @@ import { element } from 'svelte/internal';
 
 	.left-panel {
 		background-color: #181818;
-		/* min-width: 20%;
-		max-width: 40%; */
 		height: 100%;
-		/* width: 20%; */
 		display: flex;
 		flex-direction: column;
 		flex: auto;
 	}
 
 	.right-panel {
-		/* width: 70%; */
+		width: 80%;
 		min-width: 60%;
 		max-width: 90%;
 		height: 100%;
-		/* flex: 0 0 auto; */
 		display: flex;
 		flex-direction: column;
-		flex: 1 1 auto;
+		flex: 0 0 auto;
 	}
 
 	.main-panel {
 		width: 100%;
 		height: 75%;
+		min-height: 30%;
+		max-height: 99%;
 		background-color: #121212;
 		display: flex;
 		flex-flow: row;
-		flex: auto;
+		flex: 0 0 auto;
 	}
 
 	.main-view {
-		width: 70%;
 		height: 100%;
+		flex: 1 1 auto;
 		/* display: flex; */
 	}
 
 	.selection-menu {
-		/* width: 30%; */
+		width: 30%;
+		min-width: 1%;
+		max-width: 50%;
 		height: 100%;
-		flex: 1 1 auto;
+		flex: 0 0 auto;
 		overflow: auto;
 	}
 
 	.lower-panel {
-		background-color: #303030;
+		background-color: #121212;
 		height: 25%;
 		display: flex;
 		flex-flow: column;
@@ -187,18 +195,45 @@ import { element } from 'svelte/internal';
 
 	.handler {
 		padding: 0;
-		flex: 0 0 auto;
-		background: rgb(223, 223, 223);
+		/* flex: 0 0 auto; */
+		position: absolute;
+		display: block;
+		top:0; bottom:0; left:0; right:0;
+		background-color: rgb(61, 108, 146);
+		opacity: 0;
+		transition: opacity	0.2s;
+		transition-delay: 200ms;
 	}
+
+	.handler:hover {
+		opacity: 1;
+	}
+
+	.handler-wrapper {
+		padding: 0;
+		position: relative;
+		z-index: 20;
+		flex: 0 0 auto;
+	}
+
 	.y-handler {
-		height: .2em;
+		height: .3em;
 		cursor: row-resize;
 	}
 
-	.x-handler {
-		width: .2em;
-		cursor: col-resize;
+	.y-handler-border {
+		height: 0.08px;
+		background-color: rgb(66, 66, 66);
+	}
 
+	.x-handler-border {
+		width: 0.08px;
+		background-color: rgb(66, 66, 66);
+	}
+
+	.x-handler {
+		width: .3em;
+		cursor: col-resize;
 	}
 
 	.left-tabs {
@@ -225,36 +260,37 @@ import { element } from 'svelte/internal';
 			<div class="side-menu sub-panel testy" id="side-menu-left">
 				side-menu
 			</div>
-			<!-- </div> -->
-			<div class="handler y-handler" id="side-menu-left-handler" on:mousedown={startExpand.bind(this,'side-menu-left', 'height')}></div>
+			<div class="handler-wrapper y-handler-border">
+				<div class="handler y-handler" id="side-menu-left-handler" on:mousedown={startExpand.bind(this,'side-menu-left', 'height')}></div>
+			</div>
 			<div class="left-tabs sub-panel testy">
 				left-tabs
 			</div>
 		</div>
-		<div class="handler x-handler" id="side-menu-tall-handler" on:mousedown={startExpand.bind(this, 'side-panel-menu-container', 'width')}></div>
+		<div class="handler-wrapper">
+			<div class="handler x-handler" id="side-menu-tall-handler" on:mousedown={startExpand.bind(this, 'side-panel-menu-container', 'width')}></div>
+		</div>
 		<!-- <div class="handler"></div> -->
 		<div class="right-panel panel disable-select" id="side-panel-menu-container">
 			<div class="main-panel panel" id="upper-right-panel">
 				<div class="main-view">
 					<Drawflow />
 				</div>
-				<div class="handler x-handler" on:mousedown={startExpand.bind(this, 'container-side-panel', 'width')}></div>
+				<div class="handler-wrapper x-handler-border">
+					<div class="handler x-handler" on:mousedown={startExpand.bind(this, 'container-side-panel', 'width')}></div>
+				</div>
 				<div class="selection-menu sub-panel" id="container-side-panel">
-					<!-- selection-menu -->
 					<ModuleSelection name="Home" submodules={pytorchData.default} expanded/>
 				</div>
 			</div>
-			<div class="handler y-handler" on:mousedown={startExpand.bind(this, 'upper-right-panel', 'height')}></div>
-			<!-- <div class="handler"></div> -->
+			<div class="handler-wrapper y-handler-border">
+				<div class="handler y-handler" on:mousedown={startExpand.bind(this, 'upper-right-panel', 'height')}></div>
+			</div>
 			<div class="lower-panel panel" >
 				<div class="terminal-menu sub-panel">
-					<span>Terminal</span> <!-- add styling -->
+					<span>Terminal</span>
 				</div>
-				<!-- <TerminalPanel /> -->
-				<!-- <div id="terminal"></div> -->
-				<!-- <div id="subcontainer"> -->
 					<div class="sub-panel" id="terminal-container"></div>
-				<!-- </div> -->
 			</div>
 		</div>
 		

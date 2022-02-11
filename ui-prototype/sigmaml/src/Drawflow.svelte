@@ -94,6 +94,8 @@
 
     };
 
+    
+
     function existMultipleGraphs() {
 
         function dfsOutputs(aNode) {
@@ -127,6 +129,7 @@
 
 
         const existingNodes = Object.keys(editor.export()['drawflow']['Home']['data']);
+
         console.log(existingNodes);
         existingNodes.pop();
         if (existingNodes.length < 2) {
@@ -160,26 +163,31 @@
 
     const onload = () => {
         id = window.document.getElementById("drawflow");
+        
         editor = new Drawflow(id);
-        editor.start()
+        editor.start();
         var html = `
-        <div class="flowbox"><input type="text" df-name></div>
+        <div class="flowbox">
+            <span class="nodeTitle"}>Root: Input Data</span>
+            
+            </div>
         `;
-        var data = { "name": '' };
-
-        // editor.addNode('github', 0, 1, 0, 300, 'github', data, html);
-        // editor.addNode('github', 1, 1, 50, 200, 'github', data, html);
+        var data = { "name": 'Root Data', inputdata: ""};
+        // add path input for root data
+        editor.addNode('root', 1, 1, 0, 0, 'github', data, html);
 
         editor.on('connectionCreated', (connection) => {
             if (cycleCreated(connection.output_id, {}, {})) {
                 console.log("There was a cycle in the graph!");
                 // TODO: Show some alert that indicates a cycle
-                editor.removeSingleConnection(connection.output_id, connection.input_id, connection.output_class, connection.input_class);
+                editor.removeSingleConnection(connection.output_id,
+                connection.input_id,
+                connection.output_class,
+                connection.input_class);
             }
         });
 
         editor.on('nodeCreated', (nodeID) => {
-
             // TODO: set a root node for initial data. scan to make sure the digraph is connected
 
             // if (existMultipleGraphs()) {
@@ -191,20 +199,37 @@
 
     };
 
+    const saveGraphJSON = (ev) => {
+        id.dataset.jsonFileStuff = JSON.stringify(editor.export(), null, 4);
+    }
+
+    
+
     const drop = (ev) => {
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
+        var moduleArgs = JSON.parse(ev.dataTransfer.getData("arguments"));
+        var data = {"name": ev.dataTransfer.getData("text")};
+        Object.assign(data, moduleArgs);
+
         var html = `
         <div class="flowbox">
-            <span class="nodeTitle"}>${data}</span>
-            <select df-inputmethod>
-            <option value=”maxi”>minimum</option>
-            <option value=”mini”>maximum</option>
-            <option value=”avg”>mean</option>
-            <option value=”ra”>range</option>
-            </select>
-            </div>
+            <div><span class="nodeTitle">${data.name}</span></div>
+            <div class="arg-inputs">
         `;
+
+        for (const arg in moduleArgs) {
+            html += `
+            <div class="argbox">
+            <div class="argcol">
+            <span>${arg}</span>
+            </div>
+
+            <div class="argcol">
+            <input class="input-arg" type="text" df-${arg} value="${moduleArgs[arg]}"></input>
+            </div>
+            </div>`;
+        }
+        html += '</div></div>';
 
         var pos_x = ev.clientX
         var pos_y = ev.clientY
@@ -212,9 +237,10 @@
         // make sure location is correct (account for zoom and canvas shift)
         pos_x = pos_x * ( editor.precanvas.clientWidth / (editor.precanvas.clientWidth * editor.zoom)) - (editor.precanvas.getBoundingClientRect().x * ( editor.precanvas.clientWidth / (editor.precanvas.clientWidth * editor.zoom)));
         pos_y = pos_y * ( editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)) - (editor.precanvas.getBoundingClientRect().y * ( editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)));
-
+        // TODO: remove 'github'
         editor.addNode(data, 1, 1, pos_x, pos_y, 'github', { "name": data }, html);
-        console.log(editor.export());
+        // console.log(editor.export());
+        
     };
 
     
@@ -228,6 +254,10 @@
 <!-- TODO: MAKE SURE NODES CAN'T CONNECT TO THEMSELVES. CHANGE WHAT CAN CONNECT TO WHAT -->
 <!-- add dropdown selection for connections -->
 <!-- TODO: make sure that canvas doesn't reset after every load? performance -->
+<div class="button-container">
+    <div id="run-button">RUN</div>
+    <div id="save-button" on:click={saveGraphJSON}>SAVE</div>
+</div>
 <div id="drawflow" use:onload on:drop={drop} on:dragover={allowDrop} draggable="false"></div>
 
 <style>
@@ -236,17 +266,19 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
+        z-index: -1;
     }
 
     div :global(.drawflow .drawflow-node) {
-        background: white;
-        border-radius: 1em;
+        background: rgb(85, 85, 85);
+        border-radius: 2px;
         border: 2px solid black;
         padding: 1em;
+        width: 400px;
     }
 
     div :global(.drawflow .drawflow-node.selected) {
-        background: rgb(173, 228, 233);
+        background: rgb(59, 59, 59);
         border: 2px solid white;
     }
 
@@ -254,4 +286,37 @@
         background-color: black;
         border: 2px solid white;
     }
+
+    div :global(.flowbox) {
+        overflow: hidden;
+    }
+
+    div :global(.argbox) {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    div :global(.argcol ) {
+        flex: 1;
+        overflow: hidden;
+    }
+    /* THIS DOESNT WORK */
+    /* input :global(.input-arg) {
+        width: 90%;
+    } */
+
+
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+    }
+
+    #run-button, #save-button {
+		background: green;
+		width: 50px;
+		height: 50px;
+	}
+
 </style>

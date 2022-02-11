@@ -8,42 +8,59 @@ const FitAddon = require('xterm-addon-fit').FitAddon;
 
 // TODO: look into whether this is secure
 window.addEventListener("load", function () {
-        const term = new Terminal({
-        'theme': { background: '#121212' }
-        });
 
-        const fitAddon = new FitAddon();
-        term.loadAddon(fitAddon);
+    // load a terminal
+    const term = new Terminal({
+    'theme': { background: '#121212' }
+    });
 
-        // Open the terminal in #terminal-container
-        term.open(document.getElementById('terminal-container'));
+    const fitAddon = new FitAddon();
+    term.loadAddon(fitAddon);
 
-        term.onData(e => {
-            ipcRenderer.send("terminal-into", e);
-            // console.log("YES")
-            // console.log(e);
-        } );
-        
-        ipcRenderer.on('terminal-incData', (event, data) => {
-            term.write(data);
-            // console.log(event);
-        })
+    // Open the terminal in #terminal-container
+    term.open(document.getElementById('terminal-container'));
 
-        term.onResize((size) => {
-            const newsize = {
-                cols: size.cols,
-                rows: size.rows,
-            };
+    term.onData(e => {
+        ipcRenderer.send("terminal-into", e);
+        // console.log("YES")
+        // console.log(e);
+    } );
+    
+    ipcRenderer.on('terminal-incData', (event, data) => {
+        term.write(data);
+        // console.log(event);
+    })
 
-            ipcRenderer.send("term.resize", newsize);
-        });
+    term.onResize((size) => {
+        const newsize = {
+            cols: size.cols,
+            rows: size.rows,
+        };
 
-        window.addEventListener("resize", function () {
-            fitAddon.fit();
-        });
+        ipcRenderer.send("term.resize", newsize);
+    });
 
-        // Make the terminal's size and geometry fit the size of #terminal-container
+    window.addEventListener("resize", function () {
         fitAddon.fit();
-        // ipcRenderer.send("terminal-into", " ");
-        // console.log("binted");
+    });
+
+    // Make the terminal's size and geometry fit the size of #terminal-container
+    fitAddon.fit();
+    // ipcRenderer.send("terminal-into", " ");
+    // console.log("binted");
+
+
+
+
+    
+    // load run button
+    runbutton = document.getElementById("run-button");
+
+    id = window.document.getElementById("drawflow");
+
+    // TODO: use .data?
+    runbutton.addEventListener("click", function() {
+        ipcRenderer.send("runPythonScript", id.dataset.jsonFileStuff);
+    })
 })
+

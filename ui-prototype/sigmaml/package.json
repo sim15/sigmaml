@@ -7,7 +7,8 @@
     "build": "rollup -c",
     "dev": "npm run build && electron .",
     "start": "sirv public --no-clear",
-    "rebuild": "electron-rebuild"
+    "rebuild": "electron-rebuild",
+    "extraResources": "python_scripts"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",

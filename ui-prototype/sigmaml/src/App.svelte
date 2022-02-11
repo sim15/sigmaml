@@ -26,7 +26,7 @@
 	import * as pytorchData from './nnTree.json';
 
     import 'xterm/css/xterm.css';
-import { element } from 'svelte/internal';
+	import { element } from 'svelte/internal';
 
 	// should change
 	// let heightWin = window.innerHeight;
@@ -170,6 +170,7 @@ import { element } from 'svelte/internal';
 		flex-flow: column;
 		flex: 1 1 auto;
 		overflow: hidden; 
+		z-index: 100;
 	}
 
 	.panel {
@@ -246,6 +247,8 @@ import { element } from 'svelte/internal';
 		min-height: 30%;
 	}
 
+	
+
 </style>
 
 <main on:mouseup={stopExpand} >
@@ -280,7 +283,7 @@ import { element } from 'svelte/internal';
 					<div class="handler x-handler" on:mousedown={startExpand.bind(this, 'container-side-panel', 'width')}></div>
 				</div>
 				<div class="selection-menu sub-panel" id="container-side-panel">
-					<ModuleSelection name="Home" submodules={pytorchData.default} expanded/>
+					<ModuleSelection name="PyTorch" submodules={pytorchData.default} expanded/>
 				</div>
 			</div>
 			<div class="handler-wrapper y-handler-border">

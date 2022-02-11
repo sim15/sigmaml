@@ -4,6 +4,8 @@ const Path = require("path");
 const os = require('os');
 const pty = require('node-pty');
 const { cwd } = require("process");
+const dialog = require('electron').dialog;
+const FileSystem = require("fs");
 
 var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
@@ -25,35 +27,12 @@ function main () {
         }
     })
 
+    // const finishpath = (p) => {console.log(p)};
+    // console.log(dialog.showOpenDialog({ properties: [ 'openFile', 'openDirectory', 'multiSelections' ], finishpath}));
     
     window.loadFile(Path.resolve("./public/index.html"))
 
     window.on('ready-to-show', window.show)
-
-
-    // var term = pty.spawn(shell, [], {
-    //     name: "xterm-color",
-    //     // cols: 80,
-    //     // rows: 24,
-    //     cwd: process.env.HOME,
-    //     env: process.env
-    // });
-
-    // let termpid = term.pid;
-    // console.log(`Create Terminal : ${termpid}`);
-
-    // term.onData((data) => {
-    //     window.webContents.send("terminal.sendData", data);
-    // });
-
-    // ipcMain.on("term.data", (ev, data) => {
-    //     term.write(data);
-    // });
-
-    // ipcMain.on("term.resize", (ev, data) => term.resize(data.cols, data.rows));
-
-
-
 
 
     var ptyProcess = pty.spawn(shell, [], {
@@ -69,11 +48,24 @@ function main () {
     ipcMain.on("terminal-into", (event, data)=> {
       ptyProcess.write(data);
     });
+    
     // TODO: temporary fix
     ptyProcess.write(' ');
     ptyProcess.write('\b');
 
     ipcMain.on("term.resize", (ev, data) => ptyProcess.resize(data.cols, data.rows));
+    // FIX
+    ipcMain.on("runPythonScript", (ev, data) => {
+      FileSystem.writeFile('file.json', data, (error) => {
+        if (error) throw error;
+      });
+      console.log("DONE")
+    });
+
+    
+    // let python = spawn('python', [Path.join(app.getAppPath(), '..', 'testscript.py')])
+
+    
 
 }
 

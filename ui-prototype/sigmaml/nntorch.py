@@ -8,10 +8,16 @@ with open('modules.txt', 'r') as f:
     d = {i[0]: i[1] for i in temp}
 
 
-def buildDict(l, label):
+argsinfo = {}
+with open('args1.json', 'r') as f:
+    argsinfo = json.load(f)
+        
+
+def buildDict(l, label, argsdata=argsinfo):
     if len(l) == 1:
         return {"name": label,
-            "reference": l[0]}
+            "reference": l[0],
+            "args": argsinfo[label]}
     return {
         "name": l[0],
         "submodules": [buildDict(l[1:], label)]}
@@ -19,10 +25,6 @@ def buildDict(l, label):
 def editRes(li, l, label):
     if not(l[0] in [module["name"] for module in li]):
         li.append(buildDict(l, label))
-    # if len(l) == 2:
-    #     di[l[0]].append(
-    #         {"name": label,
-    #         "reference": l[1]})
     else:
         for i in range(len(li)):
             if li[i]["name"] == l[0]:
@@ -33,6 +35,9 @@ def editRes(li, l, label):
 res = []
 for label, location in [(k, d[k].split('.')[:-1] + [d[k]]) for k in d.keys()]:
     res = editRes(res, location, label)
+
+
+
 
 with open('nnTree.json', 'w', encoding='utf-8') as f:
     json.dump(res, f, ensure_ascii=False, indent=4)

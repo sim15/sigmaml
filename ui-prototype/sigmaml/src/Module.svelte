@@ -1,10 +1,13 @@
 <script>
 	export let name;
+	export let args;
+
 	// export let reference;
 	// $: type = name.slice(name.lastIndexOf('.') + 1);
-
+	// console.log(args);
 	function drag(ev) {
 		ev.dataTransfer.setData("text", ev.target.textContent);
+		ev.dataTransfer.setData("arguments", JSON.stringify(args));
 	};
 
 	$: type = "pytorch-icon";

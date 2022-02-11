@@ -4,6 +4,7 @@
     export let expanded = false;
 	export let name;
 	export let submodules;
+	export let args;
     
     
     function toggle() {

@@ -197,6 +197,13 @@
             // }
         });
 
+        // TODO: this is a temporary fix.
+        // fix order of classes since svelte- is added prior to drawflow-parent
+        // this causes a bug and doesnt allow dragging outside of the precanvas.
+        var temp = id.classList[0];
+        id.classList.remove(temp);
+        id.classList.add(temp);
+
     };
 
     const saveGraphJSON = (ev) => {
@@ -213,7 +220,9 @@
 
         var html = `
         <div class="flowbox">
-            <div><span class="nodeTitle">${data.name}</span></div>
+            <div class="nodeHeader">
+            <span class="nodeTitle">${data.name}</span>
+            </div>
             <div class="arg-inputs">
         `;
 
@@ -250,7 +259,11 @@
 
     
 
+    
+
 </script>
+
+<!-- TODO: Collapsable modules (close and open the arguments) -->
 <!-- TODO: MAKE SURE NODES CAN'T CONNECT TO THEMSELVES. CHANGE WHAT CAN CONNECT TO WHAT -->
 <!-- add dropdown selection for connections -->
 <!-- TODO: make sure that canvas doesn't reset after every load? performance -->
@@ -267,14 +280,31 @@
         height: 100%;
         overflow: hidden;
         z-index: -1;
+        background-size: 2em 2em;
+        background-image: linear-gradient(to right, #1c1c1c 1px, transparent 1px), linear-gradient(to bottom, #1c1c1c 1px, transparent 1px);
     }
 
     div :global(.drawflow .drawflow-node) {
-        background: rgb(85, 85, 85);
+        background: #2a2a2a;
         border-radius: 2px;
-        border: 2px solid black;
-        padding: 1em;
+        border: 1px solid black;
+        padding: 0;
         width: 400px;
+        color: white;
+    }
+/* 
+    div :global(.drawflow_content_node) {
+        margin: 1em 0 0 1em;
+    } */
+
+    :global(.nodeHeader) {
+        padding: 1em 0.5em 1em 1em;
+        background: #121212;
+    }
+
+    div :global(.drawflow .connection .main-path) {
+        stroke: white;
+        stroke-width: 3px;
     }
 
     div :global(.drawflow .drawflow-node.selected) {
@@ -283,12 +313,16 @@
     }
 
     div :global(.drawflow .drawflow-node .input), div :global(.drawflow .drawflow-node .output) {
-        background-color: black;
+        background: black;
         border: 2px solid white;
     }
 
     div :global(.flowbox) {
         overflow: hidden;
+    }
+
+    div :global(.arg-inputs) {
+        padding: 1em 1em 1em 2em;
     }
 
     div :global(.argbox) {
@@ -302,12 +336,14 @@
         overflow: hidden;
     }
     /* THIS DOESNT WORK */
-    /* input :global(.input-arg) {
-        width: 90%;
-    } */
+    :global(.input-arg) {
+        width: 100%;
+    }
 
 
     .button-container {
+        position: absolute;
+        z-index: 5;
         display: flex;
         flex-direction: row;
         gap: 1em;

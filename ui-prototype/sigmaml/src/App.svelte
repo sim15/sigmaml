@@ -142,7 +142,7 @@
 		height: 75%;
 		min-height: 30%;
 		max-height: 99%;
-		background-color: #121212;
+		background-color: #161616;
 		display: flex;
 		flex-flow: row;
 		flex: 0 0 auto;
@@ -170,7 +170,7 @@
 		flex-flow: column;
 		flex: 1 1 auto;
 		overflow: hidden; 
-		z-index: 100;
+		/* z-index: 100; */
 	}
 
 	.panel {

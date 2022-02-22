@@ -215,13 +215,16 @@
     const drop = (ev) => {
         ev.preventDefault();
         var moduleArgs = JSON.parse(ev.dataTransfer.getData("arguments"));
-        var data = {"name": ev.dataTransfer.getData("text")};
-        Object.assign(data, moduleArgs);
-
+        var nameDropped = ev.dataTransfer.getData("moduleName");
+        // Object.assign(data, moduleArgs);
+        // console.log(data);
         var html = `
         <div class="flowbox">
             <div class="nodeHeader">
-            <span class="nodeTitle">${data.name}</span>
+                <span class="nodeTitle">${nameDropped}</span>
+                <div class="control-buttons">
+                    <object type="image/svg+xml" data="./icons/icons8-cancel.svg"></object>
+                </div>
             </div>
             <div class="arg-inputs">
         `;
@@ -247,11 +250,12 @@
         pos_x = pos_x * ( editor.precanvas.clientWidth / (editor.precanvas.clientWidth * editor.zoom)) - (editor.precanvas.getBoundingClientRect().x * ( editor.precanvas.clientWidth / (editor.precanvas.clientWidth * editor.zoom)));
         pos_y = pos_y * ( editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)) - (editor.precanvas.getBoundingClientRect().y * ( editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)));
         // TODO: remove 'github'
-        editor.addNode(data, 1, 1, pos_x, pos_y, 'github', { "name": data }, html);
+        editor.addNode(nameDropped, 1, 1, pos_x, pos_y, 'github', moduleArgs, html);
         // console.log(editor.export());
         
     };
 
+    // TODO: 02/14/2022: Reconsider whether we can connect mutliple nodes into one input.
     
     const allowDrop = (ev) => {
         ev.preventDefault();
@@ -286,11 +290,12 @@
 
     div :global(.drawflow .drawflow-node) {
         background: #2a2a2a;
-        border-radius: 2px;
-        border: 1px solid black;
+        border-radius: 15px;
+        border: 0 solid black;
         padding: 0;
         width: 400px;
         color: white;
+        min-height: initial;
     }
 /* 
     div :global(.drawflow_content_node) {
@@ -299,7 +304,11 @@
 
     :global(.nodeHeader) {
         padding: 1em 0.5em 1em 1em;
-        background: #121212;
+        background: #202020;
+        border-radius: 15px 15px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     div :global(.drawflow .connection .main-path) {
@@ -309,12 +318,30 @@
 
     div :global(.drawflow .drawflow-node.selected) {
         background: rgb(59, 59, 59);
-        border: 2px solid white;
+        border: 0 solid white;
     }
 
     div :global(.drawflow .drawflow-node .input), div :global(.drawflow .drawflow-node .output) {
-        background: black;
-        border: 2px solid white;
+        background: #ffffff;
+        border: 0 solid white;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        /* box-shadow: 0px 0px 8px 4px #ffffff; */
+    }
+
+
+    div :global(.drawflow .drawflow-node .inputs), div :global(.drawflow .drawflow-node .outputs) {
+        height: 0;
+        
+    }
+
+    div :global(.drawflow .drawflow-node) {
+        align-items: center;
+        flex-direction: column;
     }
 
     div :global(.flowbox) {
@@ -329,15 +356,31 @@
         display: flex;
         flex-direction: row;
         width: 100%;
+        align-items: center;
     }
 
     div :global(.argcol ) {
         flex: 1;
         overflow: hidden;
     }
-    /* THIS DOESNT WORK */
     :global(.input-arg) {
         width: 100%;
+    }
+
+    :global(.control-buttons) {
+        background: none;
+        margin: 0;
+        padding: 0;
+        height: 1.5em;
+    }
+
+    :global(input) {
+        border-radius: 15px;
+        margin: .4em 0;
+    }
+
+    :global(object) {
+        height: 100%;
     }
 
 

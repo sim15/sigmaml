@@ -6,7 +6,8 @@
 	// $: type = name.slice(name.lastIndexOf('.') + 1);
 	// console.log(args);
 	function drag(ev) {
-		ev.dataTransfer.setData("text", ev.target.textContent);
+		console.log(ev.target.textContent);
+		ev.dataTransfer.setData("moduleName", ev.target.textContent);
 		ev.dataTransfer.setData("arguments", JSON.stringify(args));
 	};
 

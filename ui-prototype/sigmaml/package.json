@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "drawflow": "^0.0.54",
-    "electron": "^16.0.4",
+    "electron": "^16.0.9",
     "electron-rebuild": "^3.2.5",
     "node-pty": "^0.10.1",
     "sirv-cli": "^1.0.0",

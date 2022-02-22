@@ -6,6 +6,7 @@ const pty = require('node-pty');
 const { cwd } = require("process");
 const dialog = require('electron').dialog;
 const FileSystem = require("fs");
+// const spawn = require('electron-spawn');
 
 var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
@@ -59,11 +60,11 @@ function main () {
       FileSystem.writeFile('file.json', data, (error) => {
         if (error) throw error;
       });
-      console.log("DONE")
+      console.log("DONE");
+      let python = spawn('python', [Path.join(app.getAppPath(), '..', 'python_scripts/testscript.py')]);
     });
 
     
-    // let python = spawn('python', [Path.join(app.getAppPath(), '..', 'testscript.py')])
 
     
 

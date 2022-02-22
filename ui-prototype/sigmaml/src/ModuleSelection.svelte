@@ -39,7 +39,7 @@
 	}
 
 	.expanded {
-		/* background-image: url(/tutorial/icons/folder-open.svg); */
+		background-image: url(/tutorial/icons/folder-open.svg);
 	}
 
 	ul {

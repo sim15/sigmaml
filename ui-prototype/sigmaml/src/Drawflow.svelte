@@ -216,8 +216,8 @@
         ev.preventDefault();
         var moduleArgs = JSON.parse(ev.dataTransfer.getData("arguments"));
         var nameDropped = ev.dataTransfer.getData("moduleName");
-        // Object.assign(data, moduleArgs);
-        // console.log(data);
+
+        
         var html = `
         <div class="flowbox">
             <div class="nodeHeader">

@@ -1,0 +1,165 @@
+{
+    "drawflow": {
+        "Home": {
+            "data": {
+                "1": {
+                    "id": 1,
+                    "name": "root",
+                    "data": {
+                        "name": "Root Data",
+                        "inputdata": ""
+                    },
+                    "class": "github",
+                    "html": "\n        <div class=\"flowbox\">\n            <span class=\"nodeTitle\"}>Root: Input Data</span>\n            \n            </div>\n        ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": []
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "3",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": 0,
+                    "pos_y": 0
+                },
+                "3": {
+                    "id": 3,
+                    "name": "Linear",
+                    "data": {
+                        "in_features": "128",
+                        "out_features": "64",
+                        "bias": "True",
+                        "device": "None",
+                        "dtype": "None"
+                    },
+                    "class": "github",
+                    "html": "\n        <div class=\"flowbox\">\n            <div class=\"nodeHeader\">\n            <span class=\"nodeTitle\">Linear</span>\n            </div>\n            <div class=\"arg-inputs\">\n        \n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>in_features</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-in_features value=\"\"></input>\n            </div>\n            </div>\n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>out_features</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-out_features value=\"\"></input>\n            </div>\n            </div>\n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>bias</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-bias value=\"True\"></input>\n            </div>\n            </div>\n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>device</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-device value=\"None\"></input>\n            </div>\n            </div>\n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>dtype</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-dtype value=\"None\"></input>\n            </div>\n            </div></div></div>",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "1",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "4",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": -2,
+                    "pos_y": 75
+                },
+                "4": {
+                    "id": 4,
+                    "name": "ReLU",
+                    "data": {
+                        "inplace": "False"
+                    },
+                    "class": "github",
+                    "html": "\n        <div class=\"flowbox\">\n            <div class=\"nodeHeader\">\n            <span class=\"nodeTitle\">ReLU</span>\n            </div>\n            <div class=\"arg-inputs\">\n        \n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>inplace</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-inplace value=\"False\"></input>\n            </div>\n            </div></div></div>",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "3",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "5",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": -8,
+                    "pos_y": 391
+                },
+                "5": {
+                    "id": 5,
+                    "name": "Linear",
+                    "data": {
+                        "in_features": "64",
+                        "out_features": "1",
+                        "bias": "True",
+                        "device": "None",
+                        "dtype": "None"
+                    },
+                    "class": "github",
+                    "html": "\n        <div class=\"flowbox\">\n            <div class=\"nodeHeader\">\n            <span class=\"nodeTitle\">Linear</span>\n            </div>\n            <div class=\"arg-inputs\">\n        \n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>in_features</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-in_features value=\"\"></input>\n            </div>\n            </div>\n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>out_features</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-out_features value=\"\"></input>\n            </div>\n            </div>\n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>bias</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-bias value=\"True\"></input>\n            </div>\n            </div>\n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>device</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-device value=\"None\"></input>\n            </div>\n            </div>\n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>dtype</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-dtype value=\"None\"></input>\n            </div>\n            </div></div></div>",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "4",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "6",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": -8,
+                    "pos_y": 537
+                },
+                "6": {
+                    "id": 6,
+                    "name": "Sigmoid",
+                    "data": {},
+                    "class": "github",
+                    "html": "\n        <div class=\"flowbox\">\n            <div class=\"nodeHeader\">\n            <span class=\"nodeTitle\">Sigmoid</span>\n            </div>\n            <div class=\"arg-inputs\">\n        </div></div>",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "5",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": []
+                        }
+                    },
+                    "pos_x": 480,
+                    "pos_y": 635
+                }
+            }
+        }
+    }
+}

@@ -39,10 +39,9 @@
 	}
 
 	.expanded {
-		padding: 0 0 0 1.5em;
+		/* padding: 0 0 0 1.5em; */
 		background: url(../icons/minus-square-svgrepo-com.svg) 0 0 no-repeat;
 		background-size: 1em 1em;
-		cursor: pointer;
 	}
 
 	ul {

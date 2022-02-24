@@ -1,19 +1,24 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu , shell, dialog} = require("electron");
 const Path = require("path");
 
 const os = require('os');
 const pty = require('node-pty');
 const { cwd } = require("process");
-const dialog = require('electron').dialog;
 const FileSystem = require("fs");
 const {spawn} = require('child_process');
 
-var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
+var usershell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
 
 const isDev = !app.isPackaged;
 
 app.whenReady().then(main)
+
+
+let projectDir = "";
+
+const isMac = process.platform === 'darwin'
+
 
 function main () {
 
@@ -28,6 +33,114 @@ function main () {
         }
     })
 
+    const openDir = async () => {
+      dialog.showOpenDialog(window, {
+          properties: ['openDirectory']
+        }).then(result => {
+          // console.log(result.canceled)
+          return result.filePaths
+        }).catch(err => {
+        console.log(err)
+      })
+    }
+
+    const template = [
+      // { role: 'appMenu' }
+      ...(isMac ? [{
+        label: app.name,
+        submenu: [
+          { role: 'about' },
+          { type: 'separator' },
+          { role: 'services' },
+          { type: 'separator' },
+          { role: 'hide' },
+          { role: 'hideOthers' },
+          { role: 'unhide' },
+          { type: 'separator' },
+          { role: 'quit' }
+        ]
+      }] : []),
+      // { role: 'fileMenu' }
+      {
+        label: 'File',
+        submenu: [
+          isMac ? { role: 'close' } : { role: 'quit' },
+          {
+            label: "Open Project",
+            click: async () => {
+              projectDir = await openDir();
+            }
+          }
+        ]
+      },
+      // { role: 'editMenu' }
+      {
+        label: 'Edit',
+        submenu: [
+          // { role: 'undo' },
+          // { role: 'redo' },
+          // { type: 'separator' },
+          // { role: 'cut' },
+          // { role: 'copy' },
+          // { role: 'paste' },
+          // ...(isMac ? [
+          //   { role: 'pasteAndMatchStyle' },
+          //   { role: 'delete' },
+          //   { role: 'selectAll' },
+          //   { type: 'separator' },
+          //   {
+          //     label: 'Speech',
+          //     submenu: [
+          //       { role: 'startSpeaking' },
+          //       { role: 'stopSpeaking' }
+          //     ]
+          //   }
+          // ] : [
+          //   { role: 'delete' },
+          //   { type: 'separator' },
+          //   { role: 'selectAll' }
+          // ])
+        ]
+      },
+      // { role: 'viewMenu' }
+      {
+        label: 'View',
+        submenu: [
+          { role: 'togglefullscreen' }
+        ]
+      },
+      // { role: 'windowMenu' }
+      {
+        label: 'Window',
+        submenu: [
+          { role: 'minimize' },
+          { role: 'zoom' },
+          ...(isMac ? [
+            { type: 'separator' },
+            { role: 'front' },
+            { type: 'separator' },
+            { role: 'window' }
+          ] : [
+            { role: 'close' }
+          ])
+        ]
+      },
+      {
+        role: 'help',
+        submenu: [
+          {
+            label: 'Learn More',
+            click: async () => {
+              await shell.openExternal('https://google.com')
+            }
+          }
+        ]
+      }
+    ]
+    
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
+
     // const finishpath = (p) => {console.log(p)};
     // console.log(dialog.showOpenDialog({ properties: [ 'openFile', 'openDirectory', 'multiSelections' ], finishpath}));
     
@@ -36,7 +149,7 @@ function main () {
     window.on('ready-to-show', window.show)
 
 
-    var ptyProcess = pty.spawn(shell, [], {
+    var ptyProcess = pty.spawn(usershell, [], {
         name: 'xterm-color',
         cwd: process.env.HOME,
         // env: process.env

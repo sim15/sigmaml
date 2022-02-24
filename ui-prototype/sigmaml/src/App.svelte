@@ -20,93 +20,20 @@
 	// }
 
 	// import { draggable } from 'svelte-drag';
-	import ModuleSelection from './ModuleSelection.svelte';
-	import Drawflow from './Drawflow.svelte';
+	
 	import TerminalPanel from './TerminalPanel.svelte';
-	import * as pytorchData from './nnTree.json';
-
     import 'xterm/css/xterm.css';
+
+
 	import { element } from 'svelte/internal';
 
-	// should change
-	// let heightWin = window.innerHeight;
-	// window.addEventListener('resize', function(event) {
-    // 	heightWin = window.innerHeight;
-	// }, true);
-
-	// var leftPanel = window.document.querySelector('.side-menu') 
-	// let resizeLeftPanel = () => {
-
-	// };
-
-	// let selectHandler = (handlerId) => {
-	// 	window.document.querySelector("#" + handlerId).style.background = 'rgb(85, 85, 85)';
-	// };
-
-	// let deselectHandler = (handlerId) => {
-	// 	window.document.querySelector("#" + handlerId).style.background = 'rgb(223, 223, 223)';
-	// };
-
-	// let resizePanelY = (offsetY, panelId, minHeight, containerOffsetTop) => {
-	// 	var panel = window.document.querySelector("#" + panelId);
-	// 	var relativeY = 500 + offsetY;
-	// 	console.log(offsetY, relativeY);
-	// 	panel.style.height = (Math.max(minHeight, relativeY)) + 'px';
-	// 	panel.style.flexGrow = 0;
-	// };
-
-	let currentlyExpanding = null, expansionType = null;
-	let start = null, initial =	null, currentHandler = null;
-
-	const startExpand = (elementSelected, type, event) => {
-		currentHandler = event.target
-		currentHandler.style.opacity = 1;
-
-		currentlyExpanding = document.getElementById(elementSelected);
-		expansionType = type;
-		
-		if (expansionType == 'height') {
-			start = event.pageY;
-			initial = currentlyExpanding.offsetHeight;
-		}
-		if (expansionType == 'width') {
-			start = event.pageX;
-			console.log(start);
-			initial = currentlyExpanding.offsetWidth;
-		};
-		// TODO: error handling
-	};
+	import MainPanel from './MainPanel.svelte';
+	import ProgressPanel from './ProgressPanel.svelte';
+	import DirectoryView from './DirectoryView.svelte';
 
 
-	const stopExpand = () => {
-		currentlyExpanding = null
-		start = null
-		initial = null
-		expansionType = null
 
-		if (currentHandler) {
-			currentHandler.style.opacity = 0;
-		}
-		currentHandler = null;
-	}
-
-	const expand = (event) => {
-		if (!currentlyExpanding) return
-		
-		if (expansionType == 'height') {
-			const dY = start - event.pageY;
-			currentlyExpanding.style.height = `${initial - dY}px`;
-			return
-		}
-		
-		if (expansionType == 'width') {
-			console.log(event.pageX +" " + start + " " + initial);
-			const dX = start - event.pageX;
-			currentlyExpanding.style.width = `${initial + dX}px`;
-			console.log(currentlyExpanding.style.width);
-			return
-		}		
-	}
+	import {stopExpand, expand, startExpand} from './Handlers.svelte';
 
 </script>
 
@@ -170,7 +97,6 @@
 		flex-flow: column;
 		flex: 1 1 auto;
 		overflow: hidden; 
-		/* z-index: 100; */
 	}
 
 	.panel {
@@ -261,13 +187,13 @@
 	<div class="grid-main" on:mousemove={expand} >
 		<div class="left-panel panel disable-select" >
 			<div class="side-menu sub-panel testy" id="side-menu-left">
-				side-menu
+				<ProgressPanel />
 			</div>
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" id="side-menu-left-handler" on:mousedown={startExpand.bind(this,'side-menu-left', 'height')}></div>
 			</div>
 			<div class="left-tabs sub-panel testy">
-				left-tabs
+				<DirectoryView />
 			</div>
 		</div>
 		<div class="handler-wrapper">
@@ -275,17 +201,7 @@
 		</div>
 		<!-- <div class="handler"></div> -->
 		<div class="right-panel panel disable-select" id="side-panel-menu-container">
-			<div class="main-panel panel" id="upper-right-panel">
-				<div class="main-view">
-					<Drawflow />
-				</div>
-				<div class="handler-wrapper x-handler-border">
-					<div class="handler x-handler" on:mousedown={startExpand.bind(this, 'container-side-panel', 'width')}></div>
-				</div>
-				<div class="selection-menu sub-panel" id="container-side-panel">
-					<ModuleSelection name="PyTorch" submodules={pytorchData.default} expanded/>
-				</div>
-			</div>
+			<MainPanel />
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" on:mousedown={startExpand.bind(this, 'upper-right-panel', 'height')}></div>
 			</div>

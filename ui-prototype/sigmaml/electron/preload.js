@@ -1,5 +1,5 @@
 
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, contextBridge } = require("electron");
 
 
 const Terminal  =  require('xterm').Terminal;
@@ -29,7 +29,25 @@ window.addEventListener("load", function () {
     ipcRenderer.on('terminal-incData', (event, data) => {
         term.write(data);
         // console.log(event);
+    });
+
+    let projDirectory = {};
+    
+
+    
+
+    ipcRenderer.on('update-project-dir', (event, data) => {
+        projDirectory = data;
     })
+
+    const API = {
+
+        updateDir: () => {ipcRenderer.send('request-dir-update', projDirectory.name)},
+        getDir: () => {return projDirectory}
+
+    }
+
+    contextBridge.exposeInMainWorld("api", API);
 
     term.onResize((size) => {
         const newsize = {
@@ -46,10 +64,6 @@ window.addEventListener("load", function () {
 
     // Make the terminal's size and geometry fit the size of #terminal-container
     fitAddon.fit();
-    // ipcRenderer.send("terminal-into", " ");
-    // console.log("binted");
-
-
 
 
     

@@ -1,0 +1,1746 @@
+[
+    {
+        "name": "torch",
+        "path": "torch",
+        "children": [
+            {
+                "name": "nn",
+                "path": "torch/nn",
+                "children": [
+                    {
+                        "name": "modules",
+                        "path": "torch/nn/modules",
+                        "children": [
+                            {
+                                "name": "pooling",
+                                "path": "torch/nn/modules/pooling",
+                                "children": [
+                                    {
+                                        "name": "AdaptiveAvgPool1d",
+                                        "path": "torch/nn/modules/pooling/AdaptiveAvgPool1d",
+                                        "args": {
+                                            "output_size": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "AdaptiveAvgPool2d",
+                                        "path": "torch/nn/modules/pooling/AdaptiveAvgPool2d",
+                                        "args": {
+                                            "output_size": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "AdaptiveAvgPool3d",
+                                        "path": "torch/nn/modules/pooling/AdaptiveAvgPool3d",
+                                        "args": {
+                                            "output_size": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "AdaptiveMaxPool1d",
+                                        "path": "torch/nn/modules/pooling/AdaptiveMaxPool1d",
+                                        "args": {
+                                            "output_size": "",
+                                            "return_indices": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "AdaptiveMaxPool2d",
+                                        "path": "torch/nn/modules/pooling/AdaptiveMaxPool2d",
+                                        "args": {
+                                            "output_size": "",
+                                            "return_indices": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "AdaptiveMaxPool3d",
+                                        "path": "torch/nn/modules/pooling/AdaptiveMaxPool3d",
+                                        "args": {
+                                            "output_size": "",
+                                            "return_indices": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "AvgPool1d",
+                                        "path": "torch/nn/modules/pooling/AvgPool1d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0",
+                                            "ceil_mode": "False",
+                                            "count_include_pad": "True"
+                                        }
+                                    },
+                                    {
+                                        "name": "AvgPool2d",
+                                        "path": "torch/nn/modules/pooling/AvgPool2d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0",
+                                            "ceil_mode": "False",
+                                            "count_include_pad": "True",
+                                            "divisor_override": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "AvgPool3d",
+                                        "path": "torch/nn/modules/pooling/AvgPool3d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0",
+                                            "ceil_mode": "False",
+                                            "count_include_pad": "True",
+                                            "divisor_override": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "FractionalMaxPool2d",
+                                        "path": "torch/nn/modules/pooling/FractionalMaxPool2d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "output_size": "None",
+                                            "output_ratio": "None",
+                                            "return_indices": "False",
+                                            "_random_samples": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "FractionalMaxPool3d",
+                                        "path": "torch/nn/modules/pooling/FractionalMaxPool3d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "output_size": "None",
+                                            "output_ratio": "None",
+                                            "return_indices": "False",
+                                            "_random_samples": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LPPool1d",
+                                        "path": "torch/nn/modules/pooling/LPPool1d",
+                                        "args": {
+                                            "norm_type": "",
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "ceil_mode": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "LPPool2d",
+                                        "path": "torch/nn/modules/pooling/LPPool2d",
+                                        "args": {
+                                            "norm_type": "",
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "ceil_mode": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "MaxPool1d",
+                                        "path": "torch/nn/modules/pooling/MaxPool1d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "return_indices": "False",
+                                            "ceil_mode": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "MaxPool2d",
+                                        "path": "torch/nn/modules/pooling/MaxPool2d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "return_indices": "False",
+                                            "ceil_mode": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "MaxPool3d",
+                                        "path": "torch/nn/modules/pooling/MaxPool3d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "return_indices": "False",
+                                            "ceil_mode": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "MaxUnpool1d",
+                                        "path": "torch/nn/modules/pooling/MaxUnpool1d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0"
+                                        }
+                                    },
+                                    {
+                                        "name": "MaxUnpool2d",
+                                        "path": "torch/nn/modules/pooling/MaxUnpool2d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0"
+                                        }
+                                    },
+                                    {
+                                        "name": "MaxUnpool3d",
+                                        "path": "torch/nn/modules/pooling/MaxUnpool3d",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "stride": "None",
+                                            "padding": "0"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "adaptive",
+                                "path": "torch/nn/modules/adaptive",
+                                "children": [
+                                    {
+                                        "name": "AdaptiveLogSoftmaxWithLoss",
+                                        "path": "torch/nn/modules/adaptive/AdaptiveLogSoftmaxWithLoss",
+                                        "args": {
+                                            "in_features": "",
+                                            "n_classes": "",
+                                            "cutoffs": "",
+                                            "div_value": "4.0",
+                                            "head_bias": "False",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "dropout",
+                                "path": "torch/nn/modules/dropout",
+                                "children": [
+                                    {
+                                        "name": "AlphaDropout",
+                                        "path": "torch/nn/modules/dropout/AlphaDropout",
+                                        "args": {
+                                            "p": "0.5",
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "Dropout",
+                                        "path": "torch/nn/modules/dropout/Dropout",
+                                        "args": {
+                                            "p": "0.5",
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "Dropout2d",
+                                        "path": "torch/nn/modules/dropout/Dropout2d",
+                                        "args": {
+                                            "p": "0.5",
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "Dropout3d",
+                                        "path": "torch/nn/modules/dropout/Dropout3d",
+                                        "args": {
+                                            "p": "0.5",
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "FeatureAlphaDropout",
+                                        "path": "torch/nn/modules/dropout/FeatureAlphaDropout",
+                                        "args": {
+                                            "p": "0.5",
+                                            "inplace": "False"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "loss",
+                                "path": "torch/nn/modules/loss",
+                                "children": [
+                                    {
+                                        "name": "BCELoss",
+                                        "path": "torch/nn/modules/loss/BCELoss",
+                                        "args": {
+                                            "weight": "None",
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "BCEWithLogitsLoss",
+                                        "path": "torch/nn/modules/loss/BCEWithLogitsLoss",
+                                        "args": {
+                                            "weight": "None",
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean",
+                                            "pos_weight": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "CTCLoss",
+                                        "path": "torch/nn/modules/loss/CTCLoss",
+                                        "args": {
+                                            "blank": "0",
+                                            "reduction": "mean",
+                                            "zero_infinity": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "CosineEmbeddingLoss",
+                                        "path": "torch/nn/modules/loss/CosineEmbeddingLoss",
+                                        "args": {
+                                            "margin": "0.0",
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "CrossEntropyLoss",
+                                        "path": "torch/nn/modules/loss/CrossEntropyLoss",
+                                        "args": {
+                                            "weight": "None",
+                                            "size_average": "None",
+                                            "ignore_index": "-100",
+                                            "reduce": "None",
+                                            "reduction": "mean",
+                                            "label_smoothing": "0.0"
+                                        }
+                                    },
+                                    {
+                                        "name": "GaussianNLLLoss",
+                                        "path": "torch/nn/modules/loss/GaussianNLLLoss",
+                                        "args": {
+                                            "full": "False",
+                                            "eps": "1e-06",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "HingeEmbeddingLoss",
+                                        "path": "torch/nn/modules/loss/HingeEmbeddingLoss",
+                                        "args": {
+                                            "margin": "1.0",
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "HuberLoss",
+                                        "path": "torch/nn/modules/loss/HuberLoss",
+                                        "args": {
+                                            "reduction": "mean",
+                                            "delta": "1.0"
+                                        }
+                                    },
+                                    {
+                                        "name": "KLDivLoss",
+                                        "path": "torch/nn/modules/loss/KLDivLoss",
+                                        "args": {
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean",
+                                            "log_target": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "L1Loss",
+                                        "path": "torch/nn/modules/loss/L1Loss",
+                                        "args": {
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "MSELoss",
+                                        "path": "torch/nn/modules/loss/MSELoss",
+                                        "args": {
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "MarginRankingLoss",
+                                        "path": "torch/nn/modules/loss/MarginRankingLoss",
+                                        "args": {
+                                            "margin": "0.0",
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "MultiLabelMarginLoss",
+                                        "path": "torch/nn/modules/loss/MultiLabelMarginLoss",
+                                        "args": {
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "MultiLabelSoftMarginLoss",
+                                        "path": "torch/nn/modules/loss/MultiLabelSoftMarginLoss",
+                                        "args": {
+                                            "weight": "None",
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "MultiMarginLoss",
+                                        "path": "torch/nn/modules/loss/MultiMarginLoss",
+                                        "args": {
+                                            "p": "1",
+                                            "margin": "1.0",
+                                            "weight": "None",
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "NLLLoss",
+                                        "path": "torch/nn/modules/loss/NLLLoss",
+                                        "args": {
+                                            "weight": "None",
+                                            "size_average": "None",
+                                            "ignore_index": "-100",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "NLLLoss2d",
+                                        "path": "torch/nn/modules/loss/NLLLoss2d",
+                                        "args": {
+                                            "weight": "None",
+                                            "size_average": "None",
+                                            "ignore_index": "-100",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "PoissonNLLLoss",
+                                        "path": "torch/nn/modules/loss/PoissonNLLLoss",
+                                        "args": {
+                                            "log_input": "True",
+                                            "full": "False",
+                                            "size_average": "None",
+                                            "eps": "1e-08",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "SmoothL1Loss",
+                                        "path": "torch/nn/modules/loss/SmoothL1Loss",
+                                        "args": {
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean",
+                                            "beta": "1.0"
+                                        }
+                                    },
+                                    {
+                                        "name": "SoftMarginLoss",
+                                        "path": "torch/nn/modules/loss/SoftMarginLoss",
+                                        "args": {
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "TripletMarginLoss",
+                                        "path": "torch/nn/modules/loss/TripletMarginLoss",
+                                        "args": {
+                                            "margin": "1.0",
+                                            "p": "2.0",
+                                            "eps": "1e-06",
+                                            "swap": "False",
+                                            "size_average": "None",
+                                            "reduce": "None",
+                                            "reduction": "mean"
+                                        }
+                                    },
+                                    {
+                                        "name": "TripletMarginWithDistanceLoss",
+                                        "path": "torch/nn/modules/loss/TripletMarginWithDistanceLoss",
+                                        "args": {
+                                            "distance_function": "None",
+                                            "margin": "1.0",
+                                            "swap": "False",
+                                            "reduction": "mean"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "batchnorm",
+                                "path": "torch/nn/modules/batchnorm",
+                                "children": [
+                                    {
+                                        "name": "BatchNorm1d",
+                                        "path": "torch/nn/modules/batchnorm/BatchNorm1d",
+                                        "args": {
+                                            "num_features": "",
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "BatchNorm2d",
+                                        "path": "torch/nn/modules/batchnorm/BatchNorm2d",
+                                        "args": {
+                                            "num_features": "",
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "BatchNorm3d",
+                                        "path": "torch/nn/modules/batchnorm/BatchNorm3d",
+                                        "args": {
+                                            "num_features": "",
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyBatchNorm1d",
+                                        "path": "torch/nn/modules/batchnorm/LazyBatchNorm1d",
+                                        "args": {
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyBatchNorm2d",
+                                        "path": "torch/nn/modules/batchnorm/LazyBatchNorm2d",
+                                        "args": {
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyBatchNorm3d",
+                                        "path": "torch/nn/modules/batchnorm/LazyBatchNorm3d",
+                                        "args": {
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "SyncBatchNorm",
+                                        "path": "torch/nn/modules/batchnorm/SyncBatchNorm",
+                                        "args": {
+                                            "num_features": "",
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "process_group": "None",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "linear",
+                                "path": "torch/nn/modules/linear",
+                                "children": [
+                                    {
+                                        "name": "Bilinear",
+                                        "path": "torch/nn/modules/linear/Bilinear",
+                                        "args": {
+                                            "in1_features": "",
+                                            "in2_features": "",
+                                            "out_features": "",
+                                            "bias": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "Identity",
+                                        "path": "torch/nn/modules/linear/Identity",
+                                        "args": {
+                                            "args": "",
+                                            "kwargs": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyLinear",
+                                        "path": "torch/nn/modules/linear/LazyLinear",
+                                        "args": {
+                                            "out_features": "",
+                                            "bias": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "Linear",
+                                        "path": "torch/nn/modules/linear/Linear",
+                                        "args": {
+                                            "in_features": "",
+                                            "out_features": "",
+                                            "bias": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "activation",
+                                "path": "torch/nn/modules/activation",
+                                "children": [
+                                    {
+                                        "name": "CELU",
+                                        "path": "torch/nn/modules/activation/CELU",
+                                        "args": {
+                                            "alpha": "1.0",
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "ELU",
+                                        "path": "torch/nn/modules/activation/ELU",
+                                        "args": {
+                                            "alpha": "1.0",
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "GELU",
+                                        "path": "torch/nn/modules/activation/GELU",
+                                        "args": {}
+                                    },
+                                    {
+                                        "name": "GLU",
+                                        "path": "torch/nn/modules/activation/GLU",
+                                        "args": {
+                                            "dim": "-1"
+                                        }
+                                    },
+                                    {
+                                        "name": "Hardshrink",
+                                        "path": "torch/nn/modules/activation/Hardshrink",
+                                        "args": {
+                                            "lambd": "0.5"
+                                        }
+                                    },
+                                    {
+                                        "name": "Hardsigmoid",
+                                        "path": "torch/nn/modules/activation/Hardsigmoid",
+                                        "args": {
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "Hardswish",
+                                        "path": "torch/nn/modules/activation/Hardswish",
+                                        "args": {
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "Hardtanh",
+                                        "path": "torch/nn/modules/activation/Hardtanh",
+                                        "args": {
+                                            "min_val": "-1.0",
+                                            "max_val": "1.0",
+                                            "inplace": "False",
+                                            "min_value": "None",
+                                            "max_value": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LeakyReLU",
+                                        "path": "torch/nn/modules/activation/LeakyReLU",
+                                        "args": {
+                                            "negative_slope": "0.01",
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "LogSigmoid",
+                                        "path": "torch/nn/modules/activation/LogSigmoid",
+                                        "args": {}
+                                    },
+                                    {
+                                        "name": "LogSoftmax",
+                                        "path": "torch/nn/modules/activation/LogSoftmax",
+                                        "args": {
+                                            "dim": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "Mish",
+                                        "path": "torch/nn/modules/activation/Mish",
+                                        "args": {
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "MultiheadAttention",
+                                        "path": "torch/nn/modules/activation/MultiheadAttention",
+                                        "args": {
+                                            "embed_dim": "",
+                                            "num_heads": "",
+                                            "dropout": "0.0",
+                                            "bias": "True",
+                                            "add_bias_kv": "False",
+                                            "add_zero_attn": "False",
+                                            "kdim": "None",
+                                            "vdim": "None",
+                                            "batch_first": "False",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "PReLU",
+                                        "path": "torch/nn/modules/activation/PReLU",
+                                        "args": {
+                                            "num_parameters": "1",
+                                            "init": "0.25",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "RReLU",
+                                        "path": "torch/nn/modules/activation/RReLU",
+                                        "args": {
+                                            "lower": "0.125",
+                                            "upper": "0.3333333333333333",
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "ReLU",
+                                        "path": "torch/nn/modules/activation/ReLU",
+                                        "args": {
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "ReLU6",
+                                        "path": "torch/nn/modules/activation/ReLU6",
+                                        "args": {
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "SELU",
+                                        "path": "torch/nn/modules/activation/SELU",
+                                        "args": {
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "SiLU",
+                                        "path": "torch/nn/modules/activation/SiLU",
+                                        "args": {
+                                            "inplace": "False"
+                                        }
+                                    },
+                                    {
+                                        "name": "Sigmoid",
+                                        "path": "torch/nn/modules/activation/Sigmoid",
+                                        "args": {}
+                                    },
+                                    {
+                                        "name": "Softmax",
+                                        "path": "torch/nn/modules/activation/Softmax",
+                                        "args": {
+                                            "dim": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "Softmax2d",
+                                        "path": "torch/nn/modules/activation/Softmax2d",
+                                        "args": {}
+                                    },
+                                    {
+                                        "name": "Softmin",
+                                        "path": "torch/nn/modules/activation/Softmin",
+                                        "args": {
+                                            "dim": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "Softplus",
+                                        "path": "torch/nn/modules/activation/Softplus",
+                                        "args": {
+                                            "beta": "1",
+                                            "threshold": "20"
+                                        }
+                                    },
+                                    {
+                                        "name": "Softshrink",
+                                        "path": "torch/nn/modules/activation/Softshrink",
+                                        "args": {
+                                            "lambd": "0.5"
+                                        }
+                                    },
+                                    {
+                                        "name": "Softsign",
+                                        "path": "torch/nn/modules/activation/Softsign",
+                                        "args": {}
+                                    },
+                                    {
+                                        "name": "Tanh",
+                                        "path": "torch/nn/modules/activation/Tanh",
+                                        "args": {}
+                                    },
+                                    {
+                                        "name": "Tanhshrink",
+                                        "path": "torch/nn/modules/activation/Tanhshrink",
+                                        "args": {}
+                                    },
+                                    {
+                                        "name": "Threshold",
+                                        "path": "torch/nn/modules/activation/Threshold",
+                                        "args": {
+                                            "threshold": "",
+                                            "value": "",
+                                            "inplace": "False"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "channelshuffle",
+                                "path": "torch/nn/modules/channelshuffle",
+                                "children": [
+                                    {
+                                        "name": "ChannelShuffle",
+                                        "path": "torch/nn/modules/channelshuffle/ChannelShuffle",
+                                        "args": {
+                                            "groups": ""
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "padding",
+                                "path": "torch/nn/modules/padding",
+                                "children": [
+                                    {
+                                        "name": "ConstantPad1d",
+                                        "path": "torch/nn/modules/padding/ConstantPad1d",
+                                        "args": {
+                                            "padding": "",
+                                            "value": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ConstantPad2d",
+                                        "path": "torch/nn/modules/padding/ConstantPad2d",
+                                        "args": {
+                                            "padding": "",
+                                            "value": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ConstantPad3d",
+                                        "path": "torch/nn/modules/padding/ConstantPad3d",
+                                        "args": {
+                                            "padding": "",
+                                            "value": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ReflectionPad1d",
+                                        "path": "torch/nn/modules/padding/ReflectionPad1d",
+                                        "args": {
+                                            "padding": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ReflectionPad2d",
+                                        "path": "torch/nn/modules/padding/ReflectionPad2d",
+                                        "args": {
+                                            "padding": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ReflectionPad3d",
+                                        "path": "torch/nn/modules/padding/ReflectionPad3d",
+                                        "args": {
+                                            "padding": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ReplicationPad1d",
+                                        "path": "torch/nn/modules/padding/ReplicationPad1d",
+                                        "args": {
+                                            "padding": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ReplicationPad2d",
+                                        "path": "torch/nn/modules/padding/ReplicationPad2d",
+                                        "args": {
+                                            "padding": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ReplicationPad3d",
+                                        "path": "torch/nn/modules/padding/ReplicationPad3d",
+                                        "args": {
+                                            "padding": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ZeroPad2d",
+                                        "path": "torch/nn/modules/padding/ZeroPad2d",
+                                        "args": {
+                                            "padding": ""
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "container",
+                                "path": "torch/nn/modules/container",
+                                "children": [
+                                    {
+                                        "name": "Container",
+                                        "path": "torch/nn/modules/container/Container",
+                                        "args": {
+                                            "kwargs": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "ModuleDict",
+                                        "path": "torch/nn/modules/container/ModuleDict",
+                                        "args": {
+                                            "modules": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "ModuleList",
+                                        "path": "torch/nn/modules/container/ModuleList",
+                                        "args": {
+                                            "modules": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "ParameterDict",
+                                        "path": "torch/nn/modules/container/ParameterDict",
+                                        "args": {
+                                            "parameters": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "ParameterList",
+                                        "path": "torch/nn/modules/container/ParameterList",
+                                        "args": {
+                                            "parameters": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "Sequential",
+                                        "path": "torch/nn/modules/container/Sequential",
+                                        "args": {
+                                            "args": ""
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "conv",
+                                "path": "torch/nn/modules/conv",
+                                "children": [
+                                    {
+                                        "name": "Conv1d",
+                                        "path": "torch/nn/modules/conv/Conv1d",
+                                        "args": {
+                                            "in_channels": "",
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "Conv2d",
+                                        "path": "torch/nn/modules/conv/Conv2d",
+                                        "args": {
+                                            "in_channels": "",
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "Conv3d",
+                                        "path": "torch/nn/modules/conv/Conv3d",
+                                        "args": {
+                                            "in_channels": "",
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "ConvTranspose1d",
+                                        "path": "torch/nn/modules/conv/ConvTranspose1d",
+                                        "args": {
+                                            "in_channels": "",
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "output_padding": "0",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "dilation": "1",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "ConvTranspose2d",
+                                        "path": "torch/nn/modules/conv/ConvTranspose2d",
+                                        "args": {
+                                            "in_channels": "",
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "output_padding": "0",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "dilation": "1",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "ConvTranspose3d",
+                                        "path": "torch/nn/modules/conv/ConvTranspose3d",
+                                        "args": {
+                                            "in_channels": "",
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "output_padding": "0",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "dilation": "1",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyConv1d",
+                                        "path": "torch/nn/modules/conv/LazyConv1d",
+                                        "args": {
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyConv2d",
+                                        "path": "torch/nn/modules/conv/LazyConv2d",
+                                        "args": {
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyConv3d",
+                                        "path": "torch/nn/modules/conv/LazyConv3d",
+                                        "args": {
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "dilation": "1",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyConvTranspose1d",
+                                        "path": "torch/nn/modules/conv/LazyConvTranspose1d",
+                                        "args": {
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "output_padding": "0",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "dilation": "1",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyConvTranspose2d",
+                                        "path": "torch/nn/modules/conv/LazyConvTranspose2d",
+                                        "args": {
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "output_padding": "0",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "dilation": "1",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyConvTranspose3d",
+                                        "path": "torch/nn/modules/conv/LazyConvTranspose3d",
+                                        "args": {
+                                            "out_channels": "",
+                                            "kernel_size": "",
+                                            "stride": "1",
+                                            "padding": "0",
+                                            "output_padding": "0",
+                                            "groups": "1",
+                                            "bias": "True",
+                                            "dilation": "1",
+                                            "padding_mode": "zeros",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "distance",
+                                "path": "torch/nn/modules/distance",
+                                "children": [
+                                    {
+                                        "name": "CosineSimilarity",
+                                        "path": "torch/nn/modules/distance/CosineSimilarity",
+                                        "args": {
+                                            "dim": "1",
+                                            "eps": "1e-08"
+                                        }
+                                    },
+                                    {
+                                        "name": "PairwiseDistance",
+                                        "path": "torch/nn/modules/distance/PairwiseDistance",
+                                        "args": {
+                                            "p": "2.0",
+                                            "eps": "1e-06",
+                                            "keepdim": "False"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "normalization",
+                                "path": "torch/nn/modules/normalization",
+                                "children": [
+                                    {
+                                        "name": "CrossMapLRN2d",
+                                        "path": "torch/nn/modules/normalization/CrossMapLRN2d",
+                                        "args": {
+                                            "size": "",
+                                            "alpha": "0.0001",
+                                            "beta": "0.75",
+                                            "k": "1"
+                                        }
+                                    },
+                                    {
+                                        "name": "GroupNorm",
+                                        "path": "torch/nn/modules/normalization/GroupNorm",
+                                        "args": {
+                                            "num_groups": "",
+                                            "num_channels": "",
+                                            "eps": "1e-05",
+                                            "affine": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LayerNorm",
+                                        "path": "torch/nn/modules/normalization/LayerNorm",
+                                        "args": {
+                                            "normalized_shape": "",
+                                            "eps": "1e-05",
+                                            "elementwise_affine": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LocalResponseNorm",
+                                        "path": "torch/nn/modules/normalization/LocalResponseNorm",
+                                        "args": {
+                                            "size": "",
+                                            "alpha": "0.0001",
+                                            "beta": "0.75",
+                                            "k": "1.0"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "sparse",
+                                "path": "torch/nn/modules/sparse",
+                                "children": [
+                                    {
+                                        "name": "Embedding",
+                                        "path": "torch/nn/modules/sparse/Embedding",
+                                        "args": {
+                                            "num_embeddings": "",
+                                            "embedding_dim": "",
+                                            "padding_idx": "None",
+                                            "max_norm": "None",
+                                            "norm_type": "2.0",
+                                            "scale_grad_by_freq": "False",
+                                            "sparse": "False",
+                                            "_weight": "None",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "EmbeddingBag",
+                                        "path": "torch/nn/modules/sparse/EmbeddingBag",
+                                        "args": {
+                                            "num_embeddings": "",
+                                            "embedding_dim": "",
+                                            "max_norm": "None",
+                                            "norm_type": "2.0",
+                                            "scale_grad_by_freq": "False",
+                                            "mode": "mean",
+                                            "sparse": "False",
+                                            "_weight": "None",
+                                            "include_last_offset": "False",
+                                            "padding_idx": "None",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "flatten",
+                                "path": "torch/nn/modules/flatten",
+                                "children": [
+                                    {
+                                        "name": "Flatten",
+                                        "path": "torch/nn/modules/flatten/Flatten",
+                                        "args": {
+                                            "start_dim": "1",
+                                            "end_dim": "-1"
+                                        }
+                                    },
+                                    {
+                                        "name": "Unflatten",
+                                        "path": "torch/nn/modules/flatten/Unflatten",
+                                        "args": {
+                                            "dim": "",
+                                            "unflattened_size": ""
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "fold",
+                                "path": "torch/nn/modules/fold",
+                                "children": [
+                                    {
+                                        "name": "Fold",
+                                        "path": "torch/nn/modules/fold/Fold",
+                                        "args": {
+                                            "output_size": "",
+                                            "kernel_size": "",
+                                            "dilation": "1",
+                                            "padding": "0",
+                                            "stride": "1"
+                                        }
+                                    },
+                                    {
+                                        "name": "Unfold",
+                                        "path": "torch/nn/modules/fold/Unfold",
+                                        "args": {
+                                            "kernel_size": "",
+                                            "dilation": "1",
+                                            "padding": "0",
+                                            "stride": "1"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "rnn",
+                                "path": "torch/nn/modules/rnn",
+                                "children": [
+                                    {
+                                        "name": "GRU",
+                                        "path": "torch/nn/modules/rnn/GRU",
+                                        "args": {
+                                            "args": "",
+                                            "kwargs": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "GRUCell",
+                                        "path": "torch/nn/modules/rnn/GRUCell",
+                                        "args": {
+                                            "input_size": "",
+                                            "hidden_size": "",
+                                            "bias": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LSTM",
+                                        "path": "torch/nn/modules/rnn/LSTM",
+                                        "args": {
+                                            "args": "",
+                                            "kwargs": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "LSTMCell",
+                                        "path": "torch/nn/modules/rnn/LSTMCell",
+                                        "args": {
+                                            "input_size": "",
+                                            "hidden_size": "",
+                                            "bias": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "RNN",
+                                        "path": "torch/nn/modules/rnn/RNN",
+                                        "args": {
+                                            "args": "",
+                                            "kwargs": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "RNNBase",
+                                        "path": "torch/nn/modules/rnn/RNNBase",
+                                        "args": {
+                                            "mode": "",
+                                            "input_size": "",
+                                            "hidden_size": "",
+                                            "num_layers": "1",
+                                            "bias": "True",
+                                            "batch_first": "False",
+                                            "dropout": "0.0",
+                                            "bidirectional": "False",
+                                            "proj_size": "0",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "RNNCell",
+                                        "path": "torch/nn/modules/rnn/RNNCell",
+                                        "args": {
+                                            "input_size": "",
+                                            "hidden_size": "",
+                                            "bias": "True",
+                                            "nonlinearity": "tanh",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "RNNCellBase",
+                                        "path": "torch/nn/modules/rnn/RNNCellBase",
+                                        "args": {
+                                            "input_size": "",
+                                            "hidden_size": "",
+                                            "bias": "",
+                                            "num_chunks": "",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "instancenorm",
+                                "path": "torch/nn/modules/instancenorm",
+                                "children": [
+                                    {
+                                        "name": "InstanceNorm1d",
+                                        "path": "torch/nn/modules/instancenorm/InstanceNorm1d",
+                                        "args": {
+                                            "num_features": "",
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "False",
+                                            "track_running_stats": "False",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "InstanceNorm2d",
+                                        "path": "torch/nn/modules/instancenorm/InstanceNorm2d",
+                                        "args": {
+                                            "num_features": "",
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "False",
+                                            "track_running_stats": "False",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "InstanceNorm3d",
+                                        "path": "torch/nn/modules/instancenorm/InstanceNorm3d",
+                                        "args": {
+                                            "num_features": "",
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "False",
+                                            "track_running_stats": "False",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyInstanceNorm1d",
+                                        "path": "torch/nn/modules/instancenorm/LazyInstanceNorm1d",
+                                        "args": {
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyInstanceNorm2d",
+                                        "path": "torch/nn/modules/instancenorm/LazyInstanceNorm2d",
+                                        "args": {
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "LazyInstanceNorm3d",
+                                        "path": "torch/nn/modules/instancenorm/LazyInstanceNorm3d",
+                                        "args": {
+                                            "eps": "1e-05",
+                                            "momentum": "0.1",
+                                            "affine": "True",
+                                            "track_running_stats": "True",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "module",
+                                "path": "torch/nn/modules/module",
+                                "children": [
+                                    {
+                                        "name": "Module",
+                                        "path": "torch/nn/modules/module/Module",
+                                        "args": {}
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "pixelshuffle",
+                                "path": "torch/nn/modules/pixelshuffle",
+                                "children": [
+                                    {
+                                        "name": "PixelShuffle",
+                                        "path": "torch/nn/modules/pixelshuffle/PixelShuffle",
+                                        "args": {
+                                            "upscale_factor": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "PixelUnshuffle",
+                                        "path": "torch/nn/modules/pixelshuffle/PixelUnshuffle",
+                                        "args": {
+                                            "downscale_factor": ""
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "transformer",
+                                "path": "torch/nn/modules/transformer",
+                                "children": [
+                                    {
+                                        "name": "Transformer",
+                                        "path": "torch/nn/modules/transformer/Transformer",
+                                        "args": {
+                                            "d_model": "512",
+                                            "nhead": "8",
+                                            "num_encoder_layers": "6",
+                                            "num_decoder_layers": "6",
+                                            "dim_feedforward": "2048",
+                                            "dropout": "0.1",
+                                            "activation": "<function relu at 0x7f7337036170>",
+                                            "custom_encoder": "None",
+                                            "custom_decoder": "None",
+                                            "layer_norm_eps": "1e-05",
+                                            "batch_first": "False",
+                                            "norm_first": "False",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "TransformerDecoder",
+                                        "path": "torch/nn/modules/transformer/TransformerDecoder",
+                                        "args": {
+                                            "decoder_layer": "",
+                                            "num_layers": "",
+                                            "norm": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "TransformerDecoderLayer",
+                                        "path": "torch/nn/modules/transformer/TransformerDecoderLayer",
+                                        "args": {
+                                            "d_model": "",
+                                            "nhead": "",
+                                            "dim_feedforward": "2048",
+                                            "dropout": "0.1",
+                                            "activation": "<function relu at 0x7f7337036170>",
+                                            "layer_norm_eps": "1e-05",
+                                            "batch_first": "False",
+                                            "norm_first": "False",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "TransformerEncoder",
+                                        "path": "torch/nn/modules/transformer/TransformerEncoder",
+                                        "args": {
+                                            "encoder_layer": "",
+                                            "num_layers": "",
+                                            "norm": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "TransformerEncoderLayer",
+                                        "path": "torch/nn/modules/transformer/TransformerEncoderLayer",
+                                        "args": {
+                                            "d_model": "",
+                                            "nhead": "",
+                                            "dim_feedforward": "2048",
+                                            "dropout": "0.1",
+                                            "activation": "<function relu at 0x7f7337036170>",
+                                            "layer_norm_eps": "1e-05",
+                                            "batch_first": "False",
+                                            "norm_first": "False",
+                                            "device": "None",
+                                            "dtype": "None"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "upsampling",
+                                "path": "torch/nn/modules/upsampling",
+                                "children": [
+                                    {
+                                        "name": "Upsample",
+                                        "path": "torch/nn/modules/upsampling/Upsample",
+                                        "args": {
+                                            "size": "None",
+                                            "scale_factor": "None",
+                                            "mode": "nearest",
+                                            "align_corners": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "UpsamplingBilinear2d",
+                                        "path": "torch/nn/modules/upsampling/UpsamplingBilinear2d",
+                                        "args": {
+                                            "size": "None",
+                                            "scale_factor": "None"
+                                        }
+                                    },
+                                    {
+                                        "name": "UpsamplingNearest2d",
+                                        "path": "torch/nn/modules/upsampling/UpsamplingNearest2d",
+                                        "args": {
+                                            "size": "None",
+                                            "scale_factor": "None"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "parallel",
+                        "path": "torch/nn/parallel",
+                        "children": [
+                            {
+                                "name": "data_parallel",
+                                "path": "torch/nn/parallel/data_parallel",
+                                "children": [
+                                    {
+                                        "name": "DataParallel",
+                                        "path": "torch/nn/parallel/data_parallel/DataParallel",
+                                        "args": {
+                                            "module": "",
+                                            "device_ids": "None",
+                                            "output_device": "None",
+                                            "dim": "0"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "parameter",
+                        "path": "torch/nn/parameter",
+                        "children": [
+                            {
+                                "name": "Parameter",
+                                "path": "torch/nn/parameter/Parameter",
+                                "args": {
+                                    "data": "None",
+                                    "requires_grad": "True"
+                                }
+                            },
+                            {
+                                "name": "UninitializedBuffer",
+                                "path": "torch/nn/parameter/UninitializedBuffer",
+                                "args": {
+                                    "requires_grad": "False",
+                                    "device": "None",
+                                    "dtype": "None"
+                                }
+                            },
+                            {
+                                "name": "UninitializedParameter",
+                                "path": "torch/nn/parameter/UninitializedParameter",
+                                "args": {
+                                    "requires_grad": "True",
+                                    "device": "None",
+                                    "dtype": "None"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

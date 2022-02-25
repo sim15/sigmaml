@@ -46,10 +46,10 @@
 		}
 		
 		if (expansionType == 'width') {
-			console.log(event.pageX +" " + start + " " + initial);
+			// console.log(event.pageX +" " + start + " " + initial);
 			const dX = start - event.pageX;
 			currentlyExpanding.style.width = `${initial + dX}px`;
-			console.log(currentlyExpanding.style.width);
+			// console.log(currentlyExpanding.style.width);
 			return
 		}		
 	}
@@ -87,6 +87,16 @@
 	:global(.x-handler) {
 		width: .3em;
 		cursor: col-resize;
+	}
+
+	:global(.y-handler) {
+		height: .3em;
+		cursor: row-resize;
+	}
+
+	:global(.y-handler-border) {
+		height: 0.08px;
+		background-color: rgb(66, 66, 66);
 	}
 
 </style>

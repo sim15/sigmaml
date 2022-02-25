@@ -4,8 +4,10 @@ const Path = require("path");
 const os = require('os');
 const pty = require('node-pty');
 const { cwd } = require("process");
-const FileSystem = require("fs");
+const fs = require("fs");
 const {spawn} = require('child_process');
+const dirTree = require("directory-tree");
+
 
 var usershell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
@@ -18,6 +20,8 @@ app.whenReady().then(main)
 let projectDir = "";
 
 const isMac = process.platform === 'darwin'
+
+
 
 
 function main () {
@@ -34,14 +38,21 @@ function main () {
     })
 
     const openDir = async () => {
-      dialog.showOpenDialog(window, {
+      return await dialog.showOpenDialog(window, {
           properties: ['openDirectory']
         }).then(result => {
           // console.log(result.canceled)
-          return result.filePaths
+          return result.filePaths[0];
         }).catch(err => {
         console.log(err)
       })
+    }
+
+    const updateDirContents = (directory) => {
+      window.webContents.send(
+        'update-project-dir',
+        dirTree(directory)
+      )
     }
 
     const template = [
@@ -67,8 +78,11 @@ function main () {
           isMac ? { role: 'close' } : { role: 'quit' },
           {
             label: "Open Project",
-            click: async () => {
-              projectDir = await openDir();
+            // click: openDir().then((result) => {window.webContents.send('update-project-dir', result)})
+            click: () => {
+              openDir().then(
+                updateDirContents
+              );
             }
           }
         ]
@@ -103,9 +117,13 @@ function main () {
         ]
       },
       // { role: 'viewMenu' }
+      
       {
         label: 'View',
         submenu: [
+          { role: 'reload' },
+          { role: 'forceReload' },
+          { role: 'toggleDevTools' },
           { role: 'togglefullscreen' }
         ]
       },
@@ -162,7 +180,8 @@ function main () {
     ipcMain.on("terminal-into", (event, data)=> {
       ptyProcess.write(data);
     });
-    
+
+
     // TODO: temporary fix
     ptyProcess.write(' ');
     ptyProcess.write('\b');
@@ -170,13 +189,19 @@ function main () {
     ipcMain.on("term.resize", (ev, data) => ptyProcess.resize(data.cols, data.rows));
     // FIX
     ipcMain.on("runPythonScript", (ev, data) => {
-      FileSystem.writeFile('file.json', data, (error) => {
+      fs.writeFile('file.json', data, (error) => {
         if (error) throw error;
       });
       
       // TODO: Fix this in the future.
       ptyProcess.write('python3 ' + Path.join(app.getAppPath()) + '/src/python_scripts/testscript.py \n')
     });
+
+
+    ipcMain.on('request-dir-update', (ev, directory) => {
+          updateDirContents(directory)
+      }
+    )
 
     
 

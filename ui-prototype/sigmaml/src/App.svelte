@@ -64,32 +64,6 @@
 		flex: 0 0 auto;
 	}
 
-	.main-panel {
-		width: 100%;
-		height: 75%;
-		min-height: 30%;
-		max-height: 99%;
-		background-color: #161616;
-		display: flex;
-		flex-flow: row;
-		flex: 0 0 auto;
-	}
-
-	.main-view {
-		height: 100%;
-		flex: 1 1 auto;
-		/* display: flex; */
-	}
-
-	.selection-menu {
-		width: 30%;
-		min-width: 1%;
-		max-width: 50%;
-		height: 100%;
-		flex: 0 0 auto;
-		overflow: auto;
-	}
-
 	.lower-panel {
 		background-color: #121212;
 		height: 25%;
@@ -120,51 +94,10 @@
 		overflow: hidden;
 	}
 
-	.handler {
-		padding: 0;
-		/* flex: 0 0 auto; */
-		position: absolute;
-		display: block;
-		top:0; bottom:0; left:0; right:0;
-		background-color: rgb(61, 108, 146);
-		opacity: 0;
-		transition: opacity	0.2s;
-		transition-delay: 200ms;
-	}
-
-	.handler:hover {
-		opacity: 1;
-	}
-
-	.handler-wrapper {
-		padding: 0;
-		position: relative;
-		z-index: 20;
-		flex: 0 0 auto;
-	}
-
-	.y-handler {
-		height: .3em;
-		cursor: row-resize;
-	}
-
-	.y-handler-border {
-		height: 0.08px;
-		background-color: rgb(66, 66, 66);
-	}
-
-	.x-handler-border {
-		width: 0.08px;
-		background-color: rgb(66, 66, 66);
-	}
-
-	.x-handler {
-		width: .3em;
-		cursor: col-resize;
-	}
 
 	.left-tabs {
 		flex: 1 1 auto;
+		overflow: auto;
 	}
 
 	#side-menu-left {
@@ -192,7 +125,7 @@
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" id="side-menu-left-handler" on:mousedown={startExpand.bind(this,'side-menu-left', 'height')}></div>
 			</div>
-			<div class="left-tabs sub-panel testy">
+			<div class="left-tabs sub-panel">
 				<DirectoryView />
 			</div>
 		</div>

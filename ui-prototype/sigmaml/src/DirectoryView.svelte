@@ -5,7 +5,7 @@
     // allows for updated directory value.
     // TODO: add right click to delete/interact with files.
     // TODO: 
-    const currentDir = writable({});
+    const currentDir = writable({name: "No project selected", children: []});
     
     let dirv;
     currentDir.subscribe(value => {
@@ -13,13 +13,13 @@
 	});
 
     const updateDirFunc = () => {
-        currentDir.set(window.api === "undefined" ? {} : window.api.getDir());
+        currentDir.set(window.api === "undefined" ? {name: "No project selected", children: []} : window.api.getDir());
         console.log(dirv);
         };
 </script>
 
 <div class="directory-tree sub-panel" on:click={updateDirFunc}>
-    <Tree name="path" children={[dirv]} expanded/>
+    <Tree name={dirv.name} children={dirv.children} expanded/>
 </div>
 
 
@@ -28,5 +28,6 @@
 
     .directory-tree {
         overflow: auto;
+        overflow-x: hidden;
     }
 </style>

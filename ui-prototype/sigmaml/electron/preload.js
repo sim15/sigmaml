@@ -31,7 +31,7 @@ window.addEventListener("load", function () {
         // console.log(event);
     });
 
-    let projDirectory = {};
+    let projDirectory = {name: "No project selected", children: []};
     
 
     

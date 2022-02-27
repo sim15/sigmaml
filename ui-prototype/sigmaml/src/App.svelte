@@ -52,6 +52,7 @@
 		display: flex;
 		flex-direction: column;
 		flex: auto;
+		overflow: hidden;
 	}
 
 	.right-panel {
@@ -96,8 +97,9 @@
 
 
 	.left-tabs {
-		flex: 1 1 auto;
+		flex: 1 1 0;
 		overflow: auto;
+		overflow-x: hidden;
 	}
 
 	#side-menu-left {

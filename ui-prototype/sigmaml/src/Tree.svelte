@@ -36,6 +36,7 @@
 		background-size: 1em 1em;
 		/* font-weight: bold; */
 		cursor: pointer;
+		white-space: nowrap;
 	}
 
 	.expanded {

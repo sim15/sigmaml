@@ -277,6 +277,7 @@
 </div>
 <div id="drawflow" use:onload on:drop={drop} on:dragover={allowDrop} draggable="false"></div>
 
+
 <style>
 
     #drawflow {
@@ -290,7 +291,7 @@
 
     div :global(.drawflow .drawflow-node) {
         background: #2a2a2a;
-        border-radius: 15px;
+        /* border-radius: 15px; */
         border: 0 solid black;
         padding: 0;
         width: 400px;
@@ -305,7 +306,7 @@
     :global(.nodeHeader) {
         padding: 1em 0.5em 1em 1em;
         background: #202020;
-        border-radius: 15px 15px 0 0;
+        /* border-radius: 15px 15px 0 0; */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -375,7 +376,7 @@
     }
 
     :global(input) {
-        border-radius: 15px;
+        border-radius: 10px;
         margin: .4em 0;
     }
 
@@ -390,12 +391,20 @@
         display: flex;
         flex-direction: row;
         gap: 1em;
+        right: 10px;
     }
 
     #run-button, #save-button {
-		background: green;
+		background: rgba(0, 128, 0, 0.2);
 		width: 50px;
 		height: 50px;
+        line-height: 50px;
+        text-align: center;
+        
 	}
+    #run-button:hover, #save-button:hover {
+        cursor: pointer;
+		background: rgba(0, 128, 0, 0.3);
+    }
 
 </style>

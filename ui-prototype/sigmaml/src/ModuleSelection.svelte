@@ -12,7 +12,9 @@
 
 </script>
 
-<span class="disable-select" class:expanded on:click={toggle}>{name}</span>
+<div class="module-item selectable-item" on:click={toggle}>
+	<span class="disable-select" class:expanded>{name}</span>
+</div>
 
 {#if expanded}
 	<ul class="disable-select">
@@ -31,17 +33,19 @@
 
 <style>
 	span {
-		padding: 0 0 0 1.5em;
+		padding: 0 0 0 1.2em;
 		background: url(../icons/plus-square-svgrepo-com.svg) 0 0 no-repeat;
-		background-size: 1em 1em;
-		/* font-weight: bold; */
+		/* background: ; */
+		background-size: auto 80%;
+		background-position: left center;
 		cursor: pointer;
+		white-space: nowrap;
 	}
 
 	.expanded {
-		/* padding: 0 0 0 1.5em; */
 		background: url(../icons/minus-square-svgrepo-com.svg) 0 0 no-repeat;
-		background-size: 1em 1em;
+		background-size: auto 80%;
+		background-position: left center;
 	}
 
 	ul {
@@ -51,7 +55,7 @@
 		border-left: 1px solid #eee;
 	}
 
-	li {
+	.module-item {
 		padding: 0.2em 0;
 	}
 </style>

@@ -74,14 +74,15 @@
 		overflow: hidden; 
 	}
 
-	.panel {
+	:global(.panel) {
 		/* flex: auto; */
 		margin: 0;
 	}
 
-	.sub-panel {
+	:global(.sub-panel) {
 		box-sizing: border-box;
 		padding: 1em;
+		padding-bottom: 0;
 		/* flex: 0 1 auto; */
 		/* border: .5px solid white; */
 	}
@@ -91,7 +92,7 @@
 		width: 100%;
 		height: 100%;
 		padding: 0;
-		margin: 0 1em 1em 1em;
+		margin: 1em 1em 1em 1em;
 		overflow: hidden;
 	}
 
@@ -106,6 +107,14 @@
 		max-height: 70%;
 		height: 50%;
 		min-height: 30%;
+		padding: 0;
+	}
+
+	:global(.section-title) {
+		/* margin-bottom: .5em; */
+		text-transform: uppercase;
+		white-space: nowrap;
+		padding: 0 .8em .8em 0;
 	}
 
 	
@@ -121,13 +130,17 @@
 	
 	<div class="grid-main" on:mousemove={expand} >
 		<div class="left-panel panel disable-select" >
-			<div class="side-menu sub-panel testy" id="side-menu-left">
+			<div class="side-menu sub-panel" id="side-menu-left">
+				<div class="sub-panel">
+					<div class="section-title">Dashboard</div>
+				</div>
 				<ProgressPanel />
 			</div>
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" id="side-menu-left-handler" on:mousedown={startExpand.bind(this,'side-menu-left', 'height')}></div>
 			</div>
 			<div class="left-tabs sub-panel">
+				<div class="section-title">Project Directory</div>
 				<DirectoryView />
 			</div>
 		</div>

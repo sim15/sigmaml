@@ -3,7 +3,7 @@
 	// export let args;
 
 	// export let reference;
-	// $: type = name.slice(name.lastIndexOf('.') + 1);
+	$: type = name.slice(name.lastIndexOf('.') + 1);
 	// console.log(args);
 	// function drag(ev) {
 	// 	console.log(ev.target.textContent);
@@ -11,16 +11,19 @@
 	// 	ev.dataTransfer.setData("arguments", JSON.stringify(args));
 	// };
 
-	$: type = "pytorch-icon";
+	// $: type = "pytorch-icon";
 </script>
 
-<span style="background-image: url(./icons/{type}.svg)">{name}</span>
+<div class="selectable-item">
+	<span style="background-image: url(./icons/{type}.svg)">{name}</span>
+</div>
 
 <style>
 	span {
-		padding: 0 0 0 1.5em;
+		padding: .2em 0 .2em 1.5em;
 		background: 0 0.1em no-repeat;
-		background-size: 1em 1em;
+		background-size: auto 70%;
+		background-position: left center;
 		white-space: nowrap;
 	}
 </style>

@@ -32,7 +32,7 @@
 <style>
 	span {
 		padding: 0 0 0 1.5em;
-		background: url(../icons/plus-square-svgrepo-com.svg) 0 0 no-repeat;
+		background: url(../icons/closed.svg) 0 0 no-repeat;
 		background-size: 1em 1em;
 		/* font-weight: bold; */
 		cursor: pointer;
@@ -41,7 +41,7 @@
 
 	.expanded {
 		/* padding: 0 0 0 1.5em; */
-		background: url(../icons/minus-square-svgrepo-com.svg) 0 0 no-repeat;
+		background: url(../icons/open.svg) 0 0 no-repeat;
 		background-size: 1em 1em;
 	}
 

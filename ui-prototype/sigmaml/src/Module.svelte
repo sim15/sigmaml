@@ -14,14 +14,21 @@
 	$: type = "pytorch-icon";
 </script>
 
-<span style="background-image: url(./icons/{type}.svg)"
-draggable="true" on:dragstart={drag}
->{name}</span>
-
+<div class="backdrop-sec selectable-item">
+	<span style="background-image: url(./icons/{type}.svg)"
+	draggable="true" on:dragstart={drag}
+	>{name}</span>
+</div>
 <style>
 	span {
 		padding: 0 0 0 1.5em;
 		background: 0 0.1em no-repeat;
-		background-size: 1em 1em;
+		background-size: auto 70%;
+		background-position: left center;
+	}
+
+	.backdrop-sec {
+		padding: .4em 0;
+		margin: -.2em 0;
 	}
 </style>

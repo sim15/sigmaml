@@ -22,8 +22,30 @@
                             "connections": []
                         }
                     },
-                    "pos_x": 0,
-                    "pos_y": 0
+                    "pos_x": -276,
+                    "pos_y": -11
+                },
+                "2": {
+                    "id": 2,
+                    "name": "AdaptiveAvgPool1d",
+                    "data": {
+                        "output_size": ""
+                    },
+                    "class": "github",
+                    "html": "\n        <div class=\"flowbox\">\n            <div class=\"nodeHeader\">\n                <span class=\"nodeTitle\">AdaptiveAvgPool1d</span>\n                <div class=\"control-buttons\">\n                    <object type=\"image/svg+xml\" data=\"./icons/icons8-cancel.svg\"></object>\n                </div>\n            </div>\n            <div class=\"arg-inputs\">\n        \n            <div class=\"argbox\">\n            <div class=\"argcol\">\n            <span>output_size</span>\n            </div>\n\n            <div class=\"argcol\">\n            <input class=\"input-arg\" type=\"text\" df-output_size value=\"\"></input>\n            </div>\n            </div></div></div>",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": []
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": []
+                        }
+                    },
+                    "pos_x": -163,
+                    "pos_y": 142
                 }
             }
         }

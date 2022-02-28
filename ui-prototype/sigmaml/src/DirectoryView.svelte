@@ -18,7 +18,7 @@
         };
 </script>
 
-<div class="directory-tree sub-panel" on:click={updateDirFunc}>
+<div class="directory-tree" on:click={updateDirFunc}>
     <Tree name={dirv.name} children={dirv.children} expanded/>
 </div>
 

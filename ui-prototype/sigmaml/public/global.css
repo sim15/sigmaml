@@ -2,10 +2,11 @@ html, body {
 	position: relative;
 	width: 100%;
 	height: 100%;
+	font-size: .94em;
 }
 
 body {
-	color: rgb(255, 255, 255);
+	color: rgb(194, 194, 194);
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;

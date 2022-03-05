@@ -34,7 +34,7 @@
 
 	import {stopExpand, expand, startExpand} from './Handlers.svelte';
 
-	
+
 
 </script>
 
@@ -57,7 +57,7 @@
 	}
 
 	.right-panel {
-		width: 80%;
+		width: 85%;
 		min-width: 60%;
 		max-width: 90%;
 		height: 100%;
@@ -106,7 +106,7 @@
 
 	#side-menu-left {
 		max-height: 70%;
-		height: 50%;
+		height: 30%;
 		min-height: 30%;
 		padding: 0;
 	}
@@ -118,6 +118,16 @@
 		padding: 0 .8em .8em 0;
 	}
 
+	.main-panel {
+		width: 100%;
+		height: 75%;
+		min-height: 30%;
+		max-height: 99%;
+		background-color: #161616;
+		display: flex;
+		flex-flow: row;
+		flex: 0 0 auto;
+	}
 	
 
 </style>
@@ -150,7 +160,9 @@
 		</div>
 		<!-- <div class="handler"></div> -->
 		<div class="right-panel panel disable-select" id="side-panel-menu-container">
-			<MainPanel />
+			<div class="main-panel panel" id="upper-right-panel">
+				<MainPanel />
+			</div>
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" on:mousedown={startExpand.bind(this, 'upper-right-panel', 'height')}></div>
 			</div>

@@ -21,7 +21,8 @@
 </div>
 <style>
 	span {
-		padding: 0 0 0 1.5em;
+		color: rgb(229 227 227);
+		padding: 0 0 0 1.4em;
 		background: 0 0.1em no-repeat;
 		background-size: auto 70%;
 		background-position: left center;
@@ -29,6 +30,6 @@
 
 	.backdrop-sec {
 		padding: .4em 0;
-		margin: -.2em 0;
+		/* margin: -.2em 0; */
 	}
 </style>

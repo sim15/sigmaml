@@ -33,7 +33,7 @@
 
     li {
         padding: 0.2em 1.8em;
-        font-size: 1.3em;
+        font-size: 1em;
     }
 
     /* .check-mark {

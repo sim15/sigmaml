@@ -20,6 +20,7 @@
 
 <style>
 	span {
+		color: rgb(229 227 227);
 		padding: .2em 0 .2em 1.5em;
 		background: 0 0.1em no-repeat;
 		background-size: auto 70%;

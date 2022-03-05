@@ -33,7 +33,7 @@
 
 <style>
 	span {
-		padding: 0 0 0 1.2em;
+		padding: 0 0 0 1.4em;
 		background: url(../icons/plus-square-svgrepo-com.svg) 0 0 no-repeat;
 		/* background: ; */
 		background-size: auto 80%;
@@ -43,6 +43,7 @@
 	}
 
 	.expanded {
+		color: rgb(229 227 227);
 		background: url(../icons/minus-square-svgrepo-com.svg) 0 0 no-repeat;
 		background-size: auto 80%;
 		background-position: left center;
@@ -52,7 +53,7 @@
 		padding: 0.2em 0 0 0.5em;
 		margin: 0 0 0 0.5em;
 		list-style: none;
-		border-left: 1px solid #eee;
+		border-left: 1px solid rgba(255, 255, 255, 0.4);
 	}
 
 	.module-item {

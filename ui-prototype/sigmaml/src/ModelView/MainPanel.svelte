@@ -8,30 +8,21 @@
 	// {x: 653.5, y: 0, width: 451.5, height: 773.25, top: 0, …}
 </script>
 
-<div class="main-panel panel" id="upper-right-panel">
-    <div class="main-view">
-        <Drawflow />
-    </div>
-    <div class="handler-wrapper x-handler-border">
-        <div class="handler x-handler" on:mousedown={startExpand.bind(this, 'container-side-panel', 'width')}></div>
-    </div>
-    <div class="selection-menu sub-panel" id="container-side-panel">
-		<div class="section-title">Modules</div>
-        <ModuleSelection name="PyTorch" submodules={pytorchData.default} expanded/>
-    </div>
+
+
+<div class="main-view">
+	<Drawflow />
+</div>
+<div class="handler-wrapper x-handler-border">
+	<div class="handler x-handler" on:mousedown={startExpand.bind(this, 'container-side-panel', 'width')}></div>
+</div>
+<div class="selection-menu sub-panel" id="container-side-panel">
+	<div class="section-title">Modules</div>
+	<ModuleSelection name="PyTorch" submodules={pytorchData.default} expanded/>
 </div>
 
 <style>
-	.main-panel {
-		width: 100%;
-		height: 75%;
-		min-height: 30%;
-		max-height: 99%;
-		background-color: #161616;
-		display: flex;
-		flex-flow: row;
-		flex: 0 0 auto;
-	}
+	
 
 	.main-view {
 		height: 100%;

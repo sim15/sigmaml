@@ -3,7 +3,7 @@
 	import Drawflow from './Drawflow.svelte';
 	import * as pytorchData from './nnTree.json';
 
-	import {stopExpand, expand, startExpand} from './Handlers.svelte';
+	import {stopExpand, expand, startExpand} from '../Handlers.svelte';
 	// document.getElementById('container-side-panel').getBoundingClientRect()
 	// {x: 653.5, y: 0, width: 451.5, height: 773.25, top: 0, …}
 </script>

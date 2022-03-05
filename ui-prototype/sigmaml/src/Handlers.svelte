@@ -42,6 +42,7 @@
 		if (expansionType == 'height') {
 			const dY = start - event.pageY;
 			currentlyExpanding.style.height = `${initial - dY}px`;
+			window.api.updateTerminalSize();
 			return
 		}
 		
@@ -50,6 +51,7 @@
 			const dX = start - event.pageX;
 			currentlyExpanding.style.width = `${initial + dX}px`;
 			// console.log(currentlyExpanding.style.width);
+			window.api.updateTerminalSize();
 			return
 		}		
 	}
@@ -69,7 +71,7 @@
 	}
 
 	:global(.handler:hover) {
-		opacity: 1;
+		opacity: 1 !important;
 	}
 
 	:global(.handler-wrapper) {

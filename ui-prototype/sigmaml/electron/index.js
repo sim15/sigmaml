@@ -49,9 +49,11 @@ function main () {
     }
 
     const updateDirContents = (directory) => {
+      let curTree = dirTree(directory);
+      projectDir = directory;
       window.webContents.send(
         'update-project-dir',
-        dirTree(directory)
+        curTree
       )
     }
 
@@ -189,15 +191,19 @@ function main () {
     ipcMain.on("term.resize", (ev, data) => ptyProcess.resize(data.cols, data.rows));
     // FIX
     ipcMain.on("runPythonScript", (ev, data) => {
-      fs.writeFile('file.json', data, (error) => {
-        if (error) throw error;
-      });
+      const toWritePath = projectDir + '/model.json';
+      console.log(toWritePath);
+      // fs.chmod(toWritePath, 0o600, () => {
+        fs.writeFileSync(toWritePath, data, (error) => {
+          if (error) throw error;
+        });
+      // });
       
       // TODO: Fix this in the future.
-      ptyProcess.write('python3 ' + Path.join(app.getAppPath()) + '/src/python_scripts/testscript.py \n')
+      ptyProcess.write('python3 ' + Path.join(app.getAppPath()) + '/src/python_scripts/testscript.py ' + projectDir + '/model.json' + '\n')
     });
 
-
+    
     ipcMain.on('request-dir-update', (ev, directory) => {
           updateDirContents(directory)
       }

@@ -27,13 +27,14 @@
 
 	import { element } from 'svelte/internal';
 
-	import MainPanel from './MainPanel.svelte';
+	import MainPanel from './ModelView/MainPanel.svelte';
 	import ProgressPanel from './ProgressPanel.svelte';
 	import DirectoryView from './DirectoryView.svelte';
 
 
-
 	import {stopExpand, expand, startExpand} from './Handlers.svelte';
+
+	
 
 </script>
 

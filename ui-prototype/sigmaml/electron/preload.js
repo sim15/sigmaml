@@ -17,8 +17,9 @@ window.addEventListener("load", function () {
     const fitAddon = new FitAddon();
     term.loadAddon(fitAddon);
 
+    let termContainer = document.getElementById('terminal-container');
     // Open the terminal in #terminal-container
-    term.open(document.getElementById('terminal-container'));
+    term.open(termContainer);
 
     term.onData(e => {
         ipcRenderer.send("terminal-into", e);
@@ -40,21 +41,15 @@ window.addEventListener("load", function () {
         projDirectory = data;
     })
 
-    const API = {
+    
 
-        updateDir: () => {ipcRenderer.send('request-dir-update', projDirectory.name)},
-        getDir: () => {return projDirectory}
-
-    }
-
-    contextBridge.exposeInMainWorld("api", API);
 
     term.onResize((size) => {
         const newsize = {
             cols: size.cols,
             rows: size.rows,
         };
-
+        console.log("resized")
         ipcRenderer.send("term.resize", newsize);
     });
 
@@ -62,6 +57,18 @@ window.addEventListener("load", function () {
         fitAddon.fit();
     });
 
+    const API = {
+
+        updateDir: () => {ipcRenderer.send('request-dir-update', projDirectory.name)},
+        getDir: () => {return projDirectory},
+        updateTerminalSize: () => {fitAddon.fit()}
+
+
+    }
+
+    contextBridge.exposeInMainWorld("api", API);
+
+    
     // Make the terminal's size and geometry fit the size of #terminal-container
     fitAddon.fit();
 

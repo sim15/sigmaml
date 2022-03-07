@@ -161,9 +161,6 @@ function main () {
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
 
-    // const finishpath = (p) => {console.log(p)};
-    // console.log(dialog.showOpenDialog({ properties: [ 'openFile', 'openDirectory', 'multiSelections' ], finishpath}));
-    
     window.loadFile(Path.resolve("./public/index.html"))
 
     window.on('ready-to-show', window.show)
@@ -189,17 +186,15 @@ function main () {
     ptyProcess.write('\b');
 
     ipcMain.on("term.resize", (ev, data) => ptyProcess.resize(data.cols, data.rows));
-    // FIX
+    // FIX?
     ipcMain.on("runPythonScript", (ev, data) => {
       const toWritePath = projectDir + '/model.json';
-      console.log(toWritePath);
-      // fs.chmod(toWritePath, 0o600, () => {
-        fs.writeFileSync(toWritePath, data, (error) => {
-          if (error) throw error;
-        });
-      // });
+      // console.log(toWritePath);
+      fs.writeFileSync(toWritePath, data, (error) => {
+        if (error) throw error;
+      });
       
-      // TODO: Fix this in the future.
+      // TODO: Fix this in the future?
       ptyProcess.write('python3 ' + Path.join(app.getAppPath()) + '/src/python_scripts/testscript.py ' + projectDir + '/model.json' + '\n')
     });
 
@@ -214,16 +209,3 @@ function main () {
     
 
 }
-
-// app.whenReady().then(() => {
-//     createWindow();
-
-//     app.on("before-quit", () => {
-//         term.kill();
-//         console.log(`Close Terminal : ${termpid}`);
-//     });
-
-//     app.on("window-all-closed", () => {
-//         app.quit();
-//     });
-// });

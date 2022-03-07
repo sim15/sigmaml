@@ -1,6 +1,7 @@
 <script defer>
-    import Drawflow from 'drawflow'
+    import DrawflowMod from './drawflow_wrapper'
     import styleDrawflow from 'drawflow/dist/drawflow.min.css';
+
 
     // recursively check if a cycle was created in the graph
     function cycleCreated(curNode, visited, recursionPath) {
@@ -164,7 +165,8 @@
     const onload = () => {
         id = window.document.getElementById("drawflow");
         
-        editor = new Drawflow(id);
+        editor = new DrawflowMod(id);
+
         editor.start();
         var html = `
         <div class="flowbox">
@@ -186,6 +188,7 @@
                 connection.input_class);
             }
         });
+
 
         editor.on('nodeCreated', (nodeID) => {
             // TODO: set a root node for initial data. scan to make sure the digraph is connected
@@ -262,7 +265,7 @@
     };
 
     
-
+    
     
 
 </script>

@@ -1,5 +1,6 @@
-<script context="module">
-
+<script>
+    import { createEventDispatcher } from 'svelte';
+    // import {changeWindow, currentViewName, currentView, views} from "./App.svelte";
     export let processes = [
         {name: 'Options', status: "complete", selected: false},
         {name: 'Data', status: "error", selected: false},
@@ -8,11 +9,21 @@
         {name: 'Test', status: "unfinished", selected: false}
     ];
 
+
+    const dispatch = createEventDispatcher();
+
+    function changeWindow(name) {
+        console.log('Changed in panel!')
+		dispatch('changed-window-view', {
+			newWindowName: name
+		});
+	}
+
 </script>
 
 <ul class="disable-select">
     {#each processes as process}
-        <li class="disable-select selectable-item">
+        <li class="disable-select selectable-item" on:click={() => {changeWindow(process.name)}}>
 
             <span style="background-image: url(./icons/{process.status}.svg)">
                 {process.name}

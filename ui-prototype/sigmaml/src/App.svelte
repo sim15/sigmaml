@@ -30,11 +30,27 @@
 	import MainPanel from './ModelView/MainPanel.svelte';
 	import ProgressPanel from './ProgressPanel.svelte';
 	import DirectoryView from './DirectoryView.svelte';
+	import DataPanel from './DataView/DataPanel.svelte';
 
 
 	import {stopExpand, expand, startExpand} from './Handlers.svelte';
+	
+	const views = {
+		"Model": MainPanel,
+		"Data": DataPanel
+	};
+	let currentViewName = "Model";
+	let currentView = views["Model"];
 
+	const changingWindow = (event) => {
+		console.log("Changed in APP");
+		// console.log(event.detail.newWindowName);
+		currentViewName = event.detail.newWindowName;
+		currentView = views[currentViewName];
+		// console.log(currentView);
+	}
 
+	// changeWindow("Data");
 
 </script>
 
@@ -145,7 +161,7 @@
 				<div class="sub-panel">
 					<div class="section-title">Dashboard</div>
 				</div>
-				<ProgressPanel />
+				<ProgressPanel on:changed-window-view={changingWindow}/>
 			</div>
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" id="side-menu-left-handler" on:mousedown={startExpand.bind(this,'side-menu-left', 'height')}></div>
@@ -161,7 +177,9 @@
 		<!-- <div class="handler"></div> -->
 		<div class="right-panel panel disable-select" id="side-panel-menu-container">
 			<div class="main-panel panel" id="upper-right-panel">
-				<MainPanel />
+				{#if currentView == views[currentViewName]}
+						<svelte:component this={currentView}></svelte:component>
+				{/if}
 			</div>
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" on:mousedown={startExpand.bind(this, 'upper-right-panel', 'height')}></div>

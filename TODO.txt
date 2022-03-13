@@ -1,0 +1,4 @@
+TRAINING TAB:
+1. Center display - visualizing model performance over time. (take numerical outputs from python script over time and plot them as a line chart somehow)
+2. Side display - define training hyperparameters as input
+3. "RUN" button

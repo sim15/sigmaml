@@ -42,15 +42,13 @@
 	let currentViewName = "Model";
 	let currentView = views["Model"];
 
+	
 	const changingWindow = (event) => {
 		console.log("Changed in APP");
-		// console.log(event.detail.newWindowName);
 		currentViewName = event.detail.newWindowName;
 		currentView = views[currentViewName];
-		// console.log(currentView);
 	}
 
-	// changeWindow("Data");
 
 </script>
 
@@ -148,6 +146,8 @@
 
 </style>
 
+
+
 <main on:mouseup={stopExpand} >
 	<!-- <input type="text" bind:value={customMessage}> -->
 
@@ -177,9 +177,10 @@
 		<!-- <div class="handler"></div> -->
 		<div class="right-panel panel disable-select" id="side-panel-menu-container">
 			<div class="main-panel panel" id="upper-right-panel">
-				{#if currentView == views[currentViewName]}
-						<svelte:component this={currentView}></svelte:component>
-				{/if}
+				<!-- {#if currentView == views[currentViewName]}
+					<svelte:component this={currentView}></svelte:component>
+				{/if} -->
+				<MainPanel />
 			</div>
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" on:mousedown={startExpand.bind(this, 'upper-right-panel', 'height')}></div>
@@ -196,6 +197,3 @@
 	</div>
 	
 </main>
-
-
-

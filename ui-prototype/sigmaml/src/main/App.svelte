@@ -31,13 +31,15 @@
 	import ProgressPanel from './ProgressPanel.svelte';
 	import DirectoryView from './DirectoryView.svelte';
 	import DataPanel from './DataView/DataPanel.svelte';
+	import TrainPanel from './TrainView/TrainPanel.svelte';
 
 
 	import {stopExpand, expand, startExpand} from './Handlers.svelte';
 	
 	const views = {
 		"Model": MainPanel,
-		"Data": DataPanel
+		"Data": DataPanel,
+		"Train": TrainPanel
 	};
 	let currentViewName = "Model";
 	let currentView = views["Model"];
@@ -177,10 +179,10 @@
 		<!-- <div class="handler"></div> -->
 		<div class="right-panel panel disable-select" id="side-panel-menu-container">
 			<div class="main-panel panel" id="upper-right-panel">
-				<!-- {#if currentView == views[currentViewName]}
+				{#if currentView == views[currentViewName]}
 					<svelte:component this={currentView}></svelte:component>
-				{/if} -->
-				<MainPanel />
+				{/if}
+				<!-- <MainPanel /> -->
 			</div>
 			<div class="handler-wrapper y-handler-border">
 				<div class="handler y-handler" on:mousedown={startExpand.bind(this, 'upper-right-panel', 'height')}></div>

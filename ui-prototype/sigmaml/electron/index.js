@@ -195,6 +195,7 @@ function main () {
       });
       
       // TODO: Fix this in the future?
+      // TODO: THIS IS BROKEN
       ptyProcess.write('python3 ' + Path.join(app.getAppPath()) + '/src/python_scripts/testscript.py ' + projectDir + '/model.json' + '\n')
     });
 

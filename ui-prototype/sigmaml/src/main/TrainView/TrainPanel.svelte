@@ -5,11 +5,12 @@
 
 
 
-    var rawData = [[]];
+    var rawData = [[],[]];
 	
 	let el;
-    const width = 960;
-    const height = 500;
+    // let trainContainer = document.getElementById("train-progress-display");
+    let width = 800;
+    let height = 500;
     const ABS_MAX = 1;
     const ABS_MIN = -1;
     const dT = 700;
@@ -47,7 +48,7 @@
 
         render = () => {
             const data = formatData(rawData);
-            rawData[0].push(Math.random());
+            
 
             // obtain absolute min and max
             const yMin = data.reduce((pv,cv) => {
@@ -64,7 +65,7 @@
             yScale.domain([yMin, yMax]);
 
             // create axis scale
-                const yAxis = d3.axisLeft().scale(yScale);
+            const yAxis = d3.axisLeft().scale(yScale);
 
             // if no axis exists, create one, otherwise update it
             if (svg.selectAll(".y.axis").empty()){
@@ -104,25 +105,71 @@
                 );
             
         }
+        const addpoints0 = () => {
+            rawData[0].push(Math.random());
+        }
+        const addpoints1 = () => {
+            rawData[1].push(Math.random());
+        }
+
         render();
         setInterval(render, dT);
+        // setInterval(addpoints0, dT);
+        setInterval(addpoints1, dT*4);
     });
     
+    let options = [
+        {
+            name: "Epochs",
+            description: "Define the number of epochs per training iteration.",
+            input: {
+                type: "text",
+                defaultValue: "4"
+            }
+        },
+        {
+            name: "Loss Function",
+            description: "Which loss function to use.",
+            input: {
+                type: "text",
+                defaultValue: "MSELoss"
+            }
+        },
+        {
+            name: "Optimization Function",
+            description: "Which optimization function to use.",
+            input: {
+                type: "text",
+                defaultValue: "Adadelta"
+            }
+        }
+
+    ]
 
 </script>
 
 <div class="train-view">
     <div class="train-settings-window">
-        NO
-        </div>
-        <div class="handler-wrapper x-handler-border">
-            <div class="handler x-handler" id="train-main-handler" on:mousedown={startExpand.bind(this, 'train-progress-display', 'width')}></div>
-        </div>
-        <div id="train-progress-display">
-            <div bind:this={el} class="chart">
+            {#each options as option}
+            <div class="train-option-cell selectable-item">
+                <span class="option-name">
+                    {option.name}
+                </span>
+                <p class="option-description">
+                    {option.description}
+                </p>
+                <input class="option-input" type={option.input.type} value={option.input.defaultValue}>
             </div>
-        
+            {/each}
+    </div>
+    <div class="handler-wrapper x-handler-border">
+        <div class="handler x-handler" id="train-main-handler" on:mousedown={startExpand.bind(this, 'train-progress-display', 'width')}></div>
+    </div>
+    <div id="train-progress-display">
+        <div bind:this={el} class="chart">
         </div>
+    
+    </div>
 </div>
 
 
@@ -130,6 +177,27 @@
 <style>
     .chart {
         margin: 100px;
+    }
+
+    .option-name {
+        font-size: 130%;
+    }
+    
+    .option-input {
+        border-radius: 0;
+        border: none;
+        background-color: #303030;
+        color: rgb(194, 194, 194);
+
+    }
+
+    .option-input:focus{
+        outline: .7px solid steelblue;
+        color: white;
+    }
+
+    .train-option-cell {
+        padding: 1em 2em;
     }
 
     .chart :global(div) {
@@ -152,6 +220,9 @@
 
     .train-settings-window {
         flex: auto;
+        padding: 0;
+        min-width: 30%;
+        overflow: auto;
     }
 
     

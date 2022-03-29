@@ -8,7 +8,7 @@
     var rawData = [[],[]];
 	
 	let el;
-    // let trainContainer = document.getElementById("train-progress-display");
+    let trainContainer = document.getElementById("train-progress-display");
     let width = 800;
     let height = 500;
     const ABS_MAX = 1;
@@ -21,9 +21,9 @@
 
     // initial page render
     onMount(() => {
-
         const svg = d3.select(el).append("svg")
-        .attr("height", height).attr("width", width)
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("preserveAspectRatio", "xMidYMid meet")
         .append("g")
             .attr("transform", `translate(${margin.left}, ${margin.right})`) 
 
@@ -115,13 +115,18 @@
         render();
         setInterval(render, dT);
         // setInterval(addpoints0, dT);
-        setInterval(addpoints1, dT*4);
+        setInterval(addpoints1, dT*20);
     });
     
     let options = [
         {
+            name: "Training Options",
+            optionType: "header-option"
+        },
+        {
             name: "Epochs",
             description: "Define the number of epochs per training iteration.",
+            optionType: "input-option",
             input: {
                 type: "text",
                 defaultValue: "4"
@@ -130,6 +135,7 @@
         {
             name: "Loss Function",
             description: "Which loss function to use.",
+            optionType: "input-option",
             input: {
                 type: "text",
                 defaultValue: "MSELoss"
@@ -138,9 +144,32 @@
         {
             name: "Optimization Function",
             description: "Which optimization function to use.",
+            optionType: "input-option",
             input: {
                 type: "text",
                 defaultValue: "Adadelta"
+            }
+        },
+        {
+            name: "Hyperparameter Optimization",
+            optionType: "header-option"
+        },
+        {
+            name: "Optimization Algorithm",
+            description: "Define an algorithm for optimizing hyperparameters",
+            optionType: "input-option",
+            input: {
+                type: "text",
+                defaultValue: "Grid Search"
+            }
+        },
+        {
+            name: "Learning Rate",
+            description: "Define a search space for learning rate",
+            optionType: "input-option",
+            input: {
+                type: "text",
+                defaultValue: "69"
             }
         }
 
@@ -151,15 +180,24 @@
 <div class="train-view">
     <div class="train-settings-window">
             {#each options as option}
-            <div class="train-option-cell selectable-item">
-                <span class="option-name">
-                    {option.name}
-                </span>
-                <p class="option-description">
-                    {option.description}
-                </p>
-                <input class="option-input" type={option.input.type} value={option.input.defaultValue}>
-            </div>
+            {#if option.optionType == "input-option"}
+                <div class="train-option-cell selectable-item">
+                    <span class="option-name">
+                        {option.name}
+                    </span>
+                    <p class="option-description">
+                        {option.description}
+                    </p>
+                    <input class="option-input" type={option.input.type} value={option.input.defaultValue}>
+                </div>
+            {/if}
+            {#if option.optionType == "header-option"}
+                <div class="train-option-cell">
+                    <span class="option-header">
+                        {option.name}
+                    </span>
+                </div>
+            {/if}
             {/each}
     </div>
     <div class="handler-wrapper x-handler-border">
@@ -176,14 +214,19 @@
 
 <style>
     .chart {
-        margin: 100px;
+        margin: 3em;
     }
 
     .option-name {
         font-size: 130%;
     }
+
+    .option-header {
+        font-size: 150%;
+        font-weight: bold;
+    }
     
-    .option-input {
+    :global(input) {
         border-radius: 0;
         border: none;
         background-color: #303030;
@@ -191,7 +234,7 @@
 
     }
 
-    .option-input:focus{
+    :global(input:focus) {
         outline: .7px solid steelblue;
         color: white;
     }
@@ -210,6 +253,10 @@
         width: 100%;
         height: 100%;
 	}
+
+    :global(.chart svg) {
+        width: 100%;
+    }
 
     .train-view {
         width: 100%;

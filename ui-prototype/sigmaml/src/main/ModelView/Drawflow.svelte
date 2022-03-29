@@ -293,7 +293,7 @@
     }
 
     div :global(.drawflow .drawflow-node) {
-        background: #2a2a2a;
+        background: #121212;
         /* border-radius: 15px; */
         border: 0 solid black;
         padding: 0;
@@ -320,10 +320,10 @@
         stroke-width: 3px;
     }
 
-    div :global(.drawflow .drawflow-node.selected) {
+    /* div :global(.drawflow .drawflow-node.selected) {
         background: rgb(59, 59, 59);
         border: 0 solid white;
-    }
+    } */
 
     div :global(.drawflow .drawflow-node .input), div :global(.drawflow .drawflow-node .output) {
         background: #ffffff;
@@ -368,7 +368,7 @@
         overflow: hidden;
     }
     :global(.input-arg) {
-        width: 100%;
+        width: 95%;
     }
 
     :global(.control-buttons) {
@@ -376,11 +376,6 @@
         margin: 0;
         padding: 0;
         height: 1.5em;
-    }
-
-    :global(input) {
-        border-radius: 10px;
-        margin: .4em 0;
     }
 
     :global(object) {

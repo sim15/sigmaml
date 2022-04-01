@@ -13,10 +13,10 @@
     let height = 500;
     const ABS_MAX = 1;
     const ABS_MIN = -1;
-    const dT = 700;
+    const dT = 100;
 
     const margin = {top: 20, right: 20, bottom: 20, left: 50};
-    
+    let curT = 0;
     let render = () => {return};
 
     // initial page render
@@ -25,8 +25,10 @@
         .attr("viewBox", "0 0 " + width + " " + height)
         .attr("preserveAspectRatio", "xMidYMid meet")
         .append("g")
-            .attr("transform", `translate(${margin.left}, ${margin.right})`) 
-
+            .attr("transform", `translate(${margin.left}, ${margin.right})`)
+            
+        
+            
         const xScale = d3.scaleLinear()
         .range([0, width - margin.left - margin.right]);
 
@@ -35,8 +37,10 @@
 
         const line = d3.line()
         .x(d => xScale(d.x))
-        .y(d => yScale(d.y));
-        // .curve(d3.curveMonotoneX);
+        .y(d => yScale(d.y))
+        .curve(d3.curveLinear);
+
+        
 
         const formatData = (src) => {
             return d3.range(src.length).map((lineIndex) =>
@@ -46,14 +50,18 @@
             );
         }
 
+        
+
         render = () => {
             const data = formatData(rawData);
+            
             
 
             // obtain absolute min and max
             const yMin = data.reduce((pv,cv) => {
                 const currentMin = cv.reduce((pv,cv) => Math.min(pv,cv.y), ABS_MAX);
-                return Math.min(pv, currentMin);
+                // return Math.min(pv, currentMin);
+                return 0;
             }, ABS_MAX);
 
             const yMax = data.reduce((pv,cv) => {
@@ -66,22 +74,53 @@
 
             // create axis scale
             const yAxis = d3.axisLeft().scale(yScale);
+            const xAxis = d3.axisBottom().scale(xScale).tickValues([]);
+
+
+            // const zeroConstantLine = d3.append( "line" )
+            // .attr("x1", 0 )
+            // .attr("x2", width)
+            // .attr("y1", yScale( 0 ) )   // whatever the y-val should be
+            // .attr("y2", yScale( 0 ) )
+            // .style("stroke", "#bfbfbf")
+            // .attr("stroke-width", "3");
+
+            
 
             // if no axis exists, create one, otherwise update it
             if (svg.selectAll(".y.axis").empty()){
                 svg.append("g")
                     .attr("class","y axis")
                     .call(yAxis);
+
+                svg.append("g")
+                .attr("transform", "translate(0," + yScale(0) +")")
+                .attr("class","x axis")
+                .call(xAxis);
+
+                // svg.append("g")
+                // .attr("class","zeroLine");
+                
+
             } else {
                 svg.selectAll(".y.axis")
                 .transition().duration(dT)
                 .call(yAxis);
+
+                svg.selectAll(".x.axis")
+                .attr("transform", "translate(0," + yScale(0) +")")
+                .transition().duration(dT)
+                .call(xAxis);
+
+                // svg.selectAll(".zeroLine")
+                // .transition()    
+                // .call(zeroConstantLine);
             }
             
             // generate line paths
-                const lines = svg.selectAll(".line")
-                .data(data)
-                    .attr("class", "line");
+            const lines = svg.selectAll(".line")
+            .data(data)
+                .attr("class", "line");
 
             // exit
             lines.exit()
@@ -92,30 +131,38 @@
                 .append("path")
                 .attr("class", "line")
                 .attr("d", line)
+                // .style("stroke", () =>
+                //     '#' + Math.floor(Math.random() * 16777215).toString(16)
+                // )
                 .style("stroke", () =>
-                    '#' + Math.floor(Math.random() * 16777215).toString(16)
+                    "#bfbfbf"
                 )
                 // Update new data
                 .merge(lines)
-                .transition().duration(1500)
+                .transition().duration(dT)
                 .attr("d", line)
                 .style("fill", 'none')
+                // .style("stroke", () =>
+                //     '#' + Math.floor(Math.random() * 16777215).toString(16)
+                // )
                 .style("stroke", () =>
-                    '#' + Math.floor(Math.random() * 16777215).toString(16)
+                    "#bfbfbf"
                 );
             
         }
         const addpoints0 = () => {
-            rawData[0].push(Math.random());
+            curT = curT + 0.1;
+            rawData[0].push(20 * Math.pow(0.98, curT) + 5*(Math.random() - 0.5));
         }
         const addpoints1 = () => {
-            rawData[1].push(Math.random());
+            curT = curT + 0.1;
+            rawData[0].push(20 * Math.pow(0.8, curT) + 5*(Math.random() - 0.5));
         }
 
         render();
         setInterval(render, dT);
         // setInterval(addpoints0, dT);
-        setInterval(addpoints1, dT*20);
+        setInterval(addpoints1, dT);
     });
     
     let options = [
@@ -204,6 +251,9 @@
         <div class="handler x-handler" id="train-main-handler" on:mousedown={startExpand.bind(this, 'train-progress-display', 'width')}></div>
     </div>
     <div id="train-progress-display">
+        <div class="candidate-parameters-menu">
+
+        </div>
         <div bind:this={el} class="chart">
         </div>
     
@@ -256,6 +306,10 @@
 
     :global(.chart svg) {
         width: 100%;
+        max-width: 60em;
+        min-width: 25em;
+        display: block;
+        margin: auto;
     }
 
     .train-view {
@@ -272,11 +326,19 @@
         overflow: auto;
     }
 
-    
+    .candidate-parameters-menu {
+        /* height: 10em; */
+        flex: auto;
+    }
+
     #train-progress-display {
         /* flex: 0 0 auto; */
         /* padding: 15%; */
         /* overflow: hidden; */
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
     }
 
     :global(.axis path,
@@ -286,9 +348,9 @@
     shape-rendering: crispEdges;
     }
 
-    :global(.x.axis path) {
+    /* :global(.x.axis path) {
     display: none;
-    }
+    } */
 
     :global(.line) {
     fill: none;

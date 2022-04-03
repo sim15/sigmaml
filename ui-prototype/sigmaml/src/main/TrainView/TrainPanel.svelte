@@ -2,6 +2,8 @@
     import { onMount } from 'svelte';
     import {stopExpand, expand, startExpand} from '../Handlers.svelte';
     import * as d3 from 'd3';
+import DirectoryView from '../DirectoryView.svelte';
+import Drawflow from '../ModelView/Drawflow.svelte';
 
 
 
@@ -162,7 +164,7 @@
         render();
         setInterval(render, dT);
         // setInterval(addpoints0, dT);
-        setInterval(addpoints1, dT);
+        // setInterval(addpoints1, dT);
     });
     
     let options = [
@@ -184,8 +186,32 @@
             description: "Which loss function to use.",
             optionType: "input-option",
             input: {
-                type: "text",
-                defaultValue: "MSELoss"
+                type: "dropdown",
+                defaultValue: "BCELoss",
+                selections: [
+                    "BCELoss",
+                    "BCEWithLogitsLoss",
+                    "CTCLoss",
+                    "CosineEmbeddingLoss",
+                    "CrossEntropyLoss",
+                    "GaussianNLLLoss",
+                    "HingeEmbeddingLoss",
+                    "HuberLoss",
+                    "KLDivLoss",
+                    "L1Loss",
+                    "MSELoss",
+                    "MarginRankingLoss",
+                    "MultiLabelMarginLoss",
+                    "MultiLabelSoftMarginLoss",
+                    "MultiMarginLoss",
+                    "NLLLoss",
+                    "NLLLoss2d",
+                    "PoissonNLLLoss",
+                    "SmoothL1Loss",
+                    "SoftMarginLoss",
+                    "TripletMarginLoss",
+                    "TripletMarginWithDistanceLoss"
+                ]
             }
         },
         {
@@ -206,8 +232,9 @@
             description: "Define an algorithm for optimizing hyperparameters",
             optionType: "input-option",
             input: {
-                type: "text",
-                defaultValue: "Grid Search"
+                type: "dropdown",
+                defaultValue: "Grid Search",
+                selections: ["Grid Search", "Random Search"]
             }
         },
         {
@@ -235,7 +262,19 @@
                     <p class="option-description">
                         {option.description}
                     </p>
-                    <input class="option-input" type={option.input.type} value={option.input.defaultValue}>
+                    {#if option.input.type == "dropdown"}
+                        <select class="option-input"  bind:value={option.input.defaultValue}>
+                            {#each option.input.selections as selection}
+                                <option value={selection}>
+                                    {selection}
+                                </option>
+                            {/each}
+                        </select>
+                    {/if}
+                    {#if option.input.type == "text"}
+                        <input class="option-input" bind:value={option.input.defaultValue}>
+                    {/if}
+                    
                 </div>
             {/if}
             {#if option.optionType == "header-option"}
@@ -246,6 +285,10 @@
                 </div>
             {/if}
             {/each}
+            <div class="action-button-bar">
+                <div class="action-button" id="single-train-test-run"></div>
+                <div class="action-button" id="full-training-run"></div>
+            </div>
     </div>
     <div class="handler-wrapper x-handler-border">
         <div class="handler x-handler" id="train-main-handler" on:mousedown={startExpand.bind(this, 'train-progress-display', 'width')}></div>
@@ -265,6 +308,7 @@
 <style>
     .chart {
         margin: 3em;
+        max-height: 70%;
     }
 
     .option-name {
@@ -276,7 +320,7 @@
         font-weight: bold;
     }
     
-    :global(input) {
+    :global(input, select) {
         border-radius: 0;
         border: none;
         background-color: #303030;
@@ -284,7 +328,7 @@
 
     }
 
-    :global(input:focus) {
+    :global(input:focus, select:focus) {
         outline: .7px solid steelblue;
         color: white;
     }
@@ -308,6 +352,7 @@
         width: 100%;
         max-width: 60em;
         min-width: 25em;
+        max-height: 100%;
         display: block;
         margin: auto;
     }

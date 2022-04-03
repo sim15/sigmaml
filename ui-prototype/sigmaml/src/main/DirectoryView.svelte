@@ -14,11 +14,13 @@
 
     const updateDirFunc = () => {
         currentDir.set(window.api === "undefined" ? {name: "No project selected", children: []} : window.api.getDir());
-        console.log(dirv);
+        // console.log(dirv);
         };
+
+    setInterval(updateDirFunc, 500)
 </script>
 
-<div class="directory-tree" on:click={updateDirFunc}>
+<div class="directory-tree">
     <Tree name={dirv.name} children={dirv.children} expanded/>
 </div>
 

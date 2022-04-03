@@ -2,7 +2,7 @@
     import { createEventDispatcher } from 'svelte';
     // import {changeWindow, currentViewName, currentView, views} from "./App.svelte";
     export let processes = [
-        {name: 'Options', status: "complete", selected: false},
+        {name: 'Start and Configure', status: "complete", selected: false},
         {name: 'Data', status: "error", selected: false},
         {name: 'Model', status: "unfinished", selected: true},
         {name: 'Train', status: "unfinished", selected: false},

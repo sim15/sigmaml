@@ -61,8 +61,9 @@ window.addEventListener("load", function () {
 
         updateDir: () => {ipcRenderer.send('request-dir-update', projDirectory.name)},
         getDir: () => {return projDirectory},
-        updateTerminalSize: () => {fitAddon.fit()}
-
+        updateTerminalSize: () => {fitAddon.fit()},
+        convertJSONtoModel: (modelJSON) => {ipcRenderer.send("runPythonScript", modelJSON)},
+        
 
     }
 
@@ -73,15 +74,5 @@ window.addEventListener("load", function () {
     fitAddon.fit();
 
 
-    
-    // load run button
-    runbutton = document.getElementById("run-button");
-
-    id = window.document.getElementById("drawflow");
-
-    // TODO: use .data?
-    runbutton.addEventListener("click", function() {
-        ipcRenderer.send("runPythonScript", id.dataset.jsonFileStuff);
-    })
 })
 

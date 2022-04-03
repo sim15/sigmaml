@@ -210,7 +210,8 @@
     };
 
     const saveGraphJSON = (ev) => {
-        id.dataset.jsonFileStuff = JSON.stringify(editor.export(), null, 4);
+        // id.dataset.jsonFileStuff = ;
+        window.api.convertJSONtoModel(JSON.stringify(editor.export(), null, 4))
     }
 
     
@@ -275,7 +276,6 @@
 <!-- add dropdown selection for connections -->
 <!-- TODO: make sure that canvas doesn't reset after every load? performance -->
 <div class="button-container">
-    <div id="run-button">RUN</div>
     <div id="save-button" on:click={saveGraphJSON}>SAVE</div>
 </div>
 <div id="drawflow" use:onload on:drop={drop} on:dragover={allowDrop} draggable="false"></div>
@@ -317,7 +317,8 @@
 
     div :global(.drawflow .connection .main-path) {
         stroke: white;
-        stroke-width: 3px;
+        stroke-width: 2px;
+        stroke-dasharray: 10,5;
     }
 
     /* div :global(.drawflow .drawflow-node.selected) {
@@ -326,7 +327,7 @@
     } */
 
     div :global(.drawflow .drawflow-node .input), div :global(.drawflow .drawflow-node .output) {
-        background: #ffffff;
+        background: rgba(255,255,255,0.1);
         border: 0 solid white;
         left: 0;
         right: 0;

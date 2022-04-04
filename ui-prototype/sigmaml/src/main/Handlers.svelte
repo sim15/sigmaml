@@ -15,7 +15,7 @@
 			start = event.pageY;
 			initial = currentlyExpanding.offsetHeight;
 		}
-		if (expansionType == 'width') {
+		if ((expansionType == 'width-r') || (expansionType == 'width-l')) {
 			start = event.pageX;
 			console.log(start);
 			initial = currentlyExpanding.offsetWidth;
@@ -46,10 +46,13 @@
 			return
 		}
 		
-		if (expansionType == 'width') {
+		if ((expansionType == 'width-r') || (expansionType == 'width-l')) {
 			// console.log(event.pageX +" " + start + " " + initial);
 			const dX = start - event.pageX;
-			currentlyExpanding.style.width = `${initial + dX}px`;
+			if (expansionType == 'width-r') currentlyExpanding.style.width = `${initial + dX}px`;
+			else if (expansionType == 'width-l') currentlyExpanding.style.width = `${initial - dX}px`;
+			
+			// currentlyExpanding.style.width = `${initial + dX}px`;
 			// console.log(currentlyExpanding.style.width);
 			window.api.updateTerminalSize();
 			return

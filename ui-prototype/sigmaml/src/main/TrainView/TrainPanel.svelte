@@ -267,7 +267,7 @@
 </script>
 
 <div class="train-view">
-    <div class="train-settings-window">
+    <div class="train-settings-window" id='train-settings-panel'>
             {#each options as option}
             {#if option.optionType == "input-option"}
                 <div class="train-option-cell selectable-item">
@@ -294,7 +294,7 @@
             {/if}
             {#if option.optionType == "header-option"}
                 <div class="train-option-cell">
-                    <span class="option-header">
+                    <span class="section-subtitle">
                         {option.name}
                     </span>
                 </div>
@@ -306,7 +306,7 @@
             </div>
     </div>
     <div class="handler-wrapper x-handler-border">
-        <div class="handler x-handler" id="train-main-handler" on:mousedown={startExpand.bind(this, 'train-progress-display', 'width')}></div>
+        <div class="handler x-handler" id="train-main-handler" on:mousedown={startExpand.bind(this, 'train-settings-panel', 'width-l')}></div>
     </div>
     <div id="train-progress-display">
         <div class="candidate-parameters-menu">
@@ -330,9 +330,9 @@
         font-size: 130%;
     }
 
-    .option-header {
+    :global(.section-subtitle) {
         font-size: 150%;
-        font-weight: bold;
+        padding-bottom: 0.2em;
     }
     
     :global(input, select) {
@@ -380,7 +380,7 @@
     }
 
     .train-settings-window {
-        flex: auto;
+        flex: 0 0 auto;
         padding: 0;
         min-width: 30%;
         overflow: auto;
@@ -392,7 +392,7 @@
     }
 
     #train-progress-display {
-        /* flex: 0 0 auto; */
+        flex: 1 1 auto;
         /* padding: 15%; */
         /* overflow: hidden; */
         width: 50%;

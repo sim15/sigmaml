@@ -40,7 +40,10 @@
     ul {
         margin: 0;
         padding: 0;
+        white-space: nowrap;
     }
+
+    
 
     li {
         padding: 0.2em 1.8em;

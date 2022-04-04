@@ -43,8 +43,8 @@
 		"Data": DataPanel,
 		"Train": TrainPanel
 	};
-	let currentViewName = "Model";
-	let currentView = views["Model"];
+	let currentViewName = "Start and Configure";
+	let currentView = views["Start and Configure"];
 
 	
 	const changingWindow = (event) => {
@@ -70,18 +70,20 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		flex: auto;
+		flex: 0 0 auto;
 		overflow: hidden;
+		max-width: 25%;
+		min-width: 3em;
+		width: 10%
 	}
 
 	.right-panel {
-		width: 85%;
-		min-width: 60%;
-		max-width: 90%;
+		/* width: 85%; */
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		flex: 0 0 auto;
+		flex: 1 1 auto;
+		overflow: hidden;
 	}
 
 	.lower-panel {
@@ -147,6 +149,9 @@
 		flex: 0 0 auto;
 	}
 	
+	.left-panel > * {
+        overflow: hidden;
+    }
 
 </style>
 
@@ -160,7 +165,7 @@
 
 	
 	<div class="grid-main" on:mousemove={expand} >
-		<div class="left-panel panel disable-select" >
+		<div class="left-panel panel disable-select" id="left-panel-side">
 			<div class="side-menu sub-panel" id="side-menu-left">
 				<div class="sub-panel">
 					<div class="section-title">Dashboard</div>
@@ -176,7 +181,7 @@
 			</div>
 		</div>
 		<div class="handler-wrapper">
-			<div class="handler x-handler" id="side-menu-tall-handler" on:mousedown={startExpand.bind(this, 'side-panel-menu-container', 'width')}></div>
+			<div class="handler x-handler" id="side-menu-tall-handler" on:mousedown={startExpand.bind(this, 'left-panel-side', 'width-l')}></div>
 		</div>
 		<!-- <div class="handler"></div> -->
 		<div class="right-panel panel disable-select" id="side-panel-menu-container">

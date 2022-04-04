@@ -10,11 +10,11 @@
 
 
 
-<div class="main-view">
+<div class="main-view" id='draw-flow-panel'>
 	<Drawflow />
 </div>
 <div class="handler-wrapper x-handler-border">
-	<div class="handler x-handler" on:mousedown={startExpand.bind(this, 'container-side-panel', 'width')}></div>
+	<div class="handler x-handler" on:mousedown={startExpand.bind(this, 'container-side-panel', 'width-r')}></div>
 </div>
 <div class="selection-menu sub-panel" id="container-side-panel">
 	<div class="section-title">Modules</div>

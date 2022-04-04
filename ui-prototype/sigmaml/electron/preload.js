@@ -6,6 +6,7 @@ const Terminal  =  require('xterm').Terminal;
 const FitAddon = require('xterm-addon-fit').FitAddon;
 
 
+
 // TODO: look into whether this is secure
 window.addEventListener("load", function () {
 
@@ -32,14 +33,14 @@ window.addEventListener("load", function () {
         // console.log(event);
     });
 
-    let projDirectory = {name: "No project selected", children: []};
+    // let projDirectory = {name: "No project selected", children: []};
     
 
     
 
-    ipcRenderer.on('update-project-dir', (event, data) => {
-        projDirectory = data;
-    })
+    // ipcRenderer.on('update-project-dir', (event, data) => {
+    //     projDirectory = data;
+    // })
 
     
 
@@ -59,8 +60,12 @@ window.addEventListener("load", function () {
 
     const API = {
 
-        updateDir: () => {ipcRenderer.send('request-dir-update', projDirectory.name)},
-        getDir: () => {return projDirectory},
+        updateDir: () => {ipcRenderer.send('request-dir-update')},
+        // getDir: () => {return projDirectory},
+
+
+        getDir: () => ipcRenderer.invoke("get-project-directory"),
+
         updateTerminalSize: () => {fitAddon.fit()},
         convertJSONtoModel: (modelJSON) => {ipcRenderer.send("runPythonScript", modelJSON)},
         

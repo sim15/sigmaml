@@ -393,7 +393,7 @@
         right: 10px;
     }
 
-    #run-button, #save-button {
+     #save-button {
 		background: rgba(0, 128, 0, 0.2);
 		width: 50px;
 		height: 50px;
@@ -401,7 +401,7 @@
         text-align: center;
         
 	}
-    #run-button:hover, #save-button:hover {
+    #save-button:hover {
         cursor: pointer;
 		background: rgba(0, 128, 0, 0.3);
     }

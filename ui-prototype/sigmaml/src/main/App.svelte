@@ -32,11 +32,13 @@
 	import DirectoryView from './DirectoryView.svelte';
 	import DataPanel from './DataView/DataPanel.svelte';
 	import TrainPanel from './TrainView/TrainPanel.svelte';
+	import Start from './StartView/Start.svelte';
 
 
 	import {stopExpand, expand, startExpand} from './Handlers.svelte';
 	
 	const views = {
+		"Start and Configure": Start,
 		"Model": MainPanel,
 		"Data": DataPanel,
 		"Train": TrainPanel

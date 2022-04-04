@@ -2,8 +2,6 @@
     import { onMount } from 'svelte';
     import {stopExpand, expand, startExpand} from '../Handlers.svelte';
     import * as d3 from 'd3';
-import DirectoryView from '../DirectoryView.svelte';
-import Drawflow from '../ModelView/Drawflow.svelte';
 
 
 
@@ -189,6 +187,7 @@ import Drawflow from '../ModelView/Drawflow.svelte';
                 type: "dropdown",
                 defaultValue: "BCELoss",
                 selections: [
+                    "AdaptiveLogSoftmaxWithLoss",
                     "BCELoss",
                     "BCEWithLogitsLoss",
                     "CTCLoss",
@@ -219,8 +218,24 @@ import Drawflow from '../ModelView/Drawflow.svelte';
             description: "Which optimization function to use.",
             optionType: "input-option",
             input: {
-                type: "text",
-                defaultValue: "Adadelta"
+                type: "dropdown",
+                defaultValue: "ASGD",
+                selections: [
+                    'ASGD',
+                    'Adadelta',
+                    'Adagrad',
+                    'Adam',
+                    'AdamW',
+                    'Adamax',
+                    'LBFGS',
+                    'NAdam',
+                    'Optimizer',
+                    'RAdam',
+                    'RMSprop',
+                    'Rprop',
+                    'SGD',
+                    'SparseAdam'
+                ]
             }
         },
         {

@@ -12,8 +12,9 @@
 		dirv = value;
 	});
 
-    const updateDirFunc = () => {
-        currentDir.set(window.api === "undefined" ? {name: "No project selected", children: []} : window.api.getDir());
+    const updateDirFunc = async () => {
+        // currentDir.set(window.api === "undefined" ? {name: "No project selected", children: []} : await window.api.getDir());
+        currentDir.set(await window.api.getDir());
         // console.log(dirv);
         };
 

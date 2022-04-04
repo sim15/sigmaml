@@ -27,6 +27,7 @@
     "drawflow": "^0.0.54",
     "electron": "^16.0.9",
     "electron-rebuild": "^3.2.5",
+    "electron-store": "^8.0.1",
     "node-pty": "^0.10.1",
     "sirv-cli": "^1.0.0",
     "xterm": "^4.16.0",

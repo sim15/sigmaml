@@ -179,6 +179,12 @@ function main () {
     }
   )
 
+  ipcMain.on('open-directory', () => {
+    // console.log("YES!!");
+    openDir().then(
+      updateDirContents)
+  })
+
   ipcMain.handle("get-project-directory", async () => {
     return ProjectSettings.getProjectDir();
   })

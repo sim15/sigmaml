@@ -33,16 +33,6 @@ window.addEventListener("load", function () {
         // console.log(event);
     });
 
-    // let projDirectory = {name: "No project selected", children: []};
-    
-
-    
-
-    // ipcRenderer.on('update-project-dir', (event, data) => {
-    //     projDirectory = data;
-    // })
-
-    
 
 
     term.onResize((size) => {
@@ -61,10 +51,8 @@ window.addEventListener("load", function () {
     const API = {
 
         updateDir: () => {ipcRenderer.send('request-dir-update')},
-        // getDir: () => {return projDirectory},
-
-
         getDir: () => ipcRenderer.invoke("get-project-directory"),
+        openDir: () => {ipcRenderer.send('open-directory')},
 
         updateTerminalSize: () => {fitAddon.fit()},
         convertJSONtoModel: (modelJSON) => {ipcRenderer.send("runPythonScript", modelJSON)},

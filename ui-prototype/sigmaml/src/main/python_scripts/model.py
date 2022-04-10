@@ -12,12 +12,11 @@
 #     json.dump(data, f, indent=2)
 #     print("New json file is created from data.json file")
 
-
-import json
+# import argparse
+# import json
 import torch
 import ast
-from torchsummary import summary
-import argparse
+
 
 
 def clean_raw(raw_dict):
@@ -25,6 +24,7 @@ def clean_raw(raw_dict):
 
 
 def generate_graph(d):
+    d = clean_raw(d)
     l = []
     for n in d.values():
         name = str(n['id'])
@@ -52,7 +52,7 @@ class Node:
         return d[self.fn](**self.kwargs)
 
 
-class FlexNet(torch.nn.Module):
+class NetFromGraph(torch.nn.Module):
     def __init__(self, graph):  # G = (V, E)
         super().__init__()
         self.graph = graph
@@ -65,19 +65,19 @@ class FlexNet(torch.nn.Module):
         return x
 
 
+"""
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="path to model json")
     parser.add_argument("filepath", type=str)
     args = parser.parse_args()
 
-    with open(args.filepath, 'rb') as f:
+    with open(args.filepath, 'rb') as f:  # loads .json file of model graph
         raw = json.load(f)
 
 
-    x = generate_graph(clean_raw(raw))
-    net = FlexNet(x)
-
-    print(summary(net, (128,)))
+    x = generate_graph(raw)
+    net = NetFromGraph(x)
 
     f = 'test.pt'
     torch.save(net.state_dict(), f)
+"""

@@ -52,10 +52,12 @@ window.addEventListener("load", function () {
 
         updateDir: () => {ipcRenderer.send('request-dir-update')},
         getDir: () => ipcRenderer.invoke("get-project-directory"),
+        // getExistingModel: () => ipcRenderer.invoke("get-existing-model-graph"),
         openDir: () => {ipcRenderer.send('open-directory')},
-
+        retrieveJSON: (fileName) => ipcRenderer.invoke("retrieve-json", fileName),
         updateTerminalSize: () => {fitAddon.fit()},
-        convertJSONtoModel: (modelJSON) => {ipcRenderer.send("runPythonScript", modelJSON)},
+        storeJSON: (jsonFile, fileName) => {ipcRenderer.send("store-json", jsonFile, fileName)},
+        // saveModelState: (modelJSON) => ipcRenderer.send("save-model-state", modelJSON)
         
 
     }

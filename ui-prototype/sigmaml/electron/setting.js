@@ -34,9 +34,37 @@ const setProjectDir = (dirObject) => {
     storage.set("project-dir", dirObject);
 }
 
+const setProjectPath = (projPath) => {
+    storage.set("project-path", projPath);
+}
+
+const getProjectPath = () => {
+
+    const projPath = storage.get("project-path");
+
+    if (projPath) return projPath;
+    return ""
+    
+} 
+
+// const getModelState = () => {
+//     const modelState = storage.get("model-state");
+
+//     if (modelState) return modelState;
+//     return {}
+// }
+
+// const setModelState = (modelJSON) => {
+//     storage.set("model-state", modelJSON)
+// }
+
 module.exports = {
     getWindowSettings: getWinSettings,
     saveBounds: saveBounds,
     getProjectDir: getProjectDirectory,
-    setProjectDir: setProjectDir
+    setProjectDir: setProjectDir,
+    setProjectPath: setProjectPath,
+    getProjectPath: getProjectPath,
+    // getModelState: getModelState,
+    // setModelState: setModelState
 }

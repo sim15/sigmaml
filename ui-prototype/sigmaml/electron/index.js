@@ -66,6 +66,7 @@ function main () {
   const updateDirContents = (directory) => {
     let curTree = dirTree(directory);
     ProjectSettings.setProjectDir(curTree)
+    ProjectSettings.setProjectPath(directory)
     // projectDir = directory;
     // window.webContents.send(
     //   'update-project-dir',
@@ -190,7 +191,13 @@ function main () {
   })
 
 
+  // ipcMain.handle("get-existing-model-graph", async () => {
+  //   return ProjectSettings.getModelState();
+  // })
 
+  // ipcMain.on("save-model-state", (ev, data) => {
+  //   ProjectSettings.setModelState(data);
+  // })
 
 
 
@@ -229,19 +236,40 @@ function main () {
   ptyProcess.write('\b');
 
   ipcMain.on("term.resize", (ev, data) => ptyProcess.resize(data.cols, data.rows));
-  // FIX?
-  ipcMain.on("runPythonScript", (ev, data) => {
-    let projectDir = ProjectSettings.getProjectDir().name;
-    const toWritePath = projectDir + '/model.json';
-    // console.log(toWritePath);
-    fs.writeFileSync(toWritePath, data, (error) => {
-      if (error) throw error;
-    });
-    
-    // TODO: Fix this in the future?
-    // TODO: THIS IS BROKEN
-    ptyProcess.write('python3 ' + Path.join(app.getAppPath()) + '/src/python_scripts/testscript.py ' + projectDir + '/model.json' + '\n')
+  // TODO: FIX?
+  ipcMain.on("store-json", (ev, data, fileName) => {
+    let projectPath = ProjectSettings.getProjectPath();
+    if (projectPath) {
+      const toWritePath = projectPath + '/' + fileName + '.json';
+      fs.writeFileSync(toWritePath, data, (error) => {
+        if (error) throw error;
+      });
+      
+      // TODO: Fix this in the future?
+      // TODO: THIS IS BROKEN
+      // ptyProcess.write('python3 ' + Path.join(app.getAppPath()) + '/src/python_scripts/testscript.py ' + projectPath + '/model.json' + '\n')
+    }
   });
+
+  ipcMain.handle("retrieve-json", async (ev, fileName) => {
+    let projectPath = ProjectSettings.getProjectPath();
+    if (projectPath) {
+      const toReadPath = projectPath + "/" + fileName + ".json";
+
+      let jsonContents = fs.readFileSync(toReadPath, (error) => {
+        if (error) {
+          console.log("File not found or error.");
+          console.log(error);
+          return JSON.stringify({})
+        };
+      });
+
+      return JSON.parse(jsonContents)
+
+    } else {
+      return {}
+    }
+  })
 
 
 
@@ -255,11 +283,6 @@ function main () {
       console.log(err)
     })
   }
-
-
-
-    
-  
 
 
 }

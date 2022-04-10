@@ -162,12 +162,20 @@
     // TODO: make this work better
     let moduleSelect = () => {};
 
-    const onload = () => {
+    const onload = async () => {
         id = window.document.getElementById("drawflow");
         
         editor = new DrawflowMod(id);
 
         editor.start();
+
+        let cachedModel = await window.api.retrieveJSON("model");
+        if (Object.keys(cachedModel).length !== 0) {
+            editor.import(cachedModel);
+        } else {
+            editor.addNode('root', 1, 1, 0, 0, 'github', data, html);
+        }
+
         var html = `
         <div class="flowbox">
             <span class="nodeTitle"}>Root: Input Data</span>
@@ -176,7 +184,6 @@
         `;
         var data = { "name": 'Root Data', inputdata: ""};
         // add path input for root data
-        editor.addNode('root', 1, 1, 0, 0, 'github', data, html);
 
         editor.on('connectionCreated', (connection) => {
             if (cycleCreated(connection.output_id, {}, {})) {
@@ -209,11 +216,16 @@
 
     };
 
-    const saveGraphJSON = (ev) => {
+    const saveGraphJSON = () => {
         // id.dataset.jsonFileStuff = ;
-        window.api.convertJSONtoModel(JSON.stringify(editor.export(), null, 4))
+        window.api.storeJSON(JSON.stringify(editor.export(), null, 4), "model")
     }
 
+
+    // const saveState = () => {
+    //     window.api.storeJSON(editor.export(), "model")
+    // }
+    setInterval(saveGraphJSON, 2000);
     
 
     const drop = (ev) => {

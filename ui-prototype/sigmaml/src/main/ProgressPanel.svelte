@@ -60,7 +60,10 @@
     }
 
     :global(.selectable-item:hover) {
-        backdrop-filter: brightness(1.3);
+        /* TODO 4/10: FIX THIS. Causes overlap issues with child elements */
+        /* https://stackoverflow.com/questions/52937708/why-does-applying-a-css-filter-on-the-parent-break-the-child-positioning */
+        /* backdrop-filter: brightness(1.3); */
+        background-color: #262626;
         cursor: pointer;
     }
 

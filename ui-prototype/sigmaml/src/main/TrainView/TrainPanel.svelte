@@ -2,8 +2,7 @@
     import { onMount } from 'svelte';
     import {stopExpand, expand, startExpand} from '../Handlers.svelte';
     import * as d3 from 'd3';
-
-
+    import Svelecte from 'svelecte'
 
     var rawData = [[],[]];
 	
@@ -172,20 +171,24 @@
         },
         {
             name: "Epochs",
+            configID: "epochs",
+            configType: "constant",
             description: "Define the number of epochs per training iteration.",
             optionType: "input-option",
             input: {
-                type: "text",
-                defaultValue: "4"
+                type: "number",
+                defaultValue: 4
             }
         },
         {
             name: "Loss Function",
+            configID: "loss",
+            configType: "iterated-selection",
             description: "Which loss function to use.",
             optionType: "input-option",
             input: {
-                type: "dropdown",
-                defaultValue: "BCELoss",
+                type: "multi-select",
+                defaultValue: ["BCELoss", "NLLLoss2d"],
                 selections: [
                     "AdaptiveLogSoftmaxWithLoss",
                     "BCELoss",
@@ -215,11 +218,13 @@
         },
         {
             name: "Optimization Function",
+            configID: "optim",
+            configType: "iterated-selection",
             description: "Which optimization function to use.",
             optionType: "input-option",
             input: {
-                type: "dropdown",
-                defaultValue: "ASGD",
+                type: "multi-select",
+                defaultValue: ["ASGD", "AdamW"],
                 selections: [
                     'ASGD',
                     'Adadelta',
@@ -238,32 +243,77 @@
                 ]
             }
         },
-        {
-            name: "Hyperparameter Optimization",
-            optionType: "header-option"
-        },
-        {
-            name: "Optimization Algorithm",
-            description: "Define an algorithm for optimizing hyperparameters",
-            optionType: "input-option",
-            input: {
-                type: "dropdown",
-                defaultValue: "Grid Search",
-                selections: ["Grid Search", "Random Search"]
-            }
-        },
+        // {
+        //     name: "Hyperparameter Optimization",
+        //     optionType: "header-option"
+        // },
+        // {
+        //     name: "Optimization Algorithm",
+        //     configID: "mode",
+        //     configType: "global",
+        //     description: "Define an algorithm for optimizing hyperparameters",
+        //     optionType: "input-option",
+        //     input: {
+        //         type: "dropdown",
+        //         defaultValue: "Grid Search",
+        //         selections: ["Grid Search", "Random Search"]
+        //     }
+        // },
         {
             name: "Learning Rate",
+            configID: "lr",
+            configType: "iterated-range",
             description: "Define a search space for learning rate",
             optionType: "input-option",
             input: {
-                type: "text",
-                defaultValue: "69"
+                type: "number-range",
+                defaultValue: [0, 1, 0.5]
             }
         }
 
     ]
 
+    // TODO 4/10: Will break if range value list is empty (e.g., no maximum value is filled in)
+    const createConfig = () => {
+        let configFile = {
+            "feature_head" : "inputHeader",
+            "label_header" : "outputHeader",
+            "data": "TODO",
+        }
+
+
+        for (const option of options) {
+            if (option.configID) {
+                switch (option.configType) {
+                    case "iterated-range":
+                        let rangeIterVals = []
+                        for (let i = option.input.defaultValue[0]; i <= option.input.defaultValue[1]; i += option.input.defaultValue[2]) {rangeIterVals.push(i)};
+
+                        configFile[option.configID] = rangeIterVals;
+                        break;
+                    case "iterated-selection":
+                        configFile[option.configID] = [];
+                        for (const opt of option.input.defaultValue) {
+                            configFile[option.configID].push(option.input.selections[opt]);
+                        }
+                        break;
+                    default:
+                        configFile[option.configID] = option.input.defaultValue;
+                        break;
+                }
+                
+            }
+        }
+
+
+        return configFile
+    }
+
+    setInterval(() => {console.log(createConfig())}, 5000);
+
+    const loadMultiSelect = (node, itemArray) => {
+        node.items = itemArray;
+    }
 </script>
 
 <div class="train-view">
@@ -288,6 +338,22 @@
                     {/if}
                     {#if option.input.type == "text"}
                         <input class="option-input" bind:value={option.input.defaultValue}>
+                    {/if}
+                    {#if option.input.type == "number"}
+                        <!-- TODO 4/10: Add min and max -->
+                        <input class="option-input" type=number bind:value={option.input.defaultValue}>
+                    {/if}
+                    {#if option.input.type == "number-range"}
+                        <!-- TODO 4/10: Add min and max -->
+                        <input class="option-input" type=number placeholder="Minimum Value" bind:value={option.input.defaultValue[0]}>
+                        <input class="option-input" type=number placeholder="Maximum Value" bind:value={option.input.defaultValue[1]}>
+                        <input class="option-input" type=number placeholder="Step" bind:value={option.input.defaultValue[2]}>
+                    {/if}
+                    {#if option.input.type == "multi-select"}
+                        <!-- <multiselect-combo-box use:loadMultiSelect={option.input.selections} clear-button-visible></multiselect-combo-box> -->
+                        <!-- <MultiSelect bind:value={option.input.defaultValue} options={option.input.selections}/> -->
+                        <!-- <MultiSelect bind:selected options={ui_libs}/> -->
+                        <Svelecte options={option.input.selections} bind:value={option.input.defaultValue} multiple></Svelecte>
                     {/if}
                     
                 </div>
@@ -321,6 +387,7 @@
 
 
 <style>
+
     .chart {
         margin: 3em;
         max-height: 70%;
@@ -328,6 +395,7 @@
 
     .option-name {
         font-size: 130%;
+        white-space: nowrap;
     }
 
     :global(.section-subtitle) {

@@ -18,6 +18,8 @@ const isDev = !app.isPackaged;
 
 app.whenReady().then(main)
 
+console.log(app.getAppPath());
+
 
 // let projectDir = "";
 

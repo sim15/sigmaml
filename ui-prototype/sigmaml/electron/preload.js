@@ -57,6 +57,8 @@ window.addEventListener("load", function () {
         retrieveJSON: (fileName) => ipcRenderer.invoke("retrieve-json", fileName),
         updateTerminalSize: () => {fitAddon.fit()},
         storeJSON: (jsonFile, fileName) => {ipcRenderer.send("store-json", jsonFile, fileName)},
+        runTraining: () => {ipcRenderer.send("run-training")},
+        // getTrainingResults: () => ipcRenderer.invoke("get-training-results")
         // saveModelState: (modelJSON) => ipcRenderer.send("save-model-state", modelJSON)
         
 

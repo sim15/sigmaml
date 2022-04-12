@@ -309,10 +309,23 @@
         return configFile
     }
 
+    let topTrainingRuns;
+
     setInterval(() => {console.log(createConfig())}, 5000);
 
-    const loadMultiSelect = (node, itemArray) => {
-        node.items = itemArray;
+    setInterval(async () => {
+        topTrainingRuns = await window.api.retrieveJSON("training_history/top_5");
+        console.log(topTrainingRuns);
+        rawData[0] = topTrainingRuns[topTrainingRuns.length - 1]["loss_vals"];
+        console.log(rawData);
+    }, 200)
+
+    const beginTraining = () => {
+        let configurationFile = JSON.stringify(createConfig());
+        window.api.storeJSON(configurationFile, 'temp_training_config')
+        // TODO: disable button while running
+        // add async
+        window.api.runTraining();
     }
 </script>
 
@@ -367,8 +380,7 @@
             {/if}
             {/each}
             <div class="action-button-bar">
-                <div class="action-button" id="single-train-test-run"></div>
-                <div class="action-button" id="full-training-run"></div>
+                <div class="action-button" id="training-run" on:click={beginTraining}>TRAIN</div>
             </div>
     </div>
     <div class="handler-wrapper x-handler-border">
@@ -387,6 +399,27 @@
 
 
 <style>
+    .action-button-bar {
+        bottom: 0;
+        right: 0;
+        position: absolute;
+    }
+
+    :global(.svelecte-control) {
+        max-width: 30em;
+    }
+    #training-run {
+        right: 10px;
+        height: 50px;
+        width: 50px;
+        background: rgba(0, 128, 0, 0.2);
+        line-height: 50px;
+        text-align: center;
+    }
+
+    #training-run:hover {
+        cursor: pointer;
+    }
 
     .chart {
         margin: 3em;
@@ -452,6 +485,7 @@
         padding: 0;
         min-width: 30%;
         overflow: auto;
+        position: relative;
     }
 
     .candidate-parameters-menu {

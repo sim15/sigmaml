@@ -49,12 +49,17 @@
             );
         }
 
-        
+        const colorSelection = (i, maxI) => {
+            if (i == maxI) {
+                return "rgba(255, 255, 255, 1)"
+            }
+            return "rgba(4, 137, 228, " + (0.7*(Math.pow(1.5, -i))).toString() + ")"
+        }
 
         render = () => {
             const data = formatData(rawData);
             
-            
+            console.log(data);
 
             // obtain absolute min and max
             const yMin = data.reduce((pv,cv) => {
@@ -75,16 +80,6 @@
             const yAxis = d3.axisLeft().scale(yScale);
             const xAxis = d3.axisBottom().scale(xScale).tickValues([]);
 
-
-            // const zeroConstantLine = d3.append( "line" )
-            // .attr("x1", 0 )
-            // .attr("x2", width)
-            // .attr("y1", yScale( 0 ) )   // whatever the y-val should be
-            // .attr("y2", yScale( 0 ) )
-            // .style("stroke", "#bfbfbf")
-            // .attr("stroke-width", "3");
-
-            
 
             // if no axis exists, create one, otherwise update it
             if (svg.selectAll(".y.axis").empty()){
@@ -133,9 +128,11 @@
                 // .style("stroke", () =>
                 //     '#' + Math.floor(Math.random() * 16777215).toString(16)
                 // )
-                .style("stroke", () =>
-                    "#bfbfbf"
-                )
+                // .style("stroke", () =>
+                //     "#e20909"
+                // ).style("stroke", function(d) {
+                //     return d.enabled ? "green" : "red";
+                // })
                 // Update new data
                 .merge(lines)
                 .transition().duration(dT)
@@ -144,18 +141,11 @@
                 // .style("stroke", () =>
                 //     '#' + Math.floor(Math.random() * 16777215).toString(16)
                 // )
-                .style("stroke", () =>
-                    "#bfbfbf"
-                );
+                .style("stroke", (d, i) =>  {
+                    return colorSelection(i, data.length - 1);}
+                )
+                .attr("stroke-width", 10);
             
-        }
-        const addpoints0 = () => {
-            curT = curT + 0.1;
-            rawData[0].push(20 * Math.pow(0.98, curT) + 5*(Math.random() - 0.5));
-        }
-        const addpoints1 = () => {
-            curT = curT + 0.1;
-            rawData[0].push(20 * Math.pow(0.8, curT) + 5*(Math.random() - 0.5));
         }
 
         render();
@@ -309,15 +299,16 @@
         return configFile
     }
 
-    let topTrainingRuns;
-
-    setInterval(() => {console.log(createConfig())}, 5000);
+    let topTrainingRuns = [];
 
     setInterval(async () => {
         topTrainingRuns = await window.api.retrieveJSON("training_history/top_5");
-        console.log(topTrainingRuns);
-        rawData[0] = topTrainingRuns[topTrainingRuns.length - 1]["loss_vals"];
-        console.log(rawData);
+        // console.log(topTrainingRuns);
+        rawData = [];
+        for (let i = 0; i < topTrainingRuns.length; i++) {
+            rawData.push(topTrainingRuns[i]["loss_vals"]);
+        }
+        // console.log(rawData);
     }, 200)
 
     const beginTraining = () => {
@@ -388,7 +379,9 @@
     </div>
     <div id="train-progress-display">
         <div class="candidate-parameters-menu">
-
+            {#each topTrainingRuns as topResult}
+                <div class="training-res">Ok</div>
+            {/each}
         </div>
         <div bind:this={el} class="chart">
         </div>
@@ -399,6 +392,26 @@
 
 
 <style>
+
+    .training-res {
+        width: 10em;
+        height: auto;
+        background: #303030;
+        flex-wrap: wrap;
+        margin: .5em;
+
+    }
+
+    .candidate-parameters-menu {
+        /* height: 10em; */
+        flex: auto;
+        padding: 1em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+
     .action-button-bar {
         bottom: 0;
         right: 0;
@@ -466,7 +479,7 @@
 
     :global(.chart svg) {
         width: 100%;
-        max-width: 60em;
+        /* max-width: 60em; */
         min-width: 25em;
         max-height: 100%;
         display: block;
@@ -488,10 +501,6 @@
         position: relative;
     }
 
-    .candidate-parameters-menu {
-        /* height: 10em; */
-        flex: auto;
-    }
 
     #train-progress-display {
         flex: 1 1 auto;

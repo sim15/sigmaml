@@ -1,0 +1,9 @@
+{
+    "data": "TODO",
+    "epochs": 10,
+    "feature_head": "inputHeader",
+    "label_header": "outputHeader",
+    "loss": ["Adagrad", "Adam"],
+    "lr": [0.001, 0.1, 0.05],
+    "optim": ["CrossEntropyLoss"]
+}

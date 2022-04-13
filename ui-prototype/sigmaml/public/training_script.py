@@ -28,10 +28,8 @@ if __name__ == '__main__':
         mostRecent = []
 
         params = {k: v for k, v in testingInfo.items() if type(v) == list}
-        params["lr"] = [round(params["lr"][0] + i*params["lr"][2], 4) for i in range(int(1 + (params["lr"][1] // params["lr"][2])))]
         # Define the iterations
         keys, values = zip(*params.items())
-
 
         for settings in itertools.product(*values):
             curSetting = dict(zip(params.keys(), settings))
@@ -63,6 +61,7 @@ if __name__ == '__main__':
 
             with open(f"{ppath}/training_history/top_5.json", 'w') as top5json:
                 json.dump(top5 + [mostRecent], top5json, indent=4)
+        print(c)
     
     
     else:

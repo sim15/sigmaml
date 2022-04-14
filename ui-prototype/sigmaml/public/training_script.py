@@ -59,7 +59,9 @@ if __name__ == '__main__':
                 # time.sleep(0.7)
                 criterion = get_losses()[curSetting['loss']]
                 optimizer = get_optimizers()[curSetting['optim']]
-                loss = train_fl(net, get_dataloader(datasets.MNIST, './', 100),
+
+                # TODO: remove hard-coded dataset
+                loss = train_fl(net, get_dataloader(datasets.MNIST, ppath, 100),
                                 criterion, optimizer, curSetting['lr'])
                 mostRecent["loss_vals"].append(round(loss, 2))
 

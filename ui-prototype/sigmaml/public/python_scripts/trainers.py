@@ -21,7 +21,7 @@ def train_fl(model, dataloader, loss_fn, optim, lr=0.001, momentum=0.9):
     :rtype: float
     """
     criterion = loss_fn()
-    optimizer = optim(model.parameters(), lr=lr, momentum=momentum)
+    optimizer = optim(model.parameters(), lr=lr)
     for i, o in dataloader:
         optimizer.zero_grad()
         out = model(i)

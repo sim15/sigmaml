@@ -2,7 +2,7 @@
     "feature_head": "inputHeader",
     "label_header": "outputHeader",
     "data": "TODO",
-    "epochs": 5,
+    "epochs": 2,
     "loss": [
         "CrossEntropyLoss"
     ],

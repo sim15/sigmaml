@@ -312,7 +312,7 @@
     }, 200)
 
     const beginTraining = () => {
-        let configurationFile = JSON.stringify(createConfig());
+        let configurationFile = JSON.stringify(createConfig(), null, 4);
         window.api.storeJSON(configurationFile, 'temp_training_config')
         // TODO: disable button while running
         // add async
@@ -354,9 +354,6 @@
                         <input class="option-input" type=number placeholder="Step" bind:value={option.input.defaultValue[2]}>
                     {/if}
                     {#if option.input.type == "multi-select"}
-                        <!-- <multiselect-combo-box use:loadMultiSelect={option.input.selections} clear-button-visible></multiselect-combo-box> -->
-                        <!-- <MultiSelect bind:value={option.input.defaultValue} options={option.input.selections}/> -->
-                        <!-- <MultiSelect bind:selected options={ui_libs}/> -->
                         <Svelecte options={option.input.selections} bind:value={option.input.defaultValue} multiple></Svelecte>
                     {/if}
                     
@@ -380,7 +377,10 @@
     <div id="train-progress-display">
         <div class="candidate-parameters-menu">
             {#each topTrainingRuns as topResult}
-                <div class="training-res">Ok</div>
+                <div class="training-res">
+                    <span>{Math.round(parseFloat(topResult["loss_vals"])*100)/100}</span>
+
+                </div>
             {/each}
         </div>
         <div bind:this={el} class="chart">

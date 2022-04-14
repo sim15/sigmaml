@@ -288,7 +288,7 @@ function main () {
 
   ipcMain.on("run-training", (ev) => {
     ptyProcess.write('python3 ' + Path.join(app.getAppPath()) + "/public/training_script.py " + ProjectSettings.getProjectPath() + '\n')
-    ptyProcess.write('clear \n')
+    // ptyProcess.write('clear \n')
     return;
   })
 

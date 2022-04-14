@@ -14,6 +14,15 @@ from torchvision import datasets
 from torchsummary import summary
 from tqdm import tqdm
 
+def filterDictKey(aListDict, terms):
+    return [{k: v for k,v in d.items() if not k in terms} for d in aListDict]
+
+
+# net.state_dict()
+# torch.save(net.state_dict(), PATH)
+
+# model_scripted = torch.jit.script(net) 
+# model_scripted.save('model_scripted.pt')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="path to model json")
@@ -50,7 +59,7 @@ if __name__ == '__main__':
             curSetting = dict(zip(params.keys(), settings))
             mostRecent = {
                 "hyper": curSetting,
-                "loss_vals": []
+                "loss_vals": [],
             }
 
             x = generate_graph(raw)
@@ -64,9 +73,6 @@ if __name__ == '__main__':
             for j in tqdm(range(testingInfo["epochs"])):
                 # add one train epoch run here:
 
-                # lossPoint = 5 * random.random()
-
-                # time.sleep(0.7)
                 criterion = get_losses()[curSetting['loss']]
                 optimizer = get_optimizers()[curSetting['optim']]
 
@@ -75,16 +81,22 @@ if __name__ == '__main__':
                                 criterion, optimizer, curSetting['lr'], device)
                 mostRecent["loss_vals"].append(round(loss, 2))
 
-                with open(f"{ppath}/training_history/top_5.json", 'w') as top5json:
-                    # historyjson.seek(0)
-                    # historyjson.truncate()
-                    json.dump(top5 + [mostRecent], top5json, indent=4)
 
+                with open(f"{ppath}/training_history/top_5.json", 'w') as top5json:
+                    json.dump(filterDictKey(top5 + [mostRecent], "model_weights"), top5json, indent=4)
+
+            mostRecent["model_weights"] = torch.jit.script(net)
+
+        
             top5 = sorted(top5 + [mostRecent], key=lambda x: min(x['loss_vals']))[:5]
 
             with open(f"{ppath}/training_history/top_5.json", 'w') as top5json:
-                json.dump(top5 + [mostRecent], top5json, indent=4)
+                json.dump(filterDictKey(top5 + [mostRecent], "model_weights"), top5json, indent=4)
 
+        # TODO: Fix 
+        for i in range(min(5, len(top5))):
+            top5[i]["model_weights"].save(f"{ppath}/model_weights{i}.pt")
+    
     else:
         print("train config not found")
         sys.exit()

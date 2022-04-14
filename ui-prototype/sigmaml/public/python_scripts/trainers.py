@@ -1,6 +1,8 @@
 
-def train_fl(model, dataloader, loss_fn, optim, lr=0.001, momentum=0.9):
+def train_fl(model, dataloader, loss_fn, optim, lr, device):
     """
+    :param device:
+    :type device:
     :param model: instantiated pytorch model
     :type model: torch.nn.Module
     :param dataloader: pytorch DataLoader or similarly structured iterable
@@ -24,6 +26,7 @@ def train_fl(model, dataloader, loss_fn, optim, lr=0.001, momentum=0.9):
     optimizer = optim(model.parameters(), lr=lr)
     for i, o in dataloader:
         optimizer.zero_grad()
+        i, o = i.to(device), o.to(device)
         out = model(i)
         loss = criterion(out, o)
         loss.backward()

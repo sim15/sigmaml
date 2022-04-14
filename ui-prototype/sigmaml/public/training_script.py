@@ -12,6 +12,7 @@ from python_scripts.dataset import get_dataloader
 from python_scripts.parse_torch import *
 from torchvision import datasets
 from torchsummary import summary
+from tqdm import tqdm
 
 
 if __name__ == '__main__':
@@ -35,6 +36,8 @@ if __name__ == '__main__':
         with open(f'{ppath}/model.json', 'r') as f:
             raw = json.load(f)
 
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
         # TODO: Fix to not clear entire file on each write? Datastreaming?
         top5 = []
         mostRecent = []
@@ -52,9 +55,13 @@ if __name__ == '__main__':
 
             x = generate_graph(raw)
             net = NetFromGraph(x)
+            net.to(device)
+
             summary(net, (1, 28, 28))
 
-            for j in range(testingInfo["epochs"]):
+            dataloader = get_dataloader(datasets.MNIST, ppath, 5000)
+
+            for j in tqdm(range(testingInfo["epochs"])):
                 # add one train epoch run here:
 
                 # lossPoint = 5 * random.random()
@@ -64,8 +71,8 @@ if __name__ == '__main__':
                 optimizer = get_optimizers()[curSetting['optim']]
 
                 # TODO: remove hard-coded dataset
-                loss = train_fl(net, get_dataloader(datasets.MNIST, ppath, 100),
-                                criterion, optimizer, curSetting['lr'])
+                loss = train_fl(net, dataloader,
+                                criterion, optimizer, curSetting['lr'], device)
                 mostRecent["loss_vals"].append(round(loss, 2))
 
                 with open(f"{ppath}/training_history/top_5.json", 'w') as top5json:

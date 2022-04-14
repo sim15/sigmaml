@@ -10,7 +10,7 @@ def get_losses():
 
 
 def get_optimizers():
-    return dict([(name, cls) for name, cls in torch.nn.__dict__.items()
+    return dict([(name, cls) for name, cls in torch.optim.__dict__.items()
                  if isinstance(cls, type)])
 
 
@@ -42,4 +42,4 @@ def get_default_args(func):
 
 
 if __name__ == '__main__':
-    print(get_vision_datasets().keys())
+    print(get_optimizers())

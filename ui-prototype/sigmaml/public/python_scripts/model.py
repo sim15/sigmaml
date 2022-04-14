@@ -18,7 +18,6 @@ import torch
 import ast
 
 
-
 def clean_raw(raw_dict):
     return raw_dict['drawflow']['Home']['data']
 
@@ -53,7 +52,7 @@ class Node:
 
 
 class NetFromGraph(torch.nn.Module):
-    def __init__(self, graph):  # G = (V, E)
+    def __init__(self, graph, demo=False):  # G = (V, E)
         super().__init__()
         self.graph = graph
         nn = dict([(name, cls) for name, cls in torch.nn.__dict__.items() if isinstance(cls, type)])

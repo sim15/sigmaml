@@ -4,7 +4,13 @@ import sys
 import os.path
 import time
 import random
+import math
 import itertools
+from python_scripts.trainers import *
+from python_scripts.model import *
+from python_scripts.dataset import get_dataloader
+from python_scripts.parse_torch import *
+from torchvision import datasets
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="path to model json")
@@ -14,14 +20,18 @@ if __name__ == '__main__':
     # print(args.projectpath)
     ppath = args.projectpath
 
-
-    if not (os.path.exists(f"{ppath}/training_history")):
+    if not os.path.exists(f"{ppath}/training_history"):
         os.mkdir(f"{ppath}/training_history")
 
-    if (os.path.exists(f"{ppath}/temp_training_config.json")):
+    assert(os.path.exists(f'{ppath}/model.json'))
+
+    if os.path.exists(f"{ppath}/temp_training_config.json"):
         with open(f"{ppath}/temp_training_config.json", 'r') as f:
             # print(f"{ppath}/temp_training_config.json")
             testingInfo = json.load(f)
+
+        with open(f'{ppath}/model.json', 'r') as f:
+            raw = json.load(f)
 
         # TODO: Fix to not clear entire file on each write? Datastreaming?
         top5 = []
@@ -38,34 +48,31 @@ if __name__ == '__main__':
                 "loss_vals": []
             }
 
-            for j in range(testingInfo["epochs"]):
+            x = generate_graph(raw)
+            net = NetFromGraph(x)
 
+            for j in range(testingInfo["epochs"]):
                 # add one train epoch run here:
 
+                # lossPoint = 5 * random.random()
 
-
-
-                lossPoint = 5 * random.random()
-
-
-                time.sleep(0.7)
-                mostRecent["loss_vals"].append(lossPoint)
+                # time.sleep(0.7)
+                criterion = get_losses()[curSetting['loss']]
+                optimizer = get_optimizers()[curSetting['optim']]
+                loss = train_fl(net, get_dataloader(datasets.MNIST, './', 100),
+                                criterion, optimizer, curSetting['lr'])
+                mostRecent["loss_vals"].append(round(loss, 2))
 
                 with open(f"{ppath}/training_history/top_5.json", 'w') as top5json:
                     # historyjson.seek(0)
-                    # historyjson.truncate() 
+                    # historyjson.truncate()
                     json.dump(top5 + [mostRecent], top5json, indent=4)
-
 
             top5 = sorted(top5 + [mostRecent], key=lambda x: min(x['loss_vals']))[:5]
 
             with open(f"{ppath}/training_history/top_5.json", 'w') as top5json:
                 json.dump(top5 + [mostRecent], top5json, indent=4)
-        print(c)
-    
-    
+
     else:
         print("train config not found")
         sys.exit()
-
-

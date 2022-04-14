@@ -1,6 +1,7 @@
 import torch
 import torchvision
 import re
+import inspect
 
 
 def get_losses():
@@ -23,5 +24,22 @@ def get_vision_datasets(exclude=('ImageFolder', 'DatasetFolder', 'VisionDataset'
                  if isinstance(cls, type) and name not in exclude])
 
 
+def get_vision_transforms(exclude=None):
+    return dict([(name, cls) for name, cls in torchvision.transforms.__dict__.items()
+                 if isinstance(cls, type) and name not in exclude])
+
+
+def get_default_args(func):
+    signature = inspect.signature(func)
+    out = {}
+    for k, v in signature.parameters.items():
+        print(k,v)
+        if v.default is not inspect.Parameter.empty:
+            out.update({k:str(v.default)})
+        else:
+            out.update({k: ""})
+    return out
+
+
 if __name__ == '__main__':
-    print(get_vision_datasets())
+    print(get_vision_datasets().keys())

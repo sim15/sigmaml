@@ -11,6 +11,8 @@ from python_scripts.model import *
 from python_scripts.dataset import get_dataloader
 from python_scripts.parse_torch import *
 from torchvision import datasets
+from torchsummary import summary
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="path to model json")
@@ -50,6 +52,7 @@ if __name__ == '__main__':
 
             x = generate_graph(raw)
             net = NetFromGraph(x)
+            summary(net, (1, 28, 28))
 
             for j in range(testingInfo["epochs"]):
                 # add one train epoch run here:

@@ -4,6 +4,8 @@ import json
 from model import NetFromGraph, generate_graph
 from trainers import *
 from parse_torch import *
+from dataset import get_dataloader
+from torchvision import datasets
 
 
 def clean_config(d):
@@ -32,7 +34,7 @@ if __name__ == '__main__':
 
     # unpack hyperparameters
     if cfg['mode'] == 'train':
-        train_fl(net, cfg['data'], *clean_config(cfg))
+        train_fl(net, get_dataloader(datasets.MNIST, './', 100), *clean_config(cfg))
 
     f = 'model.pt'
     torch.save(net.state_dict(), f)

@@ -288,7 +288,7 @@
 <!-- add dropdown selection for connections -->
 <!-- TODO: make sure that canvas doesn't reset after every load? performance -->
 <div class="button-container">
-    <div id="save-button" on:click={saveGraphJSON}>SAVE</div>
+    <!-- <div id="save-button" on:click={saveGraphJSON}>SAVE</div> -->
 </div>
 <div id="drawflow" use:onload on:drop={drop} on:dragover={allowDrop} draggable="false"></div>
 
@@ -329,14 +329,17 @@
 
     div :global(.drawflow .connection .main-path) {
         stroke: white;
-        stroke-width: 2px;
+        stroke-width: 4px;
         stroke-dasharray: 10,5;
     }
 
-    /* div :global(.drawflow .drawflow-node.selected) {
-        background: rgb(59, 59, 59);
-        border: 0 solid white;
-    } */
+    div :global(.drawflow .connection .selected) {
+        stroke: rgb(84, 181, 255);
+    }
+
+    div :global(.drawflow .drawflow-node.selected) {
+        border: 2px solid rgb(84, 181, 255);
+    }
 
     div :global(.drawflow .drawflow-node .input), div :global(.drawflow .drawflow-node .output) {
         background: rgba(255,255,255,0.1);

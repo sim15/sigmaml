@@ -3,6 +3,8 @@
     import {stopExpand, expand, startExpand} from '../Handlers.svelte';
     import * as d3 from 'd3';
     import Svelecte from 'svelecte'
+    import tooltip from 'svelte-tooltip-action'
+    
 
     var rawData = [[],[]];
 	
@@ -59,7 +61,7 @@
         render = () => {
             const data = formatData(rawData);
             
-            console.log(data);
+            // console.log(data);
 
             // obtain absolute min and max
             const yMin = data.reduce((pv,cv) => {
@@ -163,7 +165,7 @@
             name: "Epochs",
             configID: "epochs",
             configType: "constant",
-            description: "Define the number of epochs per training iteration.",
+            description: "Define the number of epochs per training iteration. The number of epochs dictates how many passes over the dataset your model performs during training.",
             optionType: "input-option",
             input: {
                 type: "number",
@@ -174,11 +176,11 @@
             name: "Loss Function",
             configID: "loss",
             configType: "iterated-selection",
-            description: "Which loss function to use.",
+            description: "Which loss function to use. Loss functions indicate the relative accuracy of your model's prediction during training.",
             optionType: "input-option",
             input: {
                 type: "multi-select",
-                defaultValue: ["BCELoss", "NLLLoss2d"],
+                defaultValue: [],
                 selections: [
                     "AdaptiveLogSoftmaxWithLoss",
                     "BCELoss",
@@ -214,7 +216,7 @@
             optionType: "input-option",
             input: {
                 type: "multi-select",
-                defaultValue: ["ASGD", "AdamW"],
+                defaultValue: [],
                 selections: [
                     'ASGD',
                     'Adadelta',
@@ -253,11 +255,11 @@
             name: "Learning Rate",
             configID: "lr",
             configType: "iterated-range",
-            description: "Define a search space for learning rate",
+            description: "Define a search space for learning rate. Enter the minimum, maximum, and step size of the search. ",
             optionType: "input-option",
             input: {
                 type: "number-range",
-                defaultValue: [0, 1, 0.5]
+                defaultValue: [0, 0, 0]
             }
         }
 
@@ -318,6 +320,8 @@
         // add async
         window.api.runTraining();
     }
+
+
 </script>
 
 <div class="train-view">
@@ -367,9 +371,7 @@
                 </div>
             {/if}
             {/each}
-            <div class="action-button-bar">
-                <div class="action-button" id="training-run" on:click={beginTraining}>TRAIN</div>
-            </div>
+            <div class="action-button" id="training-run" style="background-image: url(./icons/run.svg)" on:click={beginTraining}></div>
     </div>
     <div class="handler-wrapper x-handler-border">
         <div class="handler x-handler" id="train-main-handler" on:mousedown={startExpand.bind(this, 'train-settings-panel', 'width-l')}></div>
@@ -377,10 +379,13 @@
     <div id="train-progress-display">
         <div class="candidate-parameters-menu">
             {#each topTrainingRuns as topResult}
-                <div class="training-res">
-                    <span>{Math.round(parseFloat(topResult["loss_vals"])*100)/100}</span>
-
+                <div use:tooltip={{ text: JSON.stringify(topResult["hyper"], null, 4), style: 'left: 0; bottom: -1em;' }} class="training-res tooltips">
+                    <div class="inner-topResult">
+                        <div>Minimum Loss:</div>
+                        <span class="primary-topResult">{Math.round(Math.min(...topResult["loss_vals"])*100)/100}</span>
+                    </div>  
                 </div>
+            
             {/each}
         </div>
         <div bind:this={el} class="chart">
@@ -393,13 +398,49 @@
 
 <style>
 
+    :global(div) {
+        --sv-bg: #303030;
+        --sv-border-color: #303030;
+        --sv-border: 0 solid #303030;
+        --sv-item-selected-bg: #1e1e1e;
+        --sv-item-active-bg: #1e1e1e;
+        --sv-item-color: #ffffff !important;
+        --sv-item-btn-bg: #1e1e1e;
+        --sv-active-border: 1px solid steelblue;
+        --sv-icon-hover: #121212;
+        --sv-item-btn-bg-hover: #121212;
+        --sv-icon-hover: steelblue;
+    }
+
+    :global(.sv-control) {
+        border-radius: 0px !important;
+    }
+
+    .tooltips {
+        position: relative;
+    }
+
+    .inner-topResult {
+        margin: auto;
+        text-align: center;
+    }
+
+    .primary-topResult {
+        font-size: 1.5em;
+    }
+
     .training-res {
+        display: flex;
         width: 10em;
-        height: auto;
+        max-height: 10em;
         background: #303030;
         flex-wrap: wrap;
         margin: .5em;
 
+    }
+
+    .training-res:hover {
+        cursor: pointer;
     }
 
     .candidate-parameters-menu {
@@ -412,23 +453,25 @@
     }
 
 
-    .action-button-bar {
-        bottom: 0;
-        right: 0;
+    .action-button {
+        top: 0.5em;
+        width: 1.8em;
+        height: 1.8em;
+        right: 0.5em;
         position: absolute;
     }
 
     :global(.svelecte-control) {
         max-width: 30em;
     }
-    #training-run {
+    /* #training-run {
         right: 10px;
         height: 50px;
         width: 50px;
         background: rgba(0, 128, 0, 0.2);
         line-height: 50px;
         text-align: center;
-    }
+    } */
 
     #training-run:hover {
         cursor: pointer;

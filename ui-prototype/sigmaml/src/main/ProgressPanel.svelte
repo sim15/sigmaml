@@ -2,11 +2,11 @@
     import { createEventDispatcher } from 'svelte';
     // import {changeWindow, currentViewName, currentView, views} from "./App.svelte";
     export let processes = [
-        {name: 'Start and Configure', status: "complete", selected: false},
+        {name: 'Start and Configure', status: "unfinished", selected: false},
         {name: 'Data', status: "error", selected: false},
         {name: 'Model', status: "unfinished", selected: true},
         {name: 'Train', status: "unfinished", selected: false},
-        {name: 'Test', status: "unfinished", selected: false}
+        {name: 'Test', status: "error", selected: false}
     ];
 
 
@@ -63,7 +63,7 @@
         /* TODO 4/10: FIX THIS. Causes overlap issues with child elements */
         /* https://stackoverflow.com/questions/52937708/why-does-applying-a-css-filter-on-the-parent-break-the-child-positioning */
         /* backdrop-filter: brightness(1.3); */
-        background-color: #262626;
+        background-color: #242424;
         cursor: pointer;
     }
 

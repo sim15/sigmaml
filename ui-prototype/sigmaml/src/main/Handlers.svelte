@@ -85,7 +85,7 @@
 	}
 
 	:global(.x-handler-border) {
-		width: 0.08px;
+		width: 1px;
 		background-color: rgb(66, 66, 66);
 	}
 
@@ -100,7 +100,7 @@
 	}
 
 	:global(.y-handler-border) {
-		height: 0.08px;
+		height: 1px;
 		background-color: rgb(66, 66, 66);
 	}
 

@@ -35,10 +35,11 @@ const isMac = process.platform === 'darwin'
 function main () {
   const bounds = ProjectSettings.getWindowSettings();
 
-
+  console.log(__dirname)
   const window = new BrowserWindow({
       width: bounds[0], height: bounds[1],
       show: false,
+      icon: __dirname + '/sigmaml.png',
       webPreferences: {
           preload: Path.resolve("./electron/preload.js"),
           nodeIntegration: false,

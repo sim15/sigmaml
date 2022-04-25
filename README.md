@@ -2,8 +2,8 @@
 Implementation of SigmaML -- A cross-platform compatible desktop application for building machine learning models
 with an intuitive UI that aggregates all steps of the development process. Built entirely using web-technology.
 
-The above prototype is currently in development.
-Please feel free to contact me with any questions. 
+Please note that the above prototype is currently in development and does not contain all functionality.
+Feel free to contact me with any questions.
 
 ### Dependencies
 * NodeJS
